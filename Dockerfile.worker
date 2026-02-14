@@ -1,0 +1,11 @@
+FROM node:20-alpine
+WORKDIR /app
+RUN addgroup --system --gid 1001 worker
+RUN adduser --system --uid 1001 worker
+COPY --chown=worker:worker package*.json ./
+RUN npm ci --production
+COPY --chown=worker:worker scripts/ ./scripts/
+COPY --chown=worker:worker src/lib/ ./src/lib/
+COPY --chown=worker:worker tsconfig.json ./
+USER worker
+CMD ["npx", "tsx", "scripts/sync-shopify.ts"]
