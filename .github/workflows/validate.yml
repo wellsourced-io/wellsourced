@@ -1,0 +1,27 @@
+name: Validate Brand Data
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'brands/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli ajv-formats
+
+      - name: Validate changed brand files
+        run: |
+          git diff --name-only origin/main...HEAD -- 'brands/*.json' | while read file; do
+            echo "Validating $file..."
+            ajv validate -s schema/brand.schema.json -d "$file" --spec=draft7 -c ajv-formats
+          done

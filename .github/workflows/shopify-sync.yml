@@ -1,0 +1,28 @@
+name: Shopify Sync
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # Daily at 3:00 AM UTC
+  workflow_dispatch:        # Manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone brand-data
+        uses: actions/checkout@v4
+        with:
+          repository: wellsourced-io/brand-data
+          path: brand-data
+
+      - name: Pull sync-worker image
+        run: docker pull ghcr.io/wellsourced-io/sync-worker:latest
+
+      - name: Run sync
+        run: |
+          docker run --rm \
+            -e MEILISEARCH_HOST=${{ secrets.MEILI_PROD_HOST }} \
+            -e MEILISEARCH_API_KEY=${{ secrets.MEILI_PROD_KEY }} \
+            -e SHOPIFY_STOREFRONT_TOKENS='${{ secrets.SHOPIFY_STOREFRONT_TOKENS }}' \
+            -v ${{ github.workspace }}/brand-data/brands:/app/brand-data:ro \
+            ghcr.io/wellsourced-io/sync-worker:latest
