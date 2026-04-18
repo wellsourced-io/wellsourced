@@ -1,0 +1,77 @@
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Preview, CodeBlock } from "@/components/design-site";
+import { PackageOpen, Search as SearchIcon, MailPlus } from "lucide-react";
+
+export const metadata = { title: "Empty states" };
+
+# Empty states
+
+<div className="lede">
+  Empty states are the most-overlooked part of a UI. Treat them like hero moments — they're where users find out what the product is even for.
+</div>
+
+## No search results
+
+<Preview padding="md" background="surface">
+  <div className="w-full max-w-[520px] text-center">
+    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-sand text-muted">
+      <SearchIcon className="h-6 w-6" aria-hidden />
+    </div>
+    <h3 className="mt-5 font-[var(--font-display)] text-[22px] font-semibold text-fg">
+      No matches for “organik kotton”
+    </h3>
+    <p className="mt-2 text-[14.5px] leading-[1.55] text-muted">
+      Check the spelling, or try a related term like <strong className="text-fg font-medium">organic cotton shirts</strong>.
+    </p>
+    <div className="mt-5 flex justify-center gap-2">
+      <Button variant="secondary">Clear filters</Button>
+      <Button>Try “organic cotton”</Button>
+    </div>
+  </div>
+</Preview>
+
+## A brand with no products yet
+
+<Preview padding="md" background="surface">
+  <div className="w-full max-w-[520px] text-center">
+    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-sand text-muted">
+      <PackageOpen className="h-6 w-6" aria-hidden />
+    </div>
+    <h3 className="mt-5 font-[var(--font-display)] text-[22px] font-semibold text-fg">
+      No products listed yet
+    </h3>
+    <p className="mt-2 text-[14.5px] leading-[1.55] text-muted">
+      Oyama Denim's full catalog is being indexed. Visit their shop directly in the meantime.
+    </p>
+    <div className="mt-5 flex justify-center">
+      <Button>Visit shop</Button>
+    </div>
+  </div>
+</Preview>
+
+## Contributor dashboard, day 1
+
+<Preview padding="md" background="surface">
+  <Card padding="lg" className="w-full max-w-[520px] text-center">
+    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-teal-light text-teal">
+      <MailPlus className="h-6 w-6" aria-hidden />
+    </div>
+    <h3 className="mt-5 font-[var(--font-display)] text-[22px] font-semibold text-fg">
+      You haven't submitted anything yet
+    </h3>
+    <p className="mt-2 text-[14.5px] leading-[1.55] text-muted">
+      Know a brand that belongs here? Submissions are how WellSourced grows — and every submission is credited.
+    </p>
+    <div className="mt-5 flex justify-center">
+      <Button>Submit a brand</Button>
+    </div>
+  </Card>
+</Preview>
+
+## Rules
+
+- **Never apologize.** “Sorry, no results found” is a cop-out. Tell the user what to try instead.
+- **Offer a next action.** Every empty state has at least one button. “Clear filters”, “Try a related term”, “Submit a brand”.
+- **Don't fake emptiness.** If there are zero products because the index is down, say that — don't show “no matches found”.
+- **Keep copy short and specific.** The heading names what's missing; the paragraph gives one reason and one way out.

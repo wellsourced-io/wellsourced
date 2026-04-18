@@ -1,0 +1,40 @@
+import { CategoryTile } from "@/components/ui/CategoryTile";
+import { Preview } from "@/components/design-site";
+import {
+  Shirt,
+  Armchair,
+  Coffee,
+  Lamp,
+  Hammer,
+  BookOpen,
+  Package,
+  Flower,
+} from "lucide-react";
+
+export const metadata = { title: "Category grid" };
+
+# Category grid
+
+<div className="lede">
+  The “what do you want to find” surface. A 4-column grid of tiles; icon, name, count. Used on the landing page, the directory, and the brand profile.
+</div>
+
+<Preview padding="md" background="sand">
+  <div className="grid w-full grid-cols-2 sm:grid-cols-4 gap-3">
+    <CategoryTile label="Clothing" count={284} icon={Shirt} href="#" />
+    <CategoryTile label="Furniture" count={102} icon={Armchair} href="#" />
+    <CategoryTile label="Kitchenware" count={173} icon={Coffee} href="#" />
+    <CategoryTile label="Home & light" count={89} icon={Lamp} href="#" />
+    <CategoryTile label="Tools" count={56} icon={Hammer} href="#" />
+    <CategoryTile label="Books & paper" count={41} icon={BookOpen} href="#" />
+    <CategoryTile label="Bags" count={74} icon={Package} href="#" />
+    <CategoryTile label="Garden" count={38} icon={Flower} href="#" />
+  </div>
+</Preview>
+
+## Rules
+
+- **Four columns on desktop, two on mobile.** Eight categories max per page — if you have more, curate.
+- **Count is mono, muted.** It's metadata, not a pitch. “284” reads as scale without shouting.
+- **Hover lifts, doesn't color-flood.** Border turns teal, card nudges 1&thinsp;px. No fills, no big shadows.
+- **Icons describe, not decorate.** If a user has to squint to know what the tile is about, the icon is wrong.

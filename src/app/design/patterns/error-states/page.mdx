@@ -1,0 +1,76 @@
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Preview } from "@/components/design-site";
+import { AlertTriangle, CloudOff, ServerCrash } from "lucide-react";
+
+export const metadata = { title: "Error states" };
+
+# Error states
+
+<div className="lede">
+  Errors are information, not judgment. They name what went wrong, say what the user can do, and never blame the user for something the system did.
+</div>
+
+## Inline field error
+
+<Preview padding="md" background="surface">
+  <div className="w-full max-w-[420px]">
+    <label className="block mb-2 text-[13px] font-medium text-fg">Email address</label>
+    <input
+      className="w-full h-11 px-3.5 rounded-[12px] border border-[color:var(--color-err)] bg-surface text-[14px] text-fg focus:outline-none focus:shadow-[0_0_0_4px_var(--color-err-bg)]"
+      defaultValue="not-an-email"
+      aria-invalid="true"
+    />
+    <div className="mt-1.5 text-[12.5px] text-[color:var(--color-err)]">
+      That doesn't look like a valid email address. Try <strong>name@domain.com</strong>.
+    </div>
+  </div>
+</Preview>
+
+## Request failed — connection
+
+<Preview padding="md" background="surface">
+  <Card padding="lg" className="w-full max-w-[520px] text-center">
+    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-warn-bg text-[color:var(--color-warn)]">
+      <CloudOff className="h-6 w-6" aria-hidden />
+    </div>
+    <h3 className="mt-5 font-[var(--font-display)] text-[22px] font-semibold text-fg">
+      We couldn't reach the search index
+    </h3>
+    <p className="mt-2 text-[14.5px] leading-[1.55] text-muted">
+      Likely a brief network hiccup. If this keeps happening, please let us know.
+    </p>
+    <div className="mt-5 flex justify-center gap-2">
+      <Button variant="secondary">Report</Button>
+      <Button>Try again</Button>
+    </div>
+  </Card>
+</Preview>
+
+## 500 — something broke on our end
+
+<Preview padding="md" background="surface">
+  <Card padding="lg" className="w-full max-w-[520px] text-center">
+    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[14px] bg-err-bg text-[color:var(--color-err)]">
+      <ServerCrash className="h-6 w-6" aria-hidden />
+    </div>
+    <h3 className="mt-5 font-[var(--font-display)] text-[22px] font-semibold text-fg">
+      That's on us
+    </h3>
+    <p className="mt-2 text-[14.5px] leading-[1.55] text-muted">
+      Something broke loading this page. We've recorded it and are looking into it. In the meantime, try reloading or head back to the directory.
+    </p>
+    <div className="mt-5 flex justify-center gap-2">
+      <Button variant="secondary">Reload</Button>
+      <Button>Back to directory</Button>
+    </div>
+  </Card>
+</Preview>
+
+## Rules
+
+- **Name the error.** “We couldn't reach the search index” beats “An error occurred.”
+- **Own our failures.** If it's our fault, say so. “That's on us.” Users appreciate honesty over vague third-person passives.
+- **Never trap the user.** Every error offers at least one way out — retry, go home, report.
+- **Use tone to signal severity.** Warn tone (amber) for recoverable; error tone (red) for user action or system fault.
+- **Don't make the user feel stupid for typos.** Field errors are corrections, not accusations.

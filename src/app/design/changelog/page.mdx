@@ -1,0 +1,29 @@
+export const metadata = { title: "Changelog" };
+
+# Changelog
+
+<div className="lede">
+  A running log of the design system. New tokens, new components, API changes, and known gaps.
+</div>
+
+## v0.1.0 — Initial release
+
+**2026-04-17**
+
+First public cut of the WellSourced design system. Tokens, component library, documentation site.
+
+### Added
+
+- **Tokens** — full palette, trust tiers, radius, shadow, motion, space scale. Declared in <code>src/app/globals.css</code>, exposed via Tailwind v4 <code>@theme inline</code>.
+- **Fonts** — Satoshi (Fontshare), DM Sans + JetBrains Mono + DM Serif Display (Google Fonts), loaded via CDN with preconnect hints.
+- **Components** — Button, Badge, TrustBadge, FilterChip, SearchBar, Input + Textarea, Card, ProductCard, BrandProfileHeader, CategoryTile, Skeleton, NavBar, Logo (Mark + Lockup).
+- **Documentation site** at <code>/design</code> — foundations, tokens, components, patterns, content, brand, accessibility.
+
+### Known gaps
+
+- Full-text search across the design system is UI-only. Wiring to Pagefind (or similar) is tracked as a follow-up.
+- Downloadable token bundles (JSON, Style Dictionary, Figma Tokens) not yet exported.
+- Brand kit downloads (SVG, PNG) not yet published — lockup renders from the React component only.
+- Props tables are handwritten. Auto-generation from TS types via <code>react-docgen-typescript</code> is a follow-up.
+- No visual regression coverage yet (Chromatic / Playwright screenshot tests).
+- Dialog, Drawer, and Toast components are not yet built.

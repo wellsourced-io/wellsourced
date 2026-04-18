@@ -1,0 +1,46 @@
+export const metadata = { title: "Accessibility" };
+
+# Accessibility
+
+<div className="lede">
+  Accessibility isn't a feature we add later. It's a constraint that shapes every decision below — and a floor we don't go under.
+</div>
+
+## Standards
+
+- **WCAG 2.2 AA** is the minimum for all production surfaces.
+- **Color contrast:** text over <code>bg</code> and <code>surface</code> hits 4.5:1 or better. Large text (18&thinsp;px bold / 24&thinsp;px regular) hits 3:1. Trust badges clear both against their backgrounds.
+- **Focus:** every interactive element has a visible focus ring (2&thinsp;px teal, 2&thinsp;px offset). Focus is never removed for “cleanliness”.
+- **Keyboard:** every feature is reachable with Tab, Enter, and Space. Skip links precede the main nav on every page.
+- **Motion:** all animations and transitions shorten to ≤1&thinsp;ms under <code>prefers-reduced-motion: reduce</code>. No exceptions.
+
+## Per-component checklist
+
+When a component changes, verify:
+
+- [ ] Has a visible focus ring on all interactive parts.
+- [ ] Has a screen-reader-accessible label (text, <code>aria-label</code>, or <code>aria-labelledby</code>).
+- [ ] Doesn't rely on color alone to convey state (active, error, success all have text or icon).
+- [ ] Keyboard-navigable — Tab order is natural, Enter/Space activates.
+- [ ] Hits contrast on both light and dark themes.
+- [ ] Works when `prefers-reduced-motion: reduce` is set — visuals still make sense without motion.
+- [ ] Tooltips and popovers open on focus, not only on hover.
+
+## Testing
+
+- **Manual keyboard pass.** Tab through the page with no mouse. Anything unreachable or unclearly focused is a bug.
+- **axe DevTools or equivalent.** Ship zero serious violations. Track the moderate ones.
+- **VoiceOver / NVDA spot check.** Once per release pass, navigate a representative flow with a screen reader. Ownership types, trust tiers, and prices must announce clearly.
+- **Reduced-motion verification.** Toggle the OS preference. Static states must still be comprehensible — if a skeleton isn't visible without shimmer, add a subtle static fill.
+
+## Things we never do
+
+- Remove focus styles for design reasons.
+- Put action in a tooltip (tooltip is for explanation; action has its own control).
+- Use placeholder as label — placeholders disappear on type and don't read to assistive tech.
+- Rely on hover for discoverability. Hover doesn't exist on touch, and keyboard users don't hover.
+- Conflate disabled with read-only. Disabled removes from tab order; read-only does not.
+
+## Known gaps
+
+Tracked in the [changelog](/design/changelog). If you hit an accessibility bug that isn't listed there, file it.

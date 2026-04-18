@@ -1,0 +1,37 @@
+import { NavBar } from "@/components/ui/NavBar";
+import { Preview, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Nav bar" };
+
+# Nav bar
+
+<div className="lede">
+  The top-level site chrome. Logo lockup on the left, primary links in the center, utility slot on the right.
+</div>
+
+<Preview padding="sm" background="sand">
+  <div className="w-full">
+    <NavBar current="/brands" />
+  </div>
+</Preview>
+
+## Usage
+
+- **One primary nav per page.** The app has a single top bar; sub-navigation (brand profile tabs, category filters) lives inside the page, not up top.
+- **Active state uses teal-light.** A calm wash, not a bar-underline. The current page should feel selected, not highlighted.
+- **Logo lockup is always left.** The WS mark plus “Well<em>Sourced</em>” wordmark. The serif italic is a brand fingerprint — keep it.
+- **Backdrop blur only when scrolling over content.** The nav is `bg-surface/70` + backdrop blur so the page's rhythm stays visible behind it.
+
+## Props
+
+<PropsTable component="NavBar" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { NavBar } from "@/components/ui/NavBar";
+import { usePathname } from "next/navigation";
+
+export function SiteHeader() {
+  const pathname = usePathname();
+  return <NavBar current={pathname} />;
+}`}</CodeBlock>

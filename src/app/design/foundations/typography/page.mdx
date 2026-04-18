@@ -1,0 +1,36 @@
+import { TypeSpecimen } from "@/components/design-site";
+
+export const metadata = { title: "Typography" };
+
+# Typography
+
+<div className="lede">
+  Three families, chosen for the job: Satoshi for display, DM Sans for UI and reading, JetBrains Mono for code and metadata. Together they say “institutional but warm.” Apart, they stay out of each other's way.
+</div>
+
+## The families
+
+- **Satoshi** (Indian Type Foundry, via [Fontshare](https://www.fontshare.com/fonts/satoshi)) — geometric sans with confident curves. Used for headings and display. Weights 400, 500, 700, 900.
+- **DM Sans** (Google Fonts) — highly legible neutral sans, optimized for UI at small sizes. Weights 400, 500, 600, 700.
+- **JetBrains Mono** (Google Fonts) — code, prices, metadata, keyboard shortcuts. Weights 400, 500.
+- **DM Serif Display** (italic only) — used sparingly for the “Sourced” italic inside the wordmark.
+
+## Type scale
+
+<TypeSpecimen name="Display" font="display" weight={900} size={64} lineHeight={1} letterSpacing="-0.035em" sample="Find what's actually made well." />
+<TypeSpecimen name="H1" font="display" weight={700} size={40} lineHeight={1.1} letterSpacing="-0.02em" sample="Brands that earn the badge." />
+<TypeSpecimen name="H2" font="display" weight={600} size={32} lineHeight={1.2} letterSpacing="-0.015em" sample="Made in workshops, not campaigns." />
+<TypeSpecimen name="H3" font="display" weight={600} size={24} lineHeight={1.3} sample="Traceable to a person and a place." />
+<TypeSpecimen name="Body" font="sans" weight={400} size={16} lineHeight={1.55} sample="We show who made it, where, and whether anyone checked. Then we get out of the way." />
+<TypeSpecimen name="Small" font="sans" weight={400} size={14} lineHeight={1.5} sample="Shipped from a workshop in Hyogo, Japan — typically within 5 business days." />
+<TypeSpecimen name="Price" font="display" weight={600} size={20} lineHeight={1.2} sample="$128" />
+<TypeSpecimen name="Badge" font="sans" weight={500} size={13} letterSpacing="0.02em" sample="COMMUNITY-VERIFIED" />
+<TypeSpecimen name="Button" font="sans" weight={500} size={15} lineHeight={1} sample="Buy direct →" />
+<TypeSpecimen name="Code" font="mono" weight={400} size={13} lineHeight={1.6} sample="const tier = 't3' as const" />
+
+## Rules
+
+- **Display and H1-H3 use Satoshi.** Body, UI controls, and metadata use DM Sans. No mixing within a typographic level.
+- **Numerals are tabular.** Prices, counts, and spec tables use `font-variant-numeric: tabular-nums` to stop jitter.
+- **Line length caps around 72 characters for body.** Headings can go wider; body must stay readable.
+- **Never use Inter, Roboto, Montserrat, or Poppins.** They're defaults; this system is specific on purpose.

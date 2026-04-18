@@ -1,0 +1,48 @@
+import { FilterChip } from "@/components/ui/FilterChip";
+import { VariantTabs, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Filter chip" };
+
+# Filter chip
+
+<div className="lede">
+  A toggleable filter, used in horizontal rows above search results and on category pages.
+</div>
+
+<VariantTabs
+  variants={[
+    { label: "Inactive", node: <FilterChip>Family-owned</FilterChip> },
+    { label: "Active",   node: <FilterChip active>Family-owned</FilterChip> },
+    { label: "With count", node: (
+      <div className="flex gap-2 flex-wrap">
+        <FilterChip count={124}>Organic cotton</FilterChip>
+        <FilterChip active count={58}>Japanese denim</FilterChip>
+        <FilterChip count={42}>Workshop made</FilterChip>
+      </div>
+    )},
+    { label: "Disabled", node: <FilterChip disabled>Out of stock</FilterChip> },
+  ]}
+/>
+
+## Usage
+
+- **Chips are AND filters, not OR pills.** Tapping two chips narrows results. Make that obvious with an inline result count when scope permits.
+- **Active is ink, not teal.** Active chips use ink-on-sand so they don't compete with the single teal primary action on the page.
+- **Keep labels tight.** One to three words. “Organic cotton”, “Family-owned”, “Workshop made”.
+- **Order matters.** Most common first, alphabetical second. Never “surprise me” random.
+
+## Props
+
+<PropsTable component="FilterChip" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { FilterChip } from "@/components/ui/FilterChip";
+
+<FilterChip>Organic cotton</FilterChip>
+<FilterChip active>Japanese denim</FilterChip>
+<FilterChip count={124}>Workshop made</FilterChip>
+
+// Controlled
+const [active, setActive] = useState(false);
+<FilterChip active={active} onToggle={setActive}>Family-owned</FilterChip>`}</CodeBlock>

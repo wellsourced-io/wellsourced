@@ -1,0 +1,45 @@
+import { Skeleton } from "@/components/ui/Skeleton";
+import { Card } from "@/components/ui/Card";
+import { Preview, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Skeleton" };
+
+# Skeleton
+
+<div className="lede">
+  An animated placeholder that holds the exact shape of what's loading. Not a spinner — spinners say “something's happening”; skeletons say “here's where your content will appear”.
+</div>
+
+<Preview>
+  <Card padding="none" className="overflow-hidden w-full max-w-[320px]">
+    <Skeleton className="aspect-[4/3] w-full rounded-none" />
+    <div className="flex flex-col gap-3 p-5">
+      <Skeleton shape="text" className="w-1/3 h-3" />
+      <Skeleton shape="text" className="w-4/5 h-5" />
+      <div className="flex justify-between mt-2">
+        <Skeleton shape="text" className="w-24 h-6" />
+        <Skeleton shape="text" className="w-14 h-6" />
+      </div>
+      <Skeleton className="h-10 rounded-full mt-1" />
+    </div>
+  </Card>
+</Preview>
+
+## Usage
+
+- **Skeletons match the shape of the content.** A product card skeleton has a 4:3 image block, a short eyebrow line, a two-line title, and a CTA-shaped bar. Don't use generic grey rectangles.
+- **One shimmer direction per page.** Left-to-right only. Mixed directions read as noise.
+- **Respect reduced motion.** The global reduced-motion rule disables the shimmer animation; the static gray still conveys loading.
+- **Don't linger.** If loading regularly takes more than a second, fix the perf problem; skeleton isn't a substitute.
+
+## Props
+
+<PropsTable component="Skeleton" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { Skeleton } from "@/components/ui/Skeleton";
+
+<Skeleton shape="text" className="w-48" />
+<Skeleton className="h-32 w-full" />
+<Skeleton shape="circle" className="h-10 w-10" />`}</CodeBlock>

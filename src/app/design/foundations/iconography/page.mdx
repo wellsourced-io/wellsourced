@@ -1,0 +1,84 @@
+import {
+  Search,
+  ShieldCheck,
+  Users,
+  UserCheck,
+  MapPin,
+  Leaf,
+  Scissors,
+  Package,
+  Hammer,
+  CheckCircle2,
+  AlertTriangle,
+  XCircle,
+  ArrowUpRight,
+} from "lucide-react";
+
+export const metadata = { title: "Iconography" };
+
+# Iconography
+
+<div className="lede">
+  Line icons from <a href="https://lucide.dev">Lucide</a>. 24&thinsp;px default, 1.5&thinsp;px stroke, rounded caps. Icons clarify — they never decorate.
+</div>
+
+## The set
+
+<section className="not-prose my-8 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <Search className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">Search</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <UserCheck className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">UserCheck · T1</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <Users className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">Users · T2</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <ShieldCheck className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">ShieldCheck · T3</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <MapPin className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">MapPin · HQ</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <Leaf className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">Leaf · Material</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <Scissors className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">Scissors · Maker</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <Hammer className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">Hammer · Craft</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <Package className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">Package · Product</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <CheckCircle2 className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">CheckCircle · Ok</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <AlertTriangle className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">AlertTriangle</span>
+  </div>
+  <div className="flex flex-col items-center gap-2 rounded-[12px] border border-border bg-surface p-5 text-muted">
+    <ArrowUpRight className="h-6 w-6" />
+    <span className="font-mono text-[11px] text-muted">ArrowUpRight · Out</span>
+  </div>
+</section>
+
+## Rules
+
+- **Use Lucide.** Do not mix icon sets. If Lucide doesn't have what you need, ask in content before drawing a custom one.
+- **Default size 24&thinsp;px at 1.5&thinsp;px stroke.** Smaller UIs scale down to 16&thinsp;px but keep the stroke.
+- **Currents, not colors.** Icons inherit `currentColor`. Apply color on the wrapping element, not on the icon directly, so they track theme.
+- **Icon alone is not an action.** Every interactive icon gets an accessible label (`aria-label` or an adjacent text label).
+- **Trust tier icons are fixed.** T1 = UserCheck, T2 = Users, T3 = ShieldCheck. Do not swap.

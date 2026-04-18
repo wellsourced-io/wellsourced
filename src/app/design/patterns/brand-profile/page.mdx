@@ -1,0 +1,49 @@
+import { BrandProfileHeader } from "@/components/ui/BrandProfileHeader";
+import { ProductCard } from "@/components/ui/ProductCard";
+import { FilterChip } from "@/components/ui/FilterChip";
+import { Preview } from "@/components/design-site";
+
+export const metadata = { title: "Brand profile" };
+
+# Brand profile
+
+<div className="lede">
+  The place where a brand becomes a brand — not just a row of products. Header, story, products, and a single, unmissable path to “buy direct.”
+</div>
+
+## Full composition
+
+<Preview padding="md" background="sand">
+  <div className="flex w-full flex-col gap-8">
+    <BrandProfileHeader
+      name="Oyama Denim"
+      tagline="Three-person workshop in Hyogo, Japan. Heavy selvedge denim, built to outlast its owners."
+      hq="Himeji, Japan"
+      ownership="Family-owned"
+      productCount={12}
+      establishedYear={2011}
+      shopUrl="https://example.com"
+      logoText="OY"
+    />
+
+    <div className="flex flex-wrap gap-2">
+      <FilterChip active count={12}>All</FilterChip>
+      <FilterChip count={6}>Jeans</FilterChip>
+      <FilterChip count={3}>Jackets</FilterChip>
+      <FilterChip count={3}>Accessories</FilterChip>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <ProductCard title="XX-002 Selvedge Jeans" brand="Oyama Denim" price="$298" tier="t3" buyUrl="https://example.com" />
+      <ProductCard title="Type III Denim Jacket" brand="Oyama Denim" price="$348" tier="t3" buyUrl="https://example.com" />
+      <ProductCard title="Leather Patch Wallet" brand="Oyama Denim" price="$68" tier="t2" buyUrl="https://example.com" />
+    </div>
+  </div>
+</Preview>
+
+## Rules
+
+- **The header is the hero.** Logo, name, ownership type, HQ, stats, one-line story, and a single clear CTA to visit the shop. Nothing else.
+- **“Visit shop” is the only primary on the page.** Filter chips and product CTAs are secondary actions inside a page where the primary goal is: leave WellSourced and go buy from the brand.
+- **Ownership and HQ earn visible space.** They're part of why the user is here. Don't hide them in a collapsed “details” section.
+- **Product grid reuses the product card.** No special brand-page variant — consistency wins.

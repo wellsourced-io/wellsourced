@@ -1,0 +1,33 @@
+import { TokenCard } from "@/components/design-site";
+
+export const metadata = { title: "Space" };
+
+# Space
+
+<div className="lede">
+  A 4&thinsp;px base with a tight palette of steps. Generous space over cramped — WellSourced should feel like a well-printed book, not a dense dashboard.
+</div>
+
+## Scale
+
+<section className="not-prose my-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <TokenCard name="space-1" value="4px" cssVar="--space-1" usage="Tight, inside-pill gaps." visual={<span className="block h-1 w-1 bg-teal rounded" />} />
+  <TokenCard name="space-2" value="8px" cssVar="--space-2" usage="Icon ↔ label." visual={<span className="block h-2 w-2 bg-teal rounded" />} />
+  <TokenCard name="space-3" value="12px" cssVar="--space-3" usage="Between grouped controls." visual={<span className="block h-3 w-3 bg-teal rounded" />} />
+  <TokenCard name="space-4" value="16px" cssVar="--space-4" usage="Paragraph gap, small gutter." visual={<span className="block h-4 w-4 bg-teal rounded" />} />
+  <TokenCard name="space-5" value="20px" cssVar="--space-5" usage="Card padding, field gap." visual={<span className="block h-5 w-5 bg-teal rounded" />} />
+  <TokenCard name="space-6" value="24px" cssVar="--space-6" usage="Card padding, default gutter." visual={<span className="block h-6 w-6 bg-teal rounded" />} />
+  <TokenCard name="space-8" value="32px" cssVar="--space-8" usage="Between content blocks." visual={<span className="block h-8 w-8 bg-teal rounded" />} />
+  <TokenCard name="space-10" value="40px" cssVar="--space-10" usage="Large card padding." visual={<span className="block h-10 w-10 bg-teal rounded" />} />
+  <TokenCard name="space-12" value="48px" cssVar="--space-12" usage="Section spacing on desktop." visual={<span className="block h-12 w-12 bg-teal rounded" />} />
+  <TokenCard name="space-16" value="64px" cssVar="--space-16" usage="Page vertical rhythm." visual={<span className="block h-16 w-16 bg-teal rounded" />} />
+  <TokenCard name="space-20" value="80px" cssVar="--space-20" usage="Large hero padding." visual={<span className="block h-20 w-20 bg-teal rounded" />} />
+  <TokenCard name="space-24" value="96px" cssVar="--space-24" usage="Major section separation." visual={<span className="block h-24 w-24 bg-teal rounded" />} />
+</section>
+
+## Rules
+
+- **Steps come from the scale.** Don't invent 18px or 22px. If you need a step that isn't there, say so — add it to the scale, or rethink the composition.
+- **Between a label and its field: `space-2` (8&thinsp;px).** Between fields in a form: `space-5` (20&thinsp;px). Between sections: `space-16` (64&thinsp;px) or more.
+- **Padding is generous by default.** Cards use `space-6` (24&thinsp;px) minimum. Hero surfaces use `space-10`–`space-16`.
+- **Vertical rhythm matters more than grid precision.** Consistent block spacing reads calmer than pixel-perfect alignment.

@@ -1,65 +1,71 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Lockup } from "@/components/ui/Logo";
+import { SearchBar } from "@/components/ui/SearchBar";
+import { Button } from "@/components/ui/Button";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-bg text-fg">
+      <header className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-6">
+        <Lockup size="sm" />
+        <nav className="flex items-center gap-2">
+          <Link
+            href="/design"
+            className="inline-flex h-9 items-center gap-1 rounded-full border border-border bg-surface px-3 text-[13px] font-medium text-muted transition-[color,border] duration-[150ms] hover:text-teal hover:border-teal"
+          >
+            Design system
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+          </Link>
+        </nav>
+      </header>
+
+      <main className="mx-auto flex max-w-[880px] flex-col items-center px-6 py-16 md:py-28 text-center">
+        <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-[11.5px] font-medium uppercase tracking-[0.14em] text-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-teal" aria-hidden />
+          Early preview
+        </span>
+
+        <h1 className="font-[var(--font-display)] text-[52px] md:text-[72px] font-black leading-[1.03] tracking-[-0.035em] text-fg">
+          Find what&rsquo;s actually
+          <br />
+          <span className="text-teal">made well.</span>
+        </h1>
+
+        <p className="mt-6 max-w-[58ch] text-[17px] md:text-[19px] leading-[1.55] text-muted">
+          A directory of brands whose origin, materials, and makers are verifiable. We don&rsquo;t
+          sell anything. We just show you who made it — and whether anyone checked.
+        </p>
+
+        <div className="mt-10 w-full max-w-[560px]">
+          <SearchBar shortcut="⌘K" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild>
+            <Link href="/brands">
+              Browse the directory
+              <ArrowUpRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </Button>
+          <Button variant="secondary" asChild>
+            <Link href="/design">See the design system</Link>
+          </Button>
         </div>
       </main>
+
+      <footer className="mx-auto mt-10 max-w-[1280px] px-6 pb-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 text-[12.5px] text-muted">
+          <span>
+            &copy; {new Date().getFullYear()} WellSourced — a directory of what&rsquo;s actually made well.
+          </span>
+          <div className="flex gap-5">
+            <Link href="/about" className="hover:text-fg">About</Link>
+            <Link href="/contribute" className="hover:text-fg">Contribute</Link>
+            <Link href="/design" className="hover:text-fg">Design</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

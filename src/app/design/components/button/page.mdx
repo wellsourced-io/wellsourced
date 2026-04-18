@@ -1,0 +1,72 @@
+import { Button } from "@/components/ui/Button";
+import { VariantTabs, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Button" };
+
+# Button
+
+<div className="lede">
+  The primary way to commit an action. One primary per screen — everything else is secondary, ghost, or not a button at all.
+</div>
+
+<VariantTabs
+  variants={[
+    { label: "Primary",     node: <Button>Buy direct</Button> },
+    { label: "Secondary",   node: <Button variant="secondary">Learn more</Button> },
+    { label: "Ghost",       node: <Button variant="ghost">Cancel</Button> },
+    { label: "Destructive", node: <Button variant="destructive">Remove</Button> },
+    { label: "Loading",     node: <Button loading>Buy direct</Button> },
+    { label: "Disabled",    node: <Button disabled>Buy direct</Button> },
+  ]}
+/>
+
+## Sizes
+
+<VariantTabs
+  padding="md"
+  variants={[
+    { label: "Small",  node: <Button size="sm">Buy direct</Button> },
+    { label: "Medium", node: <Button size="md">Buy direct</Button> },
+    { label: "Large",  node: <Button size="lg">Buy direct</Button> },
+  ]}
+/>
+
+## Usage
+
+- **One primary per screen.** The primary button points at the single most important action. More than one dilutes the signal.
+- **Labels are 1–3 words, sentence case.** “Buy direct”, “Sign in”, “Save changes”. No emojis. No all-caps.
+- **Ghost is not a decorative button.** Use it for low-stakes actions inside a composed surface — “Cancel” in a dialog, “Collapse” on a section.
+- **Destructive always gets a confirmation step.** Destructive-styled buttons never fire immediately; they open a confirm flow.
+- **Loading preserves width.** The spinner sits inline so the button doesn't jump.
+
+## Props
+
+<PropsTable component="Button" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { Button } from "@/components/ui/Button";
+
+export function BuyDirect() {
+  return <Button>Buy direct</Button>;
+}
+
+// Variants
+<Button variant="secondary">Learn more</Button>
+<Button variant="ghost">Cancel</Button>
+<Button variant="destructive">Remove</Button>
+
+// States
+<Button loading>Saving</Button>
+<Button disabled>Out of stock</Button>
+
+// Sizes
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>`}</CodeBlock>
+
+## Accessibility
+
+- Focus ring is the brand teal at 2&thinsp;px offset. Never remove focus-visible styling.
+- `loading` sets `aria-busy` so screen readers announce the pending state.
+- Disabled buttons are not focusable and don't forward pointer events. For “not yet allowed” states, consider helper text instead of a disabled button.
+- Labels work without color alone — the text itself communicates the action.

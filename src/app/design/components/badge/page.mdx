@@ -1,0 +1,36 @@
+import { Badge } from "@/components/ui/Badge";
+import { VariantTabs, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Badge" };
+
+# Badge
+
+<div className="lede">
+  A small pill for metadata. Categories, status, counts. Never used for emphasis — if something needs attention, the typography or spacing should carry it.
+</div>
+
+<VariantTabs
+  variants={[
+    { label: "Neutral", node: <Badge>Workshop</Badge> },
+    { label: "Teal",    node: <Badge tone="teal">Family-owned</Badge> },
+    { label: "Success", node: <Badge tone="success">In stock</Badge> },
+    { label: "Warn",    node: <Badge tone="warn">Low stock</Badge> },
+    { label: "Error",   node: <Badge tone="err">Unavailable</Badge> },
+  ]}
+/>
+
+## Usage
+
+- **Badges describe, they don't alert.** For alerts, use a [toast](/design/changelog) (not yet built) or inline helper text.
+- **Keep them short.** Under 20 characters. “Organic cotton”, not “Made from 100% certified organic cotton”.
+- **Don't stack five.** Two badges max per item. More than that and the UI reads cluttered.
+
+## Props
+
+<PropsTable component="Badge" />
+
+## Code
+
+<CodeBlock language="tsx">{`<Badge>Workshop</Badge>
+<Badge tone="teal">Family-owned</Badge>
+<Badge tone="success">In stock</Badge>`}</CodeBlock>

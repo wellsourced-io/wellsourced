@@ -1,0 +1,48 @@
+import { CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Getting started" };
+
+# Getting started
+
+<div className="lede">
+  Everything you need to use, extend, or contribute to the WellSourced design system.
+</div>
+
+## For engineers
+
+Components live at <code>src/components/ui/*</code> and are imported directly:
+
+<CodeBlock language="tsx">{`import { Button, TrustBadge, ProductCard } from "@/components/ui";
+
+export default function Demo() {
+  return (
+    <ProductCard
+      title="XX-002 Selvedge Jeans"
+      brand="Oyama Denim"
+      price="$298"
+      tier="t3"
+      buyUrl="https://example.com"
+    />
+  );
+}`}</CodeBlock>
+
+Styling is via Tailwind v4 utilities wired to the tokens in <code>globals.css</code>. Prefer <code>bg-teal</code>, <code>text-fg</code>, <code>bg-surface</code>, <code>border-border</code> over raw colors. When Tailwind falls short, use <code>var(--color-...)</code> directly.
+
+## Design tokens
+
+All tokens are declared once in <code>src/app/globals.css</code> on <code>:root</code> and exposed to Tailwind via <code>@theme inline</code>. See [tokens](/design/tokens) for the full list.
+
+Adding a new token: add the CSS variable on <code>:root</code>, expose it under <code>@theme inline</code>, and document it in [tokens](/design/tokens). New tokens land in the [changelog](/design/changelog).
+
+## Contributing
+
+1. **Change a component.** Edit the file at <code>src/components/ui/&lt;Name&gt;.tsx</code>. If the change affects visible API, update <code>src/lib/design-site/props.ts</code> so the props table stays accurate.
+2. **Change a token.** Edit <code>src/app/globals.css</code>. All components reference tokens, so downstream changes ripple automatically. Test in both light and dark.
+3. **Add a component.** Create the file in <code>src/components/ui/</code>, add a props entry in <code>src/lib/design-site/props.ts</code>, and author its page at <code>src/app/design/components/&lt;kebab-name&gt;/page.mdx</code>. Add it to the nav in <code>src/lib/design-site/nav.ts</code>.
+4. **Write the docs.** Follow the existing spine: **Overview → Preview with variants → Usage → Props → Code → Accessibility**. Every component page looks the same on purpose.
+
+## Philosophy
+
+- **Document what we ship, not what we wish we shipped.** If a component doesn't exist in <code>src/components/ui/</code>, it doesn't get a page.
+- **Prose is part of the system.** Usage notes matter as much as the code. Teach the why.
+- **Ship the site, then iterate.** Missing pieces are tracked in the [changelog](/design/changelog) — not hidden behind “coming soon” modals.

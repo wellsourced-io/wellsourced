@@ -1,0 +1,61 @@
+import { Card } from "@/components/ui/Card";
+import { Preview, VariantTabs, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Card" };
+
+# Card
+
+<div className="lede">
+  A plain container — the shell behind every composed surface. Use it directly for simple groupings; compose it for product cards, brand cards, and empty states.
+</div>
+
+<VariantTabs
+  variants={[
+    { label: "Static", node: (
+      <Card className="max-w-[360px]">
+        <h4 className="font-[var(--font-display)] text-[17px] font-semibold text-fg m-0">Resolute Denim</h4>
+        <p className="mt-2 text-[14px] leading-[1.55] text-muted m-0">Single-person workshop in Vancouver. Heavy Japanese selvedge denim, made to order.</p>
+      </Card>
+    )},
+    { label: "Interactive", node: (
+      <Card interactive className="max-w-[360px]">
+        <h4 className="font-[var(--font-display)] text-[17px] font-semibold text-fg m-0">Resolute Denim</h4>
+        <p className="mt-2 text-[14px] leading-[1.55] text-muted m-0">Hover me — lifts 1px and picks up the hover shadow.</p>
+      </Card>
+    )},
+    { label: "Padding sm", node: (
+      <Card padding="sm" className="max-w-[300px]">
+        <p className="text-[13px] text-muted m-0">Compact card padding (16px).</p>
+      </Card>
+    )},
+    { label: "Padding lg", node: (
+      <Card padding="lg" className="max-w-[360px]">
+        <h4 className="font-[var(--font-display)] text-[17px] font-semibold text-fg m-0">Feature card</h4>
+        <p className="mt-2 text-[14px] leading-[1.55] text-muted m-0">Padding 40px — for hero or feature surfaces.</p>
+      </Card>
+    )},
+  ]}
+/>
+
+## Usage
+
+- **Cards are containers, not accents.** Don't use a card to draw a box around a single sentence. Group related content.
+- **Interactive cards lift on hover.** The 1&thinsp;px translate + `shadow-hover` pattern is reserved for cards you can actually click.
+- **Padding scales with importance.** `sm` for inline surfaces, `md` default, `lg` for hero or feature blocks.
+
+## Props
+
+<PropsTable component="Card" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { Card } from "@/components/ui/Card";
+
+<Card>
+  <h4>Resolute Denim</h4>
+  <p>Single-person workshop in Vancouver.</div>
+</Card>
+
+<Card interactive padding="lg">
+  ...
+</Card>`}</CodeBlock>

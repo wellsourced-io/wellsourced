@@ -1,0 +1,55 @@
+import { Lockup, LogoMark } from "@/components/ui/Logo";
+import { Preview, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Brand" };
+
+# Brand
+
+<div className="lede">
+  The WellSourced mark, wordmark, and lockup. Used consistently, they're the thing that says WellSourced across any surface.
+</div>
+
+## Lockup
+
+<Preview background="sand">
+  <Lockup size="lg" />
+</Preview>
+
+The wordmark pairs **Satoshi Bold** (“Well”) with **DM Serif Display Italic** (“Sourced”). The italic serif is intentional — it's the only serif glyph in the whole system, and that's what makes it recognizable.
+
+## Mark on its own
+
+<Preview background="sand">
+  <div className="flex items-center gap-10">
+    <LogoMark size={48} className="text-teal" />
+    <LogoMark size={48} className="text-ink" />
+    <div className="rounded-[12px] bg-ink p-3">
+      <LogoMark size={48} className="text-teal-light" />
+    </div>
+  </div>
+</Preview>
+
+The mark is used alone only when context already establishes the brand — favicon, app icon, small UI surface where the full lockup would crowd. Otherwise, default to the lockup.
+
+## Usage rules
+
+- **Clear space.** Minimum clear space around the lockup is the height of the “W”. Nothing — no text, no image, no chart — enters that zone.
+- **Minimum size.** Lockup: 80&thinsp;px wide. Mark: 20&thinsp;px square. Below that, legibility breaks.
+- **Color.** Preferred: teal mark + ink wordmark on sand. On dark backgrounds, invert to teal-light + white. Never recolor the wordmark italic.
+- **Do not.**
+  - Stretch, squash, or skew.
+  - Swap the italic serif for a sans italic (or vice versa).
+  - Place over busy imagery without a contrast-safe scrim.
+  - Outline, shadow, or add a glow.
+
+## Code
+
+<CodeBlock language="tsx">{`import { Lockup, LogoMark } from "@/components/ui/Logo";
+
+<Lockup size="md" />             // Default, light
+<Lockup size="lg" tone="inverse" />  // For dark backgrounds
+<LogoMark size={28} className="text-teal" />`}</CodeBlock>
+
+## Downloads
+
+SVG, PNG, and brand-kit bundles are on the roadmap — tracked in the [changelog](/design/changelog). In the meantime, render from the components above.

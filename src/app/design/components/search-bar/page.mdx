@@ -1,0 +1,44 @@
+import { SearchBar } from "@/components/ui/SearchBar";
+import { Preview, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Search bar" };
+
+# Search bar
+
+<div className="lede">
+  The primary way into the product. The hero variant anchors the landing page; the compact variant lives in the header once the user is deeper in.
+</div>
+
+## Hero
+
+<Preview>
+  <div className="w-full max-w-[560px]">
+    <SearchBar shortcut="⌘K" />
+  </div>
+</Preview>
+
+## Compact
+
+<Preview background="surface">
+  <div className="w-full max-w-[420px]">
+    <SearchBar variant="compact" shortcut="⌘K" placeholder="Search brands, products, categories" />
+  </div>
+</Preview>
+
+## Usage
+
+- **Placeholder shows real queries, not hints.** “Search organic cotton shirts, Japanese denim” — not “Type to search…”.
+- **Hero variant has one job: invite.** Center it, give it air. Never pair it with a second large input.
+- **Keyboard shortcut is ⌘K.** Implemented app-wide. Show it on desktop; hide on mobile.
+- **Focus lights the border teal.** Never remove the focus ring — it's how keyboard users see where they are.
+
+## Props
+
+<PropsTable component="SearchBar" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { SearchBar } from "@/components/ui/SearchBar";
+
+<SearchBar shortcut="⌘K" />
+<SearchBar variant="compact" placeholder="Search brands" />`}</CodeBlock>

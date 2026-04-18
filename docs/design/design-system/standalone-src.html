@@ -1,0 +1,2392 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WellSourced — Design System v1</title>
+<template id="__bundler_thumbnail" data-bg-color="#F5F0E8">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F0E8"/>
+    <!-- Logomark w -->
+    <g transform="translate(520, 280)">
+      <rect x="0" y="0" width="160" height="160" rx="28" fill="#0D7377"/>
+      <path d="M38 60 L60 116 L80 76 L100 116 L122 60" stroke="#F5F0E8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+    <!-- Wordmark -->
+    <text x="600" y="540" font-family="Georgia, serif" font-size="56" font-style="italic" fill="#1A1A2E" text-anchor="middle" font-weight="400">wellsourced</text>
+    <text x="600" y="590" font-family="monospace" font-size="18" fill="#64748B" text-anchor="middle" letter-spacing="4">DESIGN SYSTEM · V1</text>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=JetBrains+Mono:wght@400;500&amp;family=DM+Serif+Display:ital@0;1&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Satoshi replaced with Manrope for offline bundling compatibility -->
+
+<style>
+  :root {
+    /* Core */
+    --teal: #0D7377;
+    --teal-700: #0a5c5f;
+    --teal-light: #E6F5F5;
+    --sand: #F5F0E8;
+    --sand-deep: #ECE4D4;
+    --white: #FFFFFF;
+    --ink: #1A1A2E;
+    --slate: #64748B;
+    --cloud: #F1F5F9;
+    --cloud-2: #E2E8F0;
+
+    /* Trust */
+    --t1: #94A3B8;
+    --t1-bg: #F1F5F9;
+    --t2: #3B82F6;
+    --t2-bg: #EFF6FF;
+    --t3: #22C55E;
+    --t3-bg: #ECFDF5;
+
+    /* Utility */
+    --warn: #F59E0B;
+    --warn-bg: #FEF3C7;
+    --err: #EF4444;
+    --err-bg: #FEE2E2;
+    --success: #22C55E;
+
+    /* Radii */
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --r-full: 9999px;
+
+    /* Shadows */
+    --shadow-card: 0 1px 2px rgba(26,26,46,0.04), 0 1px 1px rgba(26,26,46,0.03);
+    --shadow-hover: 0 10px 24px -8px rgba(26,26,46,0.12), 0 2px 6px rgba(26,26,46,0.05);
+    --shadow-modal: 0 24px 48px -16px rgba(26,26,46,0.18);
+
+    --ease: cubic-bezier(.2,.7,.3,1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--sand);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Manrope', 'DM Sans', system-ui, sans-serif; margin: 0; letter-spacing: -0.01em; color: var(--ink); }
+  .display { font-family: 'Manrope', sans-serif; font-weight: 900; font-size: 64px; line-height: 1; letter-spacing: -0.035em; }
+  .h1 { font-size: 40px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+  .h2 { font-size: 32px; font-weight: 600; line-height: 1.2; letter-spacing: -0.015em; }
+  .h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+  .body { font-size: 16px; font-weight: 400; }
+  .small { font-size: 14px; font-weight: 400; color: var(--slate); }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+
+  a { color: var(--teal); text-decoration: none; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--cloud); padding: 2px 6px; border-radius: 6px; color: var(--ink); }
+
+  /* ---------- Page scaffolding ---------- */
+  .page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 48px 120px;
+  }
+
+  .doc-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--cloud-2);
+    margin-bottom: 64px;
+  }
+  .doc-header .lede { max-width: 620px; color: var(--slate); font-size: 17px; line-height: 1.55; }
+  .doc-header .meta { text-align: right; color: var(--slate); font-size: 13px; line-height: 1.7; }
+  .doc-header .meta strong { color: var(--ink); font-weight: 500; }
+  .eyebrow { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+
+  .section { margin-bottom: 96px; }
+  .section-head { margin-bottom: 32px; display: flex; align-items: baseline; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--cloud-2); padding-bottom: 20px; }
+  .section-head .hd-title { display: flex; align-items: baseline; gap: 16px; }
+  .section-head .hd-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--slate); }
+  .section-head .hd-desc { color: var(--slate); font-size: 14px; max-width: 460px; text-align: right; }
+
+  .sub-label { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; }
+
+  /* ---------- Brand / Logo ---------- */
+  .brand-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+  }
+  .brand-card {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-lg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .brand-card.hero { background: linear-gradient(155deg, #0D7377 0%, #0a5c5f 100%); color: #E6F5F5; border: none; }
+  .brand-card.hero .eyebrow { color: #8DD5D8; }
+  .brand-card.hero .sub-label { color: rgba(230,245,245,0.65); }
+  .lockup { display: flex; align-items: center; gap: 14px; }
+  .lockup .mark { width: 44px; height: 44px; flex: 0 0 44px; }
+  .lockup .wordmark {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.025em;
+    color: currentColor;
+  }
+  .lockup .wordmark .ws-serif,
+  .nav .mark-lock .wm .ws-serif,
+  .wm .ws-serif,
+  .verified-badge strong .ws-serif,
+  .ws-serif,
+  .serif-live {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+  .lockup .wordmark em {
+    font-style: normal;
+    font-weight: 500;
+    opacity: 0.55;
+  }
+
+  .logo-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .logo-chip {
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 20px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    aspect-ratio: 1 / 1;
+  }
+  .logo-chip.dark { background: var(--ink); }
+  .logo-chip.sand { background: var(--sand); }
+  .logo-chip.teal { background: var(--teal); }
+  .logo-chip .cap { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); }
+  .logo-chip.dark .cap, .logo-chip.teal .cap { color: rgba(255,255,255,0.55); }
+
+  /* Trust badge embed (logo usage) */
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-sm);
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .verified-badge .tick { width: 18px; height: 18px; color: var(--teal); }
+  .verified-badge strong { color: var(--ink); font-weight: 600; font-family: 'Manrope', sans-serif; }
+
+  /* ---------- Color ---------- */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .swatch {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .swatch .chip { aspect-ratio: 16 / 10; }
+  .swatch .meta { padding: 14px 16px 16px; }
+  .swatch .name { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; color: var(--ink); }
+  .swatch .hex { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--slate); margin-top: 2px; }
+  .swatch .use { font-size: 12px; color: var(--slate); margin-top: 8px; line-height: 1.5; }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .trust-swatch {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .trust-swatch .tier-ico {
+    width: 44px; height: 44px; flex: 0 0 44px;
+    border-radius: var(--r-full);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tier-ico.t1 { background: var(--t1-bg); color: var(--t1); }
+  .tier-ico.t2 { background: var(--t2-bg); color: var(--t2); }
+  .tier-ico.t3 { background: var(--t3-bg); color: var(--t3); }
+  .trust-swatch .copy .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); }
+  .trust-swatch .copy .title { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 16px; margin: 2px 0 4px; }
+  .trust-swatch .copy .desc { font-size: 13px; color: var(--slate); line-height: 1.5; }
+
+  /* ---------- Type scale ---------- */
+  .type-grid {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    overflow: hidden;
+  }
+  .type-row {
+    display: grid;
+    grid-template-columns: 160px 120px 1fr;
+    align-items: baseline;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--cloud);
+    gap: 24px;
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-row .spec { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--slate); line-height: 1.8; }
+  .type-row .spec strong { color: var(--ink); font-weight: 500; display: block; font-size: 13px; }
+  .type-row .font-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal); }
+  .type-row .sample { color: var(--ink); }
+  .sample.t-display { font-family: 'Manrope', sans-serif; font-weight: 900; font-size: 64px; line-height: 1; letter-spacing: -0.035em; }
+  .sample.t-h1 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; }
+  .sample.t-h2 { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 32px; line-height: 1.2; letter-spacing: -0.015em; }
+  .sample.t-h3 { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 24px; line-height: 1.3; }
+  .sample.t-body { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 16px; }
+  .sample.t-small { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 14px; color: var(--slate); }
+  .sample.t-price { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 20px; }
+  .sample.t-badge { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .sample.t-button { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; }
+  .sample.t-mono { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+
+  .font-pair-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .font-card {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 28px;
+  }
+  .font-card .role { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); letter-spacing: 0.08em; text-transform: uppercase; }
+  .font-card .fname { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 28px; margin-top: 6px; }
+  .font-card.body .fname { font-family: 'DM Sans', sans-serif; }
+  .font-card.mono .fname { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 24px; }
+  .font-card.serif .fname { font-family: 'Fraunces', Georgia, serif; }
+  .font-card.serif .glyphs { font-family: 'Fraunces', Georgia, serif; }
+  .font-card .glyphs { font-size: 22px; margin-top: 16px; line-height: 1.4; color: var(--ink); letter-spacing: -0.01em; }
+  .font-card.mono .glyphs { font-family: 'JetBrains Mono', monospace; font-size: 18px; }
+  .font-card.head .glyphs { font-family: 'Manrope', sans-serif; }
+  .font-card.body .glyphs { font-family: 'DM Sans', sans-serif; }
+  .font-card .weights { display: flex; gap: 12px; margin-top: 18px; font-size: 12px; color: var(--slate); flex-wrap: wrap; }
+  .font-card .weights span { padding: 4px 8px; border: 1px solid var(--cloud-2); border-radius: var(--r-full); font-family: 'JetBrains Mono', monospace; }
+
+  /* ---------- Spacing / Radius / Shadow ---------- */
+  .sys-grid-3 { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 20px; }
+  .sys-card { background: var(--white); border: 1px solid var(--cloud-2); border-radius: var(--r-md); padding: 28px; }
+  .sys-card h4 { font-size: 14px; font-family: 'Manrope', sans-serif; font-weight: 600; margin-bottom: 16px; }
+
+  .space-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .space-row .label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); width: 48px; flex: 0 0 48px; }
+  .space-row .bar { background: var(--teal); height: 10px; border-radius: 3px; }
+
+  .radius-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  .radius-sample { background: var(--teal-light); border: 1px solid #BAE5E5; aspect-ratio: 2/1; display: flex; align-items: flex-end; padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal); }
+  .r-sm { border-radius: 8px; }
+  .r-md { border-radius: 12px; }
+  .r-lg { border-radius: 16px; }
+  .r-full { border-radius: 9999px; aspect-ratio: 2/1; }
+
+  .shadow-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  .shadow-sample { background: var(--white); border-radius: var(--r-md); aspect-ratio: 2/1; display: flex; align-items: flex-end; padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); }
+  .shadow-sample.s1 { box-shadow: var(--shadow-card); }
+  .shadow-sample.s2 { box-shadow: var(--shadow-hover); }
+
+  /* ---------- Grid viz ---------- */
+  .grid-viz {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .grid-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; height: 160px; }
+  .grid-cols span { background: var(--teal-light); border-radius: 4px; }
+
+  /* ---------- Icon set ---------- */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 12px;
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 28px;
+  }
+  .icon-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 8px;
+    border-radius: var(--r-sm);
+  }
+  .icon-cell svg { width: 24px; height: 24px; color: var(--ink); }
+  .icon-cell .name { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--slate); }
+
+  /* ---------- Components: buttons ---------- */
+  .comp-card {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 32px;
+  }
+  .comp-card .comp-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; gap: 24px; }
+  .comp-card .comp-hd h3 { font-size: 18px; font-family: 'Manrope', sans-serif; font-weight: 600; }
+  .comp-card .comp-hd .meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); }
+  .states-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px; }
+  .state-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--slate); width: 90px; flex: 0 0 90px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* Button base */
+  .btn {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: var(--r-md);
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 150ms var(--ease);
+    background: transparent;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn-primary { background: var(--teal); color: #fff; }
+  .btn-primary:hover { background: var(--teal-700); }
+  .btn-primary.is-active { background: var(--teal-700); box-shadow: inset 0 1px 2px rgba(0,0,0,0.2); }
+  .btn-secondary { background: #fff; border-color: var(--teal); color: var(--teal); }
+  .btn-secondary:hover { background: var(--teal-light); }
+  .btn-ghost { color: var(--teal); padding: 0 12px; }
+  .btn-ghost:hover { background: var(--teal-light); }
+  .btn-destructive { background: var(--err); color: #fff; }
+  .btn-destructive:hover { filter: brightness(0.95); }
+  .btn-disabled { background: var(--cloud); color: var(--slate); cursor: not-allowed; opacity: 0.7; }
+  .btn-loading { background: var(--teal); color: #fff; pointer-events: none; }
+  .btn-loading .spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.35); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .btn .arrow { transition: transform 150ms var(--ease); }
+  .btn-primary:hover .arrow, .btn-buy:hover .arrow { transform: translateX(2px); }
+
+  /* ---------- Trust badges ---------- */
+  .tb {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px 4px 8px;
+    border-radius: var(--r-full);
+    letter-spacing: 0.02em;
+    border: 1px solid transparent;
+  }
+  .tb svg { width: 12px; height: 12px; }
+  .tb.t1 { background: var(--t1-bg); color: #475569; border-color: #E2E8F0; }
+  .tb.t1 svg { color: var(--t1); }
+  .tb.t2 { background: var(--t2-bg); color: #1D4ED8; border-color: #DBEAFE; }
+  .tb.t2 svg { color: var(--t2); }
+  .tb.t3 { background: var(--t3-bg); color: #166534; border-color: #D1FAE5; }
+  .tb.t3 svg { color: var(--t3); }
+
+  /* Tooltip demo */
+  .tooltip-demo { position: relative; display: inline-flex; }
+  .tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: #E6F5F5;
+    padding: 12px 14px;
+    border-radius: var(--r-sm);
+    width: 260px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    box-shadow: var(--shadow-modal);
+  }
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--ink);
+  }
+  .tooltip strong { color: #fff; font-family: 'Manrope', sans-serif; font-weight: 600; display: block; margin-bottom: 4px; font-size: 13px; }
+  .tooltip a { color: #8DD5D8; font-size: 12px; display: inline-block; margin-top: 6px; }
+
+  /* ---------- Search Bar ---------- */
+  .search {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 0 16px;
+    gap: 12px;
+    transition: all 150ms var(--ease);
+    width: 100%;
+    max-width: 640px;
+  }
+  .search.lg { height: 56px; }
+  .search.sm { height: 40px; max-width: 420px; }
+  .search.is-focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-light); }
+  .search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    background: transparent;
+  }
+  .search.lg input { font-size: 17px; }
+  .search input::placeholder { color: var(--slate); }
+  .search .ic { color: var(--slate); width: 18px; height: 18px; flex: 0 0 18px; }
+  .search .clear {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--cloud); border: none; color: var(--slate);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .search .clear svg { width: 12px; height: 12px; }
+  .search .divider { width: 1px; height: 24px; background: var(--cloud-2); }
+  .search .kbd { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); padding: 2px 6px; border: 1px solid var(--cloud-2); border-radius: 5px; background: var(--sand); }
+
+  /* ---------- Filter chips ---------- */
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 14px;
+    border-radius: var(--r-full);
+    border: 1px solid var(--cloud-2);
+    background: var(--white);
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 150ms var(--ease);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .chip svg { width: 12px; height: 12px; color: var(--slate); }
+  .chip:hover { border-color: #CBD5E1; }
+  .chip.is-active { background: var(--teal-light); border-color: var(--teal); color: var(--teal-700); }
+  .chip.is-active svg { color: var(--teal); }
+  .chip .x {
+    margin-left: 2px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--teal);
+  }
+  .chip .x:hover { background: #D0EAEA; }
+  .chip.sort { padding-right: 12px; }
+
+  /* ---------- Product card ---------- */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .product {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 200ms var(--ease);
+  }
+  .product.is-hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: #D5DFE8; }
+  .product .img {
+    aspect-ratio: 1 / 1;
+    background: var(--sand);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .product .img .placeholder {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--slate);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .product .img .ph-art {
+    position: absolute; inset: 16px;
+    border-radius: 8px;
+    background: repeating-linear-gradient(45deg, #EFE7D6 0 8px, #E9DFC8 8px 16px);
+    opacity: 0.9;
+  }
+  .product .bookmark {
+    position: absolute; top: 12px; right: 12px;
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-full);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--slate);
+    backdrop-filter: blur(4px);
+  }
+  .product .bookmark svg { width: 15px; height: 15px; }
+  .product .body-p { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .product .name { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 15px; color: var(--ink); line-height: 1.3; }
+  .product .price-row { display: flex; align-items: baseline; gap: 8px; }
+  .product .price { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 20px; color: var(--ink); }
+  .product .brand { font-size: 13px; color: var(--slate); }
+  .product .brand a { color: var(--slate); border-bottom: 1px solid transparent; }
+  .product .brand a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+  .product .mid { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .product .foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px;
+    border-top: 1px solid var(--cloud);
+  }
+  .btn-buy {
+    color: var(--teal);
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-buy svg { width: 14px; height: 14px; transition: transform 150ms var(--ease); }
+  .product:hover .btn-buy svg { transform: translateX(2px); }
+  .product .foot .meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); }
+
+  /* skeleton */
+  .sk { background: linear-gradient(90deg, #EEF2F6 0%, #F7F9FB 50%, #EEF2F6 100%); background-size: 200% 100%; animation: sk 1.4s infinite linear; border-radius: 6px; }
+  @keyframes sk { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+  .product.loading .img { background: var(--cloud); }
+  .product.loading .img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent); animation: sk 1.4s infinite linear; }
+  .product.loading .sk-line { height: 12px; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav .mark-lock { display: flex; align-items: center; gap: 10px; }
+  .nav .mark-lock svg { width: 28px; height: 28px; }
+  .nav .mark-lock .wm { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.025em; }
+  .nav .links { display: flex; gap: 6px; align-items: center; }
+  .nav .link { font-size: 14px; color: var(--ink); padding: 8px 12px; border-radius: var(--r-sm); font-weight: 500; }
+  .nav .link:hover { background: var(--cloud); }
+  .nav .divider { width: 1px; height: 24px; background: var(--cloud-2); }
+  .nav .spacer { flex: 1; }
+
+  /* ---------- Brand profile header ---------- */
+  .bp {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-lg);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .bp .logo-slot {
+    width: 120px; height: 120px;
+    background: var(--sand);
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 900;
+    font-size: 44px;
+    color: var(--teal);
+    letter-spacing: -0.03em;
+  }
+  .bp .h-col { display: flex; flex-direction: column; gap: 16px; }
+  .bp .title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .bp h1 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.02em; }
+  .bp .ownership {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    background: var(--sand);
+    border: 1px solid var(--sand-deep);
+    border-radius: var(--r-full);
+    font-size: 12px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .bp .ownership svg { width: 12px; height: 12px; }
+  .bp .tagline { color: var(--slate); font-size: 14px; max-width: 540px; }
+  .bp .stat-row { display: flex; gap: 24px; border-top: 1px solid var(--cloud); padding-top: 16px; }
+  .bp .stat { display: flex; flex-direction: column; gap: 2px; }
+  .bp .stat .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.08em; text-transform: uppercase; }
+  .bp .stat .val { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 15px; }
+  .bp .trust-summary { display: flex; flex-direction: column; gap: 8px; }
+  .bp .trust-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; font-size: 13px; }
+  .bp .trust-row .field { color: var(--slate); }
+  .bp .cta-col { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; min-width: 200px; }
+
+  /* ---------- Category Card ---------- */
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .cat {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 150ms var(--ease);
+  }
+  .cat:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .cat .cat-ico {
+    width: 44px; height: 44px;
+    border-radius: var(--r-sm);
+    background: var(--sand);
+    color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cat .cat-ico svg { width: 22px; height: 22px; }
+  .cat .cat-name { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 16px; }
+  .cat .cat-count { font-size: 12px; color: var(--slate); font-family: 'JetBrains Mono', monospace; }
+
+  /* ---------- Motion section ---------- */
+  .motion-scale { display: flex; flex-direction: column; gap: 16px; }
+  .motion-row { display: grid; grid-template-columns: 110px 1fr 2fr 90px; gap: 20px; align-items: center; }
+  .motion-row .dur-label .dur-num { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; color: var(--ink); }
+  .motion-row .dur-label .dur-name { font-size: 12px; color: var(--slate); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+  .motion-row .track { position: relative; height: 10px; background: var(--cloud); border-radius: 5px; overflow: hidden; }
+  .motion-row .track .bar { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--teal); border-radius: 5px; transition: width 150ms var(--ease); }
+  .motion-row .track .ball { position: absolute; left: 0; top: 50%; width: 14px; height: 14px; background: var(--teal); border-radius: 50%; transform: translate(-7px, -7px); box-shadow: 0 0 0 3px rgba(13,115,119,0.12); transition: left 150ms var(--ease); }
+  .motion-row[data-dur="80"] .bar, .motion-row[data-dur="80"] .ball { transition-duration: 80ms; }
+  .motion-row[data-dur="200"] .bar, .motion-row[data-dur="200"] .ball { transition-duration: 200ms; }
+  .motion-row[data-dur="240"] .bar, .motion-row[data-dur="240"] .ball { transition-duration: 240ms; }
+  .motion-row[data-dur="320"] .bar, .motion-row[data-dur="320"] .ball { transition-duration: 320ms; }
+  .motion-row.is-playing .bar { width: 100%; }
+  .motion-row.is-playing .ball { left: 100%; }
+  .motion-row .dur-use { font-size: 13.5px; color: var(--slate); line-height: 1.5; }
+  .motion-row .dur-use strong { color: var(--ink); font-weight: 600; }
+  .motion-play { appearance: none; border: 1px solid var(--cloud-2); background: var(--white); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; height: 32px; padding: 0 12px; border-radius: 9999px; cursor: pointer; transition: all 150ms var(--ease); }
+  .motion-play:hover { border-color: var(--teal); color: var(--teal); }
+
+  .ease-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .ease-svg { width: 100%; height: 140px; background: var(--bg-sand); display: block; border-bottom: 1px solid var(--cloud); }
+  .ease-body { padding: 18px 20px; }
+  .ease-name { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 6px; }
+  .ease-code { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--slate); margin-bottom: 10px; }
+  .ease-use { font-size: 13px; line-height: 1.5; color: var(--slate); }
+
+  .motion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .m-demo { background: var(--white); border: 1px solid var(--cloud); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .m-stage { background: var(--bg-sand); min-height: 180px; display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; }
+  .m-caption { padding: 16px 18px; border-top: 1px solid var(--cloud); }
+  .m-caption .m-title { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14.5px; color: var(--ink); margin-bottom: 4px; }
+  .m-caption .m-desc { font-size: 13px; line-height: 1.5; color: var(--slate); margin-bottom: 10px; }
+  .m-caption .m-spec { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); padding-top: 8px; border-top: 1px dashed var(--cloud); }
+  .m-caption .m-spec .tok { color: var(--teal); }
+
+  .m-card { width: 150px; background: var(--white); border: 1px solid var(--cloud-2); border-radius: 12px; padding: 10px; transition: all 200ms var(--ease); }
+  .m-card .m-thumb { background: linear-gradient(135deg, #E6F5F5, #F5F0E8); height: 90px; border-radius: 8px; margin-bottom: 8px; }
+  .m-card .m-name { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 12.5px; color: var(--ink); }
+  .m-card .m-price { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; color: var(--ink); margin-top: 2px; }
+  .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 24px -8px rgba(26,26,46,0.18); border-color: #D5DFE8; }
+
+  .m-btn { appearance: none; border: none; background: var(--teal); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px; height: 44px; padding: 0 18px; border-radius: 12px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+  .m-btn svg { width: 14px; height: 14px; transition: transform 150ms var(--ease); }
+  .arrow-nudge:hover svg { transform: translateX(3px); }
+
+  .m-chip { appearance: none; height: 32px; padding: 0 12px; border-radius: 9999px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px; cursor: pointer; transition: all 150ms var(--ease); background: var(--white); border: 1px solid var(--cloud-2); color: var(--ink); }
+  .m-chip[data-active="true"] { background: var(--teal-light); border-color: var(--teal); color: var(--teal); }
+  .m-chip:hover { border-color: var(--teal); }
+
+  .m-skel { background: linear-gradient(90deg, #EDF2F7 0%, #F8FAFC 50%, #EDF2F7 100%); background-size: 200% 100%; animation: skelPulse 1400ms cubic-bezier(.4,0,.2,1) infinite; }
+  @keyframes skelPulse { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  .m-tooltip-wrap { position: relative; }
+  .m-tier-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 9999px; background: #DBEAFE; color: #1D4ED8; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 12.5px; border: 1px solid #BFDBFE; cursor: default; }
+  .m-tier-pill svg { width: 14px; height: 14px; }
+  .m-tooltip { position: absolute; top: calc(100% + 2px); left: 50%; transform: translate(-50%, 4px); opacity: 0; pointer-events: none; width: 220px; padding: 10px 12px; background: var(--ink); color: #F5F0E8; font-size: 12px; line-height: 1.5; border-radius: 8px; transition: opacity 240ms var(--ease), transform 240ms var(--ease); z-index: 2; }
+  .m-tooltip::before { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: var(--ink); }
+  .m-tooltip-wrap:hover .m-tooltip { opacity: 1; transform: translate(-50%, 10px); pointer-events: auto; }
+
+  .m-result { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; background: var(--white); border: 1px solid var(--cloud); border-radius: 10px; opacity: 0; transform: translateY(6px); animation: staggerIn 200ms var(--ease) forwards; }
+  .m-result .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+  .m-result .m-result-bar { height: 8px; background: var(--cloud); border-radius: 4px; }
+  .stagger-1 { animation-delay: 0ms; }
+  .stagger-2 { animation-delay: 40ms; }
+  .stagger-3 { animation-delay: 80ms; }
+  .stagger-4 { animation-delay: 120ms; }
+  @keyframes staggerIn { to { opacity: 1; transform: translateY(0); } }
+  .m-restart { margin-top: 4px; align-self: flex-start; appearance: none; border: 1px solid var(--cloud-2); background: var(--white); color: var(--slate); font-family: 'DM Sans', sans-serif; font-size: 12px; height: 28px; padding: 0 10px; border-radius: 9999px; cursor: pointer; }
+  .m-restart:hover { border-color: var(--teal); color: var(--teal); }
+
+  .dont-card { padding: 16px 18px; border: 1px dashed #E5B4B4; background: #FBEEEE; border-radius: 12px; }
+  .dont-card .dont-x { width: 24px; height: 24px; border-radius: 50%; background: #EF4444; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; margin-bottom: 10px; }
+  .dont-card .dont-title { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .dont-card .dont-desc { font-size: 13px; line-height: 1.5; color: var(--slate); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* ---------- Imagery section ---------- */
+  .img-cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .img-cat { background: var(--white); border: 1px solid var(--cloud); border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: 200px 1fr; }
+  .img-demo { background: var(--bg-sand); padding: 20px; display: flex; align-items: center; justify-content: center; }
+  .img-cat-body { padding: 18px 20px; }
+  .img-cat-name { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+  .img-cat-use { font-size: 12.5px; color: var(--slate); margin-bottom: 10px; line-height: 1.5; }
+  .img-rules { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .img-rules li { font-size: 12.5px; line-height: 1.5; color: var(--slate); display: flex; gap: 8px; align-items: flex-start; }
+  .img-rules .good { color: #22C55E; font-weight: 600; flex-shrink: 0; }
+  .img-rules .bad { color: #EF4444; font-weight: 600; flex-shrink: 0; }
+
+  .ph-card { background: var(--white); border: 1px solid var(--cloud-2); border-radius: 12px; padding: 10px; width: 100%; }
+  .ph { width: 100%; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--slate); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-align: center; line-height: 1.4; padding: 12px; position: relative; overflow: hidden; }
+  .ph-label { display: inline-block; padding: 4px 8px; background: rgba(255,255,255,0.9); border-radius: 4px; color: var(--slate); }
+  .ph-label-below { margin-top: 10px; display: block; text-align: center; background: transparent; }
+  .ph-product { aspect-ratio: 1/1; background: repeating-linear-gradient(135deg, #F1E9DC 0 12px, #EAE0CF 12px 24px); }
+  .ph-maker { aspect-ratio: 4/5; background: repeating-linear-gradient(135deg, #DCD6C5 0 12px, #CDC4AE 12px 24px); }
+  .ph-doc { aspect-ratio: 16/10; background: repeating-linear-gradient(135deg, #ECE5D6 0 12px, #DFD6C0 12px 24px); align-items: flex-end; justify-content: flex-end; padding: 14px; }
+  .ph-place { aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, #D9CFB8 0 12px, #C7BCA1 12px 24px); }
+  .ph-placeholder { aspect-ratio: 1/1; background: var(--bg-sand); flex-direction: column; gap: 8px; border: 1px dashed #C9BFA8; }
+  .ph-placeholder-icon { opacity: 0.7; }
+
+  .logomark-preview { display: flex; gap: 10px; justify-content: center; align-items: center; padding: 10px 0; }
+  .logomark-preview .lm { width: 48px; height: 48px; background: var(--white); border: 1px solid var(--cloud); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logomark-preview .lm svg { width: 28px; height: 28px; }
+
+  .treat-grid { display: flex; flex-direction: column; gap: 24px; }
+  .treat-row { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: flex-start; padding-bottom: 24px; border-bottom: 1px solid var(--cloud); }
+  .treat-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .treat-label { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; color: var(--ink); padding-top: 4px; }
+  .treat-items { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-end; }
+  .treat-item { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .ratio-box { background: var(--bg-sand); border: 1px solid #E0D4BE; border-radius: 4px; }
+  .corner-box { width: 60px; height: 60px; background: var(--bg-sand); border: 1px solid #E0D4BE; }
+  .cb { width: 60px; height: 60px; border-radius: 8px; }
+  .cb-1 { background: linear-gradient(135deg, #C9BFA8, #E8DFC9); }
+  .cb-2 { background: linear-gradient(135deg, #D4B89A, #E8CDA8); }
+  .cb-3 { background: linear-gradient(135deg, #0D7377, #E6F5F5); position: relative; }
+  .cb-3::after { content: '✕'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #EF4444; font-size: 32px; font-weight: 700; }
+  .cb-4 { background: linear-gradient(135deg, #2A2A33, #B8B8BF); }
+  .ratio-meta { display: flex; flex-direction: column; gap: 2px; }
+  .ratio-meta strong { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; color: var(--ink); }
+  .ratio-meta span { font-size: 11.5px; color: var(--slate); }
+  .treat-specs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px; width: 100%; }
+  .spec { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; padding: 6px 0; border-bottom: 1px dashed var(--cloud); }
+  .spec .k { color: var(--slate); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
+  .spec .v { color: var(--ink); font-weight: 500; text-align: right; }
+
+  .dodont-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .dodont { background: var(--white); border: 1px solid var(--cloud); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px; position: relative; }
+  .dodont.do { border-color: #C8E6C9; }
+  .dodont.dont { border-color: #F5CACA; }
+  .dodont-tag { display: inline-block; align-self: flex-start; padding: 3px 10px; border-radius: 9999px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em; background: #E8F5E9; color: #1B5E20; }
+  .dodont-tag.bad { background: #FDECEC; color: #B91C1C; }
+  .dodont-cap { font-size: 12.5px; line-height: 1.5; color: var(--slate); }
+  .ph-do-1 { aspect-ratio: 1/1; background: repeating-linear-gradient(135deg, #F3ECDB 0 14px, #E9DFC6 14px 28px); }
+  .ph-dont-1 { aspect-ratio: 1/1; background: repeating-linear-gradient(135deg, #EEE4CB 0 14px, #DFD1AE 14px 28px); position: relative; }
+  .ph-do-2 { aspect-ratio: 1/1; background: repeating-linear-gradient(135deg, #DED3B8 0 14px, #CCC09E 14px 28px); }
+  .ph-dont-2 { aspect-ratio: 1/1; background: repeating-linear-gradient(135deg, #E5D9BD 0 14px, #D4C69F 14px 28px); }
+  .ph-do-3 { aspect-ratio: 1/1; background: repeating-linear-gradient(135deg, #ECE5D2 0 14px, #DED4B7 14px 28px); }
+  .ph-dont-3 { aspect-ratio: 1/1; background: repeating-linear-gradient(135deg, #DFECE0 0 14px, #C6D6C8 14px 28px); position: relative; }
+  .fake-sale { position: absolute; top: 12px; right: 12px; background: #EF4444; color: #fff; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; padding: 4px 8px; border-radius: 4px; transform: rotate(8deg); }
+  .fake-leaf { position: absolute; top: 14px; left: 14px; font-size: 24px; opacity: 0.8; }
+
+  /* ---------- Empty State ---------- */
+  .empty {
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    padding: 48px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .empty .glyph {
+    width: 88px; height: 88px;
+    background: var(--sand);
+    border-radius: var(--r-full);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal);
+  }
+  .empty .glyph svg { width: 36px; height: 36px; }
+  .empty h3 { font-size: 22px; }
+  .empty p { color: var(--slate); max-width: 360px; margin: 0; }
+  .empty .chip-row { justify-content: center; margin-top: 8px; }
+
+  /* ---------- Form elements ---------- */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 14px; font-weight: 600; color: var(--ink); font-family: 'DM Sans', sans-serif; }
+  .field .help { font-size: 13px; color: var(--slate); }
+  .field .err-msg { font-size: 13px; color: var(--err); display: flex; align-items: center; gap: 6px; }
+  .field .err-msg svg { width: 13px; height: 13px; }
+  .input, .select, .textarea {
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-sm);
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    transition: all 150ms var(--ease);
+    outline: none;
+    width: 100%;
+  }
+  .textarea { height: 120px; padding: 12px 14px; resize: vertical; font-family: inherit; line-height: 1.55; }
+  .input:focus, .select:focus, .textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-light); }
+  .input.is-error, .textarea.is-error { border-color: var(--err); }
+  .input.is-error:focus { box-shadow: 0 0 0 3px var(--err-bg); }
+  .select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+  /* ---------- Sample composition ---------- */
+  .canvas {
+    background: var(--sand);
+    border: 1px solid var(--sand-deep);
+    border-radius: var(--r-lg);
+    padding: 28px;
+  }
+  .canvas .page-frame-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .canvas .page-frame-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+  .canvas .rs-head { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 20px; margin-bottom: 16px; }
+  .canvas .rs-head h2 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 26px; }
+  .canvas .rs-head .query { font-family: 'DM Sans', sans-serif; color: var(--slate); font-size: 14px; }
+  .canvas .rs-head .query strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Utility ---------- */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .muted { color: var(--slate); }
+  .row-between { display: flex; justify-content: space-between; align-items: center; }
+  .stack-8 > * + * { margin-top: 8px; }
+  .stack-16 > * + * { margin-top: 16px; }
+  .stack-24 > * + * { margin-top: 24px; }
+
+  /* Anchors / TOC */
+  .toc {
+    position: sticky;
+    top: 24px;
+    margin-bottom: 40px;
+    padding: 14px 18px;
+    background: var(--white);
+    border: 1px solid var(--cloud-2);
+    border-radius: var(--r-md);
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    z-index: 10;
+  }
+  .toc a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--slate);
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .toc a:hover { background: var(--cloud); color: var(--ink); }
+
+  /* Footnote style */
+  .fn { font-size: 12px; color: var(--slate); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+
+  /* horizontal rule */
+  hr.div { border: none; border-top: 1px solid var(--cloud-2); margin: 32px 0; }
+</style>
+</head>
+<body style="cursor: crosshair;" data-cc-id="cc-1">
+<div class="page" data-cc-id="cc-3">
+
+  <!-- ============ HEADER ============ -->
+  <header class="doc-header">
+    <div>
+      <div class="eyebrow">WellSourced · Design System v1</div>
+      <h1 class="display" style="margin-bottom: 20px;">A commons, <br>not a storefront.</h1>
+      <p class="lede">The visual system for WellSourced — an open-source product discovery engine for ethical shopping. Built to feel like trusted public infrastructure: fast, honest, and warm. Convenience leads; values follow.</p>
+    </div>
+    <div class="meta">
+      <strong>Release</strong> v1.0 · Feb 2026<br>
+      <strong>Primary</strong> #0D7377 Deep Teal<br>
+      <strong>Type</strong> Satoshi · DM Serif Display · DM Sans · JetBrains Mono<br>
+      <strong>Grid</strong> 12 col · 1280 max · 4px base
+    </div>
+  </header>
+
+  <nav class="toc">
+    <a href="#brand">01 Brand</a>
+    <a href="#color">02 Color</a>
+    <a href="#type">03 Type</a>
+    <a href="#space">04 Space &amp; Radius</a>
+    <a href="#icon">05 Icons</a>
+    <a href="#comp">06 Components</a>
+    <a href="#trust">07 Trust Tiers</a>
+    <a href="#form" style="" data-cc-id="cc-4">07 Forms</a>
+    <a href="#motion">08 Motion</a>
+    <a href="#imagery">09 Imagery</a>
+    <a href="#empty" style="" data-cc-id="cc-5">10 Empty States</a>
+    <a href="#sample">11 Sample Composition</a>
+  </nav>
+
+  <!-- ============ 01 BRAND ============ -->
+  <section class="section" id="brand">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">01</span>
+        <h2 class="h2">Brand</h2>
+      </div>
+      <p class="hd-desc">Grounded organic meets clean modernity. Lowercase wordmark. A single-color mark that reads as a "w" folded into a well — origin, source, enclosed.</p>
+    </div>
+
+    <div class="brand-grid">
+      <div class="brand-card hero">
+        <div class="sub-label">Primary lockup · reversed</div>
+        <div class="lockup" style="color: #fff;">
+          <!-- Logomark: 'w' folded into a well/source shape -->
+          <svg class="mark" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="wellsourced mark">
+            <rect width="44" height="44" rx="12" fill="#E6F5F5"></rect>
+            <path d="M10 14 L15 30 L22 20 L29 30 L34 14" stroke="#0D7377" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="22" cy="14" r="2.3" fill="#0D7377"></circle>
+          </svg>
+          <div class="wordmark">well<span class="ws-serif">sourced</span></div>
+        </div>
+        <div style="display: flex; gap: 24px; font-size: 12px; color: rgba(230,245,245,0.8); font-family: 'JetBrains Mono', monospace;">
+          <span>▸ w-form ≈ double valley / source</span>
+          <span>▸ dot = the origin point</span>
+          <span>▸ enclosed = commons, protected</span>
+        </div>
+      </div>
+
+      <div class="brand-card">
+        <div class="sub-label">Badge — embeddable on brand sites</div>
+        <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <div class="verified-badge">
+            <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9 18l-5-5"></path></svg>
+            <div style="display: flex; flex-direction: column;"><span style="font-size:10px; letter-spacing:.1em; text-transform:uppercase;">Verified on</span><strong>well<span class="ws-serif">sourced</span></strong></div>
+          </div>
+          <div class="verified-badge">
+            <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+            <div style="display: flex; flex-direction: column;"><span style="font-size:10px; letter-spacing:.1em; text-transform:uppercase;">Find us on</span><strong>well<span class="ws-serif">sourced</span></strong></div>
+          </div>
+        </div>
+        <div class="fn">Embed as an <code>&lt;iframe&gt;</code> or an <code>&lt;a&gt;</code> — both include a citation link back to the brand profile.</div>
+      </div>
+    </div>
+
+    <div class="logo-row">
+      <div class="logo-chip">
+        <svg viewBox="0 0 44 44" fill="none" style="width:40px;height:40px;">
+          <rect width="44" height="44" rx="12" fill="#0D7377"></rect>
+          <path d="M10 14 L15 30 L22 20 L29 30 L34 14" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="22" cy="14" r="2.3" fill="#fff"></circle>
+        </svg>
+        <div class="cap">mark / primary</div>
+      </div>
+      <div class="logo-chip dark">
+        <svg viewBox="0 0 44 44" fill="none" style="width:40px;height:40px;">
+          <rect width="44" height="44" rx="12" fill="#fff"></rect>
+          <path d="M10 14 L15 30 L22 20 L29 30 L34 14" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="22" cy="14" r="2.3" fill="#1A1A2E"></circle>
+        </svg>
+        <div class="cap">mark / mono-light</div>
+      </div>
+      <div class="logo-chip sand">
+        <svg viewBox="0 0 44 44" fill="none" style="width:40px;height:40px;">
+          <path d="M10 14 L15 30 L22 20 L29 30 L34 14" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="22" cy="14" r="2.3" fill="#1A1A2E"></circle>
+        </svg>
+        <div class="cap">mark / flat-mono</div>
+      </div>
+      <div class="logo-chip teal">
+        <div style="font-family:'Manrope', sans-serif; font-weight: 700; font-size: 20px; color: #fff; letter-spacing: -0.025em;">well<span class="ws-serif">sourced</span></div>
+        <div class="cap">wordmark / reversed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 COLOR ============ -->
+  <section class="section" id="color">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">02</span>
+        <h2 class="h2">Color</h2>
+      </div>
+      <p class="hd-desc">Teal as trust anchor; warm sand as the page temperature. Trust tiers use a calibrated gray → blue → green spectrum that maps to verification depth — never to emotion.</p>
+    </div>
+
+    <div class="sub-label">Core palette</div>
+    <div class="palette">
+      <div class="swatch"><div class="chip" style="background:#0D7377;"></div><div class="meta"><div class="name">Deep Teal</div><div class="hex">#0D7377</div><div class="use">Primary — CTAs, active links, logo, selected states.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#E6F5F5;"></div><div class="meta"><div class="name">Teal Light</div><div class="hex">#E6F5F5</div><div class="use">Selected chips, hover bg, subtle highlights.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F5F0E8;"></div><div class="meta"><div class="name">Warm Sand</div><div class="hex">#F5F0E8</div><div class="use">Page background — away from Amazon-white.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#FFFFFF; border-bottom: 1px solid #E2E8F0;"></div><div class="meta"><div class="name">Pure White</div><div class="hex">#FFFFFF</div><div class="use">Card surfaces, modals, inputs.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#1A1A2E;"></div><div class="meta"><div class="name">Charcoal</div><div class="hex">#1A1A2E</div><div class="use">Headings, body copy, primary text.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#64748B;"></div><div class="meta"><div class="name">Slate</div><div class="hex">#64748B</div><div class="use">Metadata, secondary text, descriptions.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F1F5F9;"></div><div class="meta"><div class="name">Cloud</div><div class="hex">#F1F5F9</div><div class="use">Dividers, inactive UI, card borders.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#ECE4D4;"></div><div class="meta"><div class="name">Sand Deep</div><div class="hex">#ECE4D4</div><div class="use">Accent dividers on sand, subtle chips.</div></div></div>
+    </div>
+
+    <div class="sub-label" style="margin-top: 40px;">Trust tier — a calibrated spectrum</div>
+    <div class="trust-grid">
+      <div class="trust-swatch">
+        <div class="tier-ico t1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle></svg></div>
+        <div class="copy">
+          <div class="tag">TIER 1 · #94A3B8</div>
+          <div class="title">Self-Reported</div>
+          <div class="desc">Submitted by the brand. No third-party check. Treat with healthy skepticism.</div>
+        </div>
+      </div>
+      <div class="trust-swatch">
+        <div class="tier-ico t2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+        <div class="copy">
+          <div class="tag">TIER 2 · #3B82F6</div>
+          <div class="title">Community Verified</div>
+          <div class="desc">A contributor researched this claim and cited sources. Open to review.</div>
+        </div>
+      </div>
+      <div class="trust-swatch">
+        <div class="tier-ico t3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m12 8 1.6 3.2L17 12l-2.5 2.3.6 3.4L12 16l-3.1 1.7.6-3.4L7 12l3.4-.8L12 8z"></path></svg></div>
+        <div class="copy">
+          <div class="tag">TIER 3 · #22C55E</div>
+          <div class="title">Independently Audited</div>
+          <div class="desc">Confirmed via third-party certification or public filings. Highest trust.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-label" style="margin-top: 40px;">Utility</div>
+    <div class="palette" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="swatch"><div class="chip" style="background:#F59E0B;"></div><div class="meta"><div class="name">Warning</div><div class="hex">#F59E0B</div><div class="use">Conflict-of-interest flags, trust caveats.</div></div></div>
+      <div class="swatch"><div class="chip" style="background: rgb(239, 68, 68); border-radius: 9999px;" data-cc-id="cc-2"></div><div class="meta"><div class="name">Error</div><div class="hex">#EF4444</div><div class="use">Form errors, out-of-stock, destructive.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#22C55E;"></div><div class="meta"><div class="name">Success</div><div class="hex">#22C55E</div><div class="use">Confirmation, approved edits. Matches Tier 3.</div></div></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 TYPE ============ -->
+  <section class="section" id="type">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">03</span>
+        <h2 class="h2">Typography</h2>
+      </div>
+      <p class="hd-desc">Satoshi for structure; DM Serif Display for emphasis; DM Sans for reading; JetBrains Mono for data. A pairing that reads as both modern and institutional.</p>
+    </div>
+
+    <div class="font-pair-grid" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="font-card head">
+        <div class="role">Display / Heading</div>
+        <div class="fname">Satoshi</div>
+        <div class="glyphs">Aa Bb Cc · 123</div>
+        <div class="weights"><span>400 Regular</span><span>500 Medium</span><span>700 Bold</span><span>900 Black</span></div>
+      </div>
+      <div class="font-card serif">
+        <div class="role">Accent · Emphasis</div>
+        <div class="fname" style="font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-weight: 400;">DM Serif Display</div>
+        <div class="glyphs" style="font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-weight: 400;">Aa Bb Cc · 123</div>
+        <div class="weights"><span>400 Regular</span><span>400 Italic</span></div>
+      </div>
+      <div class="font-card body">
+        <div class="role">Body / UI</div>
+        <div class="fname">DM Sans</div>
+        <div class="glyphs">Aa Bb Cc · 123</div>
+        <div class="weights"><span>400 Regular</span><span>500 Medium</span><span>600 Semibold</span><span>700 Bold</span></div>
+      </div>
+      <div class="font-card mono">
+        <div class="role">Mono · contributor tools</div>
+        <div class="fname">JetBrains Mono</div>
+        <div class="glyphs">0O aA · 0xf3a</div>
+        <div class="weights"><span>400 Regular</span><span>500 Medium</span></div>
+      </div>
+    </div>
+
+    <div class="sub-label" style="margin-top: 32px;">DM Serif Display in use — pair with Satoshi for editorial emphasis</div>
+    <div class="comp-card" style="padding: 36px 40px;">
+      <div style="font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.08; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 24px;">
+        Find great products from brands <span class="serif-live" style="color: var(--teal);">you can trust.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; border-top: 1px solid var(--cloud); padding-top: 24px;">
+        <div>
+          <div class="fn" style="margin-bottom: 8px;">PULL-QUOTE · 400 italic</div>
+          <div class="serif-live" style="font-size: 24px; line-height: 1.3; color: var(--ink);">“A commons, not a storefront.”</div>
+        </div>
+        <div>
+          <div class="fn" style="margin-bottom: 8px;">SECTION EYEBROW · italic inline</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 22px; line-height: 1.35; color: var(--ink);">The <span class="serif-live" style="color: var(--teal);">why</span> behind every brand.</div>
+        </div>
+        <div>
+          <div class="fn" style="margin-bottom: 8px;">MANIFESTO LINE · 18px italic</div>
+          <div class="serif-live" style="font-size: 19px; line-height: 1.5; color: var(--slate);">We show data, not judgment — and we say so out loud.</div>
+        </div>
+      </div>
+      <div class="fn" style="margin-top: 20px;">// use italic sparingly — headlines, pull-quotes, one emphasized word per passage. never for body, UI labels, or data.</div>
+    </div>
+
+    <script>/* serif picker removed — DM Serif Display is the committed choice */</script>
+
+    <div class="type-grid">
+      <div class="type-row">
+        <div class="spec"><strong>Display</strong>64 / 64 / Black<br>tracking -3.5%</div>
+        <div class="font-tag">Satoshi 900</div>
+        <div class="sample t-display">Source the good stuff.</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>H1</strong>40 / 44 / Bold<br>tracking -2%</div>
+        <div class="font-tag">Satoshi 700</div>
+        <div class="sample t-h1">Wireless earbuds from 38 brands</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>H2</strong>32 / 38 / Semibold<br>tracking -1.5%</div>
+        <div class="font-tag">Satoshi 600</div>
+        <div class="sample t-h2">About this brand</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>H3</strong>24 / 31 / Semibold</div>
+        <div class="font-tag">Satoshi 600</div>
+        <div class="sample t-h3">Ownership &amp; structure</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>Emphasis</strong>inline / italic<br>tracking -1%</div>
+        <div class="font-tag">DM Serif 400i</div>
+        <div class="sample" style="font-family:'DM Serif Display', Georgia, serif; font-style: italic; font-weight: 400; font-size: 28px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink);">brands <span style="color: var(--teal);">you can trust</span></div>
+      </div>
+      <div class="type-row">
+        <div class="font-tag">DM Sans 400</div>
+        <div class="sample t-body">WellSourced is a public tool for finding products from independent brands you can actually trust. We don't take a cut.</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>Small</strong>14 / 21 / Regular</div>
+        <div class="font-tag">DM Sans 400</div>
+        <div class="sample t-small">HQ Portland, OR · Founded 2019 · 12 employees</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>Price</strong>20 / 24 / Semibold</div>
+        <div class="font-tag">DM Sans 600</div>
+        <div class="sample t-price">$89.00</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>Badge label</strong>13 / 15 / Medium<br>uppercase · tracking 8%</div>
+        <div class="font-tag">DM Sans 500</div>
+        <div class="sample t-badge">Community Verified</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>Button</strong>15 / 15 / Medium</div>
+        <div class="font-tag">DM Sans 500</div>
+        <div class="sample t-button">Buy Direct →</div>
+      </div>
+      <div class="type-row">
+        <div class="spec"><strong>Mono</strong>14 / 22 / Regular</div>
+        <div class="font-tag">JetBrains 400</div>
+        <div class="sample t-mono">edit#a3f82c · verified 2026-01-18 · 3 sources</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 SPACE & RADIUS ============ -->
+  <section class="section" id="space">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">04</span>
+        <h2 class="h2">Space, Radius &amp; Elevation</h2>
+      </div>
+      <p class="hd-desc">4px base unit. Radii stay friendly but restrained — no pill-everything. Elevation is quiet; hover states earn attention.</p>
+    </div>
+
+    <div class="sys-grid-3">
+      <div class="sys-card">
+        <h4>Spacing scale · 4px base</h4>
+        <div class="space-row"><span class="label">4</span><div class="bar" style="width: 4px;"></div></div>
+        <div class="space-row"><span class="label">8</span><div class="bar" style="width: 8px;"></div></div>
+        <div class="space-row"><span class="label">12</span><div class="bar" style="width: 12px;"></div></div>
+        <div class="space-row"><span class="label">16</span><div class="bar" style="width: 16px;"></div></div>
+        <div class="space-row"><span class="label">24</span><div class="bar" style="width: 24px;"></div></div>
+        <div class="space-row"><span class="label">32</span><div class="bar" style="width: 32px;"></div></div>
+        <div class="space-row"><span class="label">48</span><div class="bar" style="width: 48px;"></div></div>
+        <div class="space-row"><span class="label">64</span><div class="bar" style="width: 64px;"></div></div>
+        <div class="space-row"><span class="label">96</span><div class="bar" style="width: 96px;"></div></div>
+      </div>
+      <div class="sys-card">
+        <h4>Radius scale</h4>
+        <div class="radius-row">
+          <div class="radius-sample r-sm">8 · inputs, badges</div>
+          <div class="radius-sample r-md">12 · cards, buttons</div>
+          <div class="radius-sample r-lg">16 · modals, hero</div>
+          <div class="radius-sample r-full">∞ · avatars, pills</div>
+        </div>
+      </div>
+      <div class="sys-card">
+        <h4>Elevation</h4>
+        <div class="shadow-row">
+          <div class="shadow-sample s1">shadow-card · rest</div>
+          <div class="shadow-sample s2">shadow-hover · lift</div>
+        </div>
+        <div style="margin-top: 16px; font-size: 12px; color: var(--slate); line-height: 1.6;">Cards use either a 1px border <em>or</em> shadow-card — never both. Hover promotes to shadow-hover with a -2px lift.</div>
+      </div>
+    </div>
+
+    <div class="sys-card" style="margin-top: 20px;">
+      <h4>Layout grid · 12 col · 1280 max · 24 gutter</h4>
+      <div class="grid-cols">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div style="display: flex; gap: 24px; margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--slate);">
+        <span><strong style="color:var(--ink);">Desktop</strong> ≥1024 · 12 col · 4 product cards/row</span>
+        <span><strong style="color:var(--ink);">Tablet</strong> 768–1023 · 8 col · 3 cards/row</span>
+        <span><strong style="color:var(--ink);">Mobile</strong> &lt;768 · 1 col · 2 cards/row</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 ICONS ============ -->
+  <section class="section" id="icon">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">05</span>
+        <h2 class="h2">Iconography</h2>
+      </div>
+      <p class="hd-desc">Line icons, 1.75px stroke, rounded caps. Lucide as the base set. Custom marks only where semantics demand it — trust tiers, ownership types, the Buy Direct arrow.</p>
+    </div>
+
+    <div class="icon-grid">
+      <!-- Row 1: search / nav -->
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <span class="name">search</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.5"></rect><rect x="13" y="4" width="7" height="7" rx="1.5"></rect><rect x="4" y="13" width="7" height="7" rx="1.5"></rect><rect x="13" y="13" width="7" height="7" rx="1.5"></rect></svg>
+        <span class="name">browse</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"></path></svg>
+        <span class="name">filter</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18"></path></svg>
+        <span class="name">sort</span>
+      </div>
+      <div class="icon-cell" style="color: var(--t1);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle></svg>
+        <span class="name">tier-1</span>
+      </div>
+      <div class="icon-cell" style="color: var(--t2);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <span class="name">tier-2</span>
+      </div>
+      <div class="icon-cell" style="color: var(--t3);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m12 8 1.6 3.2L17 12l-2.5 2.3.6 3.4L12 16l-3.1 1.7.6-3.4L7 12l3.4-.8L12 8z"></path></svg>
+        <span class="name">tier-3</span>
+      </div>
+      <div class="icon-cell" style="color: var(--teal);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M9 7h8v8"></path></svg>
+        <span class="name">buy-direct</span>
+      </div>
+      <!-- Row 2: ownership & tools -->
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"></circle><path d="M5 20c0-4 3.5-6 7-6s7 2 7 6"></path></svg>
+        <span class="name">indie</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="2.5"></circle><circle cx="15" cy="9" r="2.5"></circle><path d="M4 19c0-3 2.5-5 5-5s5 2 5 5M14 19c0-2.5 2-4.5 4.5-4.5S23 16.5 23 19"></path></svg>
+        <span class="name">worker-owned</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18M3 12h18"></path></svg>
+        <span class="name">co-op</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h9a4 4 0 0 1 0 8H6zM6 14h11a4 4 0 0 1 0 8H6z"></path></svg>
+        <span class="name">b-corp</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m4 14 6 6L20 8"></path><path d="m4 8 4 4"></path></svg>
+        <span class="name">certified</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4 4 14v6h6L20 10z"></path><path d="m14 4 6 6"></path></svg>
+        <span class="name">suggest-edit</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+        <span class="name">source-cite</span>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v4l3 2"></path></svg>
+        <span class="name">recent</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 COMPONENTS ============ -->
+  <section class="section" id="comp">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">06</span>
+        <h2 class="h2">Components</h2>
+      </div>
+      <p class="hd-desc">Ten components, each with required states. Built in this order because this is the order they'll be used in anger — nav, search, chips, then product cards.</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="comp-card" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.1 Navigation Bar</h3>
+        <span class="meta">sticky · 64px · collapses on mobile</span>
+      </div>
+      <div class="nav">
+        <div class="mark-lock">
+          <svg viewBox="0 0 44 44" fill="none">
+            <rect width="44" height="44" rx="10" fill="#0D7377"></rect>
+            <path d="M10 14 L15 30 L22 20 L29 30 L34 14" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="22" cy="14" r="2.3" fill="#fff"></circle>
+          </svg>
+          <div class="wm">well<span class="ws-serif">sourced</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="search sm" style="max-width: 360px;">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input type="text" placeholder="Search products, brands…">
+          <span class="kbd">⌘K</span>
+        </div>
+        <div class="spacer"></div>
+        <div class="links">
+          <a class="link" href="#">Browse Brands</a>
+          <a class="link" href="#">Submit a Brand</a>
+          <a class="link" href="#">About</a>
+          <div class="divider"></div>
+          <a class="link" href="#" style="color: var(--slate);">Contribute</a>
+          <button class="btn btn-secondary" style="height: 36px; padding: 0 14px;">Sign In</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="comp-card" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.2 Buttons</h3>
+        <span class="meta">44px · 12px radius · 150ms ease-out</span>
+      </div>
+      <div class="states-row"><span class="state-label">Primary</span>
+        <button class="btn btn-primary">Buy Direct <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button>
+        <button class="btn btn-primary is-active">Active / pressed</button>
+        <button class="btn btn-loading">Submitting <span class="spinner"></span></button>
+        <button class="btn btn-disabled" disabled="">Disabled</button>
+      </div>
+      <div class="states-row"><span class="state-label">Secondary</span>
+        <button class="btn btn-secondary">Visit Store</button>
+        <button class="btn btn-secondary" style="background: var(--teal-light);">Hovered</button>
+        <button class="btn btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4 4 14v6h6L20 10z"></path><path d="m14 4 6 6"></path></svg>Suggest an Edit</button>
+      </div>
+      <div class="states-row"><span class="state-label">Ghost</span>
+        <button class="btn btn-ghost">View sources</button>
+        <button class="btn btn-ghost">Show 12 more →</button>
+        <button class="btn btn-ghost" style="color: var(--slate);">Cancel</button>
+      </div>
+      <div class="states-row" style="margin-bottom: 0;"><span class="state-label">Destructive</span>
+        <button class="btn btn-destructive">Remove claim</button>
+        <span class="fn">Used in contributor tools only — never in shopper-facing flows.</span>
+      </div>
+    </div>
+
+    <!-- Search bar large -->
+    <div class="comp-card" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.3 Search Bar</h3>
+        <span class="meta">landing · 56px · results · 40px</span>
+      </div>
+      <div class="sub-label">Landing — default</div>
+      <div class="search lg" style="margin-bottom: 16px;">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input type="text" placeholder="Search for products, brands, or try 'birthday gift under $50'">
+        <span class="kbd">Enter ↵</span>
+      </div>
+      <div class="sub-label">Landing — focused, with active query</div>
+      <div class="search lg is-focus" style="margin-bottom: 16px;">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--teal);"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input type="text" value="wireless earbuds">
+        <button class="clear" aria-label="Clear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+      </div>
+      <div class="sub-label">Results — compact, in header</div>
+      <div class="search sm">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input type="text" value="organic dog treats">
+        <button class="clear" aria-label="Clear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+      </div>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="comp-card" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.4 Filter Chips</h3>
+        <span class="meta">34px · full radius · horizontal scroll on mobile</span>
+      </div>
+      <div class="sub-label">Inactive</div>
+      <div class="chip-row" style="margin-bottom: 20px;">
+        <button class="chip">Category <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+        <button class="chip">Price Range <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+        <button class="chip">Ownership <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+        <button class="chip">Certifications <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+        <button class="chip">Min. Trust Tier <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+      </div>
+      <div class="sub-label">Active + sort</div>
+      <div class="chip-row">
+        <button class="chip is-active">Under $100 <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></span></button>
+        <button class="chip is-active">Worker-owned <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></span></button>
+        <button class="chip is-active">Tier 2+ <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></span></button>
+        <button class="btn btn-ghost" style="height: 34px;">Clear all</button>
+        <div style="flex: 1;"></div>
+        <button class="chip sort">Sort: Relevance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+      </div>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="comp-card" id="trust" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.5 Trust Tier Badges</h3>
+        <span class="meta">inline with brand · tooltip on hover or focus</span>
+      </div>
+      <div class="states-row"><span class="state-label">Badges</span>
+        <span class="tb t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle></svg>Self-Reported</span>
+        <span class="tb t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>Community Verified</span>
+        <span class="tb t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m12 8 1.6 3.2L17 12l-2.5 2.3.6 3.4L12 16l-3.1 1.7.6-3.4L7 12l3.4-.8L12 8z"></path></svg>Independently Audited</span>
+      </div>
+      <hr class="div">
+      <div class="sub-label">Tooltip — on hover/focus</div>
+      <div style="padding: 80px 40px 20px; position: relative; display: flex; justify-content: flex-start;">
+        <div class="tooltip-demo">
+          <span class="tb t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>Community Verified</span>
+          <div class="tooltip">
+            <strong>Community-verified</strong>
+            A contributor researched this claim and cited 3 sources. Last reviewed Jan 18, 2026.
+            <a href="#">View sources →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Card -->
+    <div class="comp-card" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.6 Product Card</h3>
+        <span class="meta">default · hover · loading · 4 per row on desktop</span>
+      </div>
+      <div class="product-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <!-- Default -->
+        <div class="product">
+          <div class="img">
+            <div class="ph-art"></div>
+            <div class="placeholder" style="position: relative; z-index:2;">product shot · 1:1</div>
+            <button class="bookmark" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>
+          </div>
+          <div class="body-p">
+            <div class="name">Nomad Low-Latency Earbuds</div>
+            <div class="price-row"><span class="price">$89.00</span></div>
+            <div class="mid">
+              <span class="brand"><a href="#">Signal &amp; Drift</a></span>
+              <span class="tb t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>Verified</span>
+            </div>
+          </div>
+          <div class="foot">
+            <a class="btn-buy" href="#">Buy Direct <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M9 7h8v8"></path></svg></a>
+            <span class="meta">state · default</span>
+          </div>
+        </div>
+        <!-- Hover -->
+        <div class="product is-hover">
+          <div class="img">
+            <div class="ph-art"></div>
+            <div class="placeholder" style="position: relative; z-index:2;">product shot · 1:1</div>
+            <button class="bookmark" aria-label="Save" style="color: var(--teal);"><svg viewBox="0 0 24 24" fill="var(--teal)" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>
+          </div>
+          <div class="body-p">
+            <div class="name">Kestrel All-Day Runner</div>
+            <div class="price-row"><span class="price">$128.00</span></div>
+            <div class="mid">
+              <span class="brand"><a href="#">Orrery Goods</a></span>
+              <span class="tb t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m12 8 1.6 3.2L17 12l-2.5 2.3.6 3.4L12 16l-3.1 1.7.6-3.4L7 12l3.4-.8L12 8z"></path></svg>Audited</span>
+            </div>
+          </div>
+          <div class="foot">
+            <a class="btn-buy" href="#" style="color: var(--teal-700);">Buy Direct <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: translateX(2px);"><path d="M7 17 17 7"></path><path d="M9 7h8v8"></path></svg></a>
+            <span class="meta">state · hover</span>
+          </div>
+        </div>
+        <!-- Loading skeleton -->
+        <div class="product loading">
+          <div class="img"></div>
+          <div class="body-p">
+            <div class="sk sk-line" style="width: 80%;"></div>
+            <div class="sk sk-line" style="width: 30%; height: 18px;"></div>
+            <div class="mid">
+              <div class="sk sk-line" style="width: 40%;"></div>
+              <div class="sk sk-line" style="width: 70px; height: 20px; border-radius: 10px;"></div>
+            </div>
+          </div>
+          <div class="foot">
+            <div class="sk sk-line" style="width: 90px; height: 14px;"></div>
+            <span class="meta">state · loading</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Profile Header -->
+    <div class="comp-card" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.7 Brand Profile Header</h3>
+        <span class="meta">/brand/[slug] · trust data summary per field</span>
+      </div>
+      <div class="bp">
+        <div class="logo-slot">sd</div>
+        <div class="h-col">
+          <div class="title-row">
+            <h1>Signal &amp; Drift</h1>
+            <span class="ownership"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="2.5"></circle><circle cx="15" cy="9" r="2.5"></circle><path d="M4 19c0-3 2.5-5 5-5s5 2 5 5M14 19c0-2.5 2-4.5 4.5-4.5S23 16.5 23 19"></path></svg> Worker-Owned</span>
+          </div>
+          <p class="tagline">Audio gear built for long walks and long attention. Designed and assembled in Portland, OR; repairable by default.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="lbl">Price Range</div><div class="val">$49 – $289</div></div>
+            <div class="stat"><div class="lbl">HQ</div><div class="val">Portland, OR · USA</div></div>
+            <div class="stat"><div class="lbl">Categories</div><div class="val">Audio · Electronics</div></div>
+            <div class="stat"><div class="lbl">Founded</div><div class="val">2019</div></div>
+          </div>
+          <div class="trust-summary">
+            <div class="trust-row"><span class="field">Ownership structure</span><span class="tb t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m12 8 1.6 3.2L17 12l-2.5 2.3.6 3.4L12 16l-3.1 1.7.6-3.4L7 12l3.4-.8L12 8z"></path></svg>Audited</span></div>
+            <div class="trust-row"><span class="field">Certifications (B Corp, Fair Trade)</span><span class="tb t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m12 8 1.6 3.2L17 12l-2.5 2.3.6 3.4L12 16l-3.1 1.7.6-3.4L7 12l3.4-.8L12 8z"></path></svg>Audited</span></div>
+            <div class="trust-row"><span class="field">Worker conditions</span><span class="tb t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>Verified</span></div>
+            <div class="trust-row"><span class="field">Manufacturing locations</span><span class="tb t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle></svg>Self-Reported</span></div>
+          </div>
+        </div>
+        <div class="cta-col">
+          <button class="btn btn-primary">Visit Store <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M9 7h8v8"></path></svg></button>
+          <button class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4 4 14v6h6L20 10z"></path><path d="m14 4 6 6"></path></svg>Suggest an Edit</button>
+          <div class="fn" style="text-align: right;">last updated 2026-01-18</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category cards -->
+    <div class="comp-card" style="margin-bottom: 24px;">
+      <div class="comp-hd">
+        <h3>6.8 Category Cards</h3>
+        <span class="meta">landing — browse entry point</span>
+      </div>
+      <div class="cat-grid">
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6z"></path><path d="M9 8V5a3 3 0 0 1 6 0v3"></path></svg></div><div class="cat-name">Kitchen</div><div class="cat-count">342 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h3l1-2h6l1 2h3v4l-3 1v9H8v-9l-3-1z"></path></svg></div><div class="cat-name">Clothing</div><div class="cat-count">618 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><path d="M12 4v2M12 18v2M4 12h2M18 12h2"></path></svg></div><div class="cat-name">Beauty</div><div class="cat-count">204 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M10 22V14h4v8"></path></svg></div><div class="cat-name">Home</div><div class="cat-count">489 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="8" r="2"></circle><circle cx="18" cy="8" r="2"></circle><circle cx="12" cy="6" r="2"></circle><path d="M12 10c-3 0-6 2-6 5s2 4 3 4h6c1 0 3-1 3-4s-3-5-6-5z"></path></svg></div><div class="cat-name">Pet</div><div class="cat-count">173 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m3 20 6-10 5 6 3-4 4 8z"></path><circle cx="8" cy="7" r="2"></circle></svg></div><div class="cat-name">Outdoors</div><div class="cat-count">256 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></div><div class="cat-name">Electronics</div><div class="cat-count">148 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"></path><circle cx="12" cy="9" r="4"></circle></svg></div><div class="cat-name">Kids</div><div class="cat-count">212 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 0 1-4 4 4 4 0 0 1-4-4z"></path><path d="M12 12v8M8 20h8"></path></svg></div><div class="cat-name">Food &amp; Drink</div><div class="cat-count">391 products</div></div>
+        <div class="cat"><div class="cat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="1"></rect><path d="M9 10h6M9 14h4"></path></svg></div><div class="cat-name">Office</div><div class="cat-count">97 products</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 FORMS ============ -->
+  <section class="section" id="form">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">07</span>
+        <h2 class="h2">Form Elements</h2>
+      </div>
+      <p class="hd-desc">Clean, restrained. Teal focus glow signals a live field. Errors help, never shame: helper text should tell you what to do next.</p>
+    </div>
+
+    <div class="comp-card">
+      <div class="form-grid">
+        <div class="field">
+          <label>Brand name</label>
+          <input class="input" placeholder="e.g. Signal &amp; Drift" value="Signal &amp; Drift">
+          <span class="help">The public brand name as customers know it.</span>
+        </div>
+        <div class="field">
+          <label>Shopify storefront domain</label>
+          <input class="input" placeholder="yourbrand.myshopify.com">
+          <span class="help">We'll use this to fetch your product catalog.</span>
+        </div>
+        <div class="field">
+          <label>Ownership structure</label>
+          <select class="select">
+            <option>Worker-owned</option>
+            <option>Independent / founder-owned</option>
+            <option>Cooperative</option>
+            <option>B Corp certified</option>
+            <option>Employee stock ownership plan (ESOP)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Storefront API token</label>
+          <input class="input is-error" value="shpat_0000…">
+          <span class="err-msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v4M12 16h.01"></path></svg>Token looks invalid. It should start with <code>shpat_</code> and be 38 chars.</span>
+        </div>
+        <div class="field" style="grid-column: 1 / -1;">
+          <label>Short description</label>
+          <textarea class="textarea" placeholder="One or two sentences. What do you make, and what makes it worth finding?">Audio gear built for long walks and long attention. Designed and assembled in Portland, OR.</textarea>
+          <span class="help">Plain language. No marketing superlatives. 240 char max.</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end;">
+        <button class="btn btn-ghost">Save draft</button>
+        <button class="btn btn-primary">Submit for review</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 MOTION ============ -->
+  <section class="section" id="motion">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">08</span>
+        <h2 class="h2">Motion</h2>
+      </div>
+      <p class="hd-desc">Motion is structural, never decorative. We move things to confirm an action, surface a state, or hand off focus — nothing swoops, nothing bounces. A shopper should never wait on an animation to complete.</p>
+    </div>
+
+    <!-- Principles -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>8.1 Principles</h3><span class="meta">four rules, in order of priority</span></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">01 · HONEST</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">Motion reflects real state.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">A spinner means we're actually fetching. A pulse means data is live. We never animate to imply speed we don't have.</div>
+        </div>
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">02 · FAST</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">Under 250ms, almost always.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">Shoppers click. Long animations feel like lag. If it can't be 250ms, it probably shouldn't animate.</div>
+        </div>
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">03 · QUIET</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">No bounce, no overshoot.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">We use <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--cloud);padding:1px 5px;border-radius:4px;">cubic-bezier(.2,.7,.3,1)</code> for everything. No spring, no elastic — this is research infrastructure, not a game.</div>
+        </div>
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">04 · RESPECTFUL</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">Respects reduced-motion.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">Every transition is gated by <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--cloud);padding:1px 5px;border-radius:4px;">prefers-reduced-motion</code>. No exceptions.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Duration scale -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>8.2 Duration scale</h3><span class="meta">five timings — use these, don't invent new ones</span></div>
+      <div class="comp-card" style="padding: 28px 32px;">
+        <div class="motion-scale">
+          <div class="motion-row" data-dur="80">
+            <div class="dur-label"><div class="dur-num">80ms</div><div class="dur-name">instant</div></div>
+            <div class="track"><div class="bar"></div><div class="ball"></div></div>
+            <div class="dur-use">Tap feedback, focus ring, checkbox tick. Below perceptual threshold — feels immediate.</div>
+            <button class="motion-play" data-key="r-80">▶ Play</button>
+          </div>
+          <div class="motion-row" data-dur="150">
+            <div class="dur-label"><div class="dur-num">150ms</div><div class="dur-name">micro</div></div>
+            <div class="track"><div class="bar"></div><div class="ball"></div></div>
+            <div class="dur-use">Button hover, chip toggle, arrow nudge, color fade. <strong>Default for all interactive states.</strong></div>
+            <button class="motion-play" data-key="r-150">▶ Play</button>
+          </div>
+          <div class="motion-row" data-dur="200">
+            <div class="dur-label"><div class="dur-num">200ms</div><div class="dur-name">small</div></div>
+            <div class="track"><div class="bar"></div><div class="ball"></div></div>
+            <div class="dur-use">Card lift, tooltip fade, filter chip dismiss. Things that change position a few pixels.</div>
+            <button class="motion-play" data-key="r-200">▶ Play</button>
+          </div>
+          <div class="motion-row" data-dur="240">
+            <div class="dur-label"><div class="dur-num">240ms</div><div class="dur-name">medium</div></div>
+            <div class="track"><div class="bar"></div><div class="ball"></div></div>
+            <div class="dur-use">Modal open, drawer slide, tooltip popover. Things that reveal new content.</div>
+            <button class="motion-play" data-key="r-240">▶ Play</button>
+          </div>
+          <div class="motion-row" data-dur="320">
+            <div class="dur-label"><div class="dur-num">320ms</div><div class="dur-name">page</div></div>
+            <div class="track"><div class="bar"></div><div class="ball"></div></div>
+            <div class="dur-use">Full-screen transitions only — route change, mobile search overlay. Used sparingly.</div>
+            <button class="motion-play" data-key="r-320">▶ Play</button>
+          </div>
+        </div>
+        <div class="fn" style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--cloud);">// anything above 320ms is reserved for skeleton loaders and data-streaming states</div>
+      </div>
+    </div>
+
+    <!-- Easing curves -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>8.3 Easing</h3><span class="meta">one curve, two edge cases</span></div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div class="comp-card ease-card">
+          <svg class="ease-svg" viewBox="0 0 120 120" preserveAspectRatio="none">
+            <line x1="0" y1="120" x2="120" y2="120" stroke="#E5EAEF" stroke-width="1"/>
+            <line x1="0" y1="0" x2="0" y2="120" stroke="#E5EAEF" stroke-width="1"/>
+            <path d="M 0 120 C 24 36, 36 0, 120 0" stroke="#0D7377" stroke-width="2" fill="none"/>
+          </svg>
+          <div class="ease-body">
+            <div class="ease-name">Standard — <em style="font-family:'DM Serif Display';font-style:italic;font-weight:400;color:var(--teal);">default for everything</em></div>
+            <div class="ease-code">cubic-bezier(.2, .7, .3, 1)</div>
+            <div class="ease-use">Confident entrance, quiet settle. Use for hover, fade, lift, slide — 99% of motion.</div>
+          </div>
+        </div>
+        <div class="comp-card ease-card">
+          <svg class="ease-svg" viewBox="0 0 120 120" preserveAspectRatio="none">
+            <line x1="0" y1="120" x2="120" y2="120" stroke="#E5EAEF" stroke-width="1"/>
+            <line x1="0" y1="0" x2="0" y2="120" stroke="#E5EAEF" stroke-width="1"/>
+            <path d="M 0 120 C 48 120, 96 0, 120 0" stroke="#64748B" stroke-width="2" fill="none"/>
+          </svg>
+          <div class="ease-body">
+            <div class="ease-name">Symmetrical</div>
+            <div class="ease-code">cubic-bezier(.4, 0, .2, 1)</div>
+            <div class="ease-use">Content shifts that need to feel neutral — accordion open, skeleton pulse. No directional bias.</div>
+          </div>
+        </div>
+        <div class="comp-card ease-card">
+          <svg class="ease-svg" viewBox="0 0 120 120" preserveAspectRatio="none">
+            <line x1="0" y1="120" x2="120" y2="120" stroke="#E5EAEF" stroke-width="1"/>
+            <line x1="0" y1="0" x2="0" y2="120" stroke="#E5EAEF" stroke-width="1"/>
+            <path d="M 0 120 C 72 120, 48 0, 120 0" stroke="#64748B" stroke-width="2" fill="none"/>
+          </svg>
+          <div class="ease-body">
+            <div class="ease-name">Exit</div>
+            <div class="ease-code">cubic-bezier(.4, 0, 1, 1)</div>
+            <div class="ease-use">For things leaving the screen — modal close, toast dismiss. Faster start, no lingering.</div>
+          </div>
+        </div>
+      </div>
+      <div class="fn" style="margin-top: 16px;">// NEVER use spring, elastic, or back-out. Bouncy motion reads as toy-like. We are a commons.</div>
+    </div>
+
+    <!-- Patterns -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>8.4 Patterns</h3><span class="meta">interact with each — hover, click, wait</span></div>
+      <div class="motion-grid">
+
+        <!-- Hover lift -->
+        <div class="m-demo">
+          <div class="m-stage">
+            <div class="m-card hover-lift">
+              <div class="m-thumb"></div>
+              <div class="m-name">Acoustic Model 02</div>
+              <div class="m-price">$189</div>
+            </div>
+          </div>
+          <div class="m-caption">
+            <div class="m-title">Hover lift</div>
+            <div class="m-desc">Card rises 2px, shadow deepens. Signals “clickable.”</div>
+            <div class="m-spec"><span>transform · box-shadow</span><span class="tok">200ms standard</span></div>
+          </div>
+        </div>
+
+        <!-- Arrow nudge -->
+        <div class="m-demo">
+          <div class="m-stage">
+            <button class="m-btn arrow-nudge">
+              <span>Buy Direct</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+            </button>
+          </div>
+          <div class="m-caption">
+            <div class="m-title">Arrow nudge</div>
+            <div class="m-desc">Arrow slides 2px right on hover. Direction-of-travel cue.</div>
+            <div class="m-spec"><span>translateX(2px)</span><span class="tok">150ms micro</span></div>
+          </div>
+        </div>
+
+        <!-- Chip toggle -->
+        <div class="m-demo">
+          <div class="m-stage" style="flex-wrap: wrap; gap: 8px; padding: 28px 20px;">
+            <button class="m-chip" data-active="false">Indie-owned</button>
+            <button class="m-chip" data-active="true">Under $50</button>
+            <button class="m-chip" data-active="false">Tier 2+</button>
+          </div>
+          <div class="m-caption">
+            <div class="m-title">Filter chip toggle</div>
+            <div class="m-desc">Background, border, and text color fade together. No pop.</div>
+            <div class="m-spec"><span>background · border · color</span><span class="tok">150ms micro</span></div>
+          </div>
+        </div>
+
+        <!-- Skeleton pulse -->
+        <div class="m-demo">
+          <div class="m-stage" style="flex-direction: column; gap: 10px; padding: 24px;">
+            <div class="m-skel" style="height: 90px; width: 100%; border-radius: 8px;"></div>
+            <div class="m-skel" style="height: 12px; width: 80%; border-radius: 4px;"></div>
+            <div class="m-skel" style="height: 12px; width: 55%; border-radius: 4px;"></div>
+          </div>
+          <div class="m-caption">
+            <div class="m-title">Skeleton pulse</div>
+            <div class="m-desc">Background fades between two neutrals. Honest loading — only shown when we're actually fetching.</div>
+            <div class="m-spec"><span>background opacity</span><span class="tok">1400ms symmetric</span></div>
+          </div>
+        </div>
+
+        <!-- Trust tooltip -->
+        <div class="m-demo">
+          <div class="m-stage">
+            <div class="m-tooltip-wrap">
+              <div class="m-tier-pill">
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 1l5 2v4c0 3-2.2 5.3-5 6-2.8-.7-5-3-5-6V3l5-2z"/><path d="M4.5 7l2 2 3-3.5"/></svg>
+                <span>Community Verified</span>
+              </div>
+              <div class="m-tooltip">A contributor researched this claim and cited sources — hover to open</div>
+            </div>
+          </div>
+          <div class="m-caption">
+            <div class="m-title">Tooltip popover</div>
+            <div class="m-desc">Fades in + translates down 4px. Closes on mouseleave.</div>
+            <div class="m-spec"><span>opacity · translateY</span><span class="tok">240ms medium</span></div>
+          </div>
+        </div>
+
+        <!-- Staggered results -->
+        <div class="m-demo">
+          <div class="m-stage" style="flex-direction: column; gap: 8px; padding: 22px 22px;">
+            <div class="m-result stagger-1"><div class="dot"></div><div class="m-result-bar" style="width:80%"></div></div>
+            <div class="m-result stagger-2"><div class="dot"></div><div class="m-result-bar" style="width:65%"></div></div>
+            <div class="m-result stagger-3"><div class="dot"></div><div class="m-result-bar" style="width:90%"></div></div>
+            <div class="m-result stagger-4"><div class="dot"></div><div class="m-result-bar" style="width:70%"></div></div>
+            <button class="m-restart">↻ Replay</button>
+          </div>
+          <div class="m-caption">
+            <div class="m-title">Staggered results entrance</div>
+            <div class="m-desc">Results fade up with a 40ms stagger. Max 8 items animate — the rest appear instantly.</div>
+            <div class="m-spec"><span>opacity · translateY(6px)</span><span class="tok">200ms standard</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Don't -->
+    <div class="comp">
+      <div class="comp-hd"><h3>8.5 Don't</h3><span class="meta">anti-patterns</span></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+        <div class="dont-card">
+          <div class="dont-x">✕</div>
+          <div class="dont-title">Parallax on scroll</div>
+          <div class="dont-desc">Implies marketing. We're a product search engine, not a landing page.</div>
+        </div>
+        <div class="dont-card">
+          <div class="dont-x">✕</div>
+          <div class="dont-title">Number count-ups</div>
+          <div class="dont-desc">“1,247 brands” appearing slowly reads as fake. Just show the number.</div>
+        </div>
+        <div class="dont-card">
+          <div class="dont-x">✕</div>
+          <div class="dont-title">Bouncy springs</div>
+          <div class="dont-desc">Undermines the institutional tone. Leave overshoot to consumer apps.</div>
+        </div>
+        <div class="dont-card">
+          <div class="dont-x">✕</div>
+          <div class="dont-title">Decorative loops</div>
+          <div class="dont-desc">Animated backgrounds, floating shapes, gradient pulses — all out. Motion means something happened.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 09 IMAGERY ============ -->
+  <section class="section" id="imagery">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">09</span>
+        <h2 class="h2">Imagery</h2>
+      </div>
+      <p class="hd-desc">Imagery must earn its place. Product shots do the job, brand photography provides context, and everything else — stock illustrations of handshakes, planet icons, smiling families — is out. If an image doesn't tell the user something they can't read, delete it.</p>
+    </div>
+
+    <!-- Principles -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>9.1 Principles</h3><span class="meta">four rules — every image is evaluated against these</span></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">01 · USEFUL</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">Shows the product.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">The shopper is scanning. Product-on-background wins every time over lifestyle context.</div>
+        </div>
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">02 · SOURCED</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">From the brand itself.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">Fetched from the brand's Shopify. Never stock photos, never AI-generated. Real or nothing.</div>
+        </div>
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">03 · CREDITED</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">Attribution visible.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">Every non-product photo names the photographer or source. No anonymous imagery on a transparency platform.</div>
+        </div>
+        <div class="comp-card" style="padding: 20px;">
+          <div class="fn" style="color: var(--teal); margin-bottom: 8px;">04 · HUMAN, NOT HAPPY</div>
+          <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 17px; line-height: 1.3; color: var(--ink); margin-bottom: 8px;">Documentary, not marketing.</div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: var(--slate);">When we show makers or facilities, show work. Hands, workshops, process. No cheerful founder portraits.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image categories -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>9.2 Image categories</h3><span class="meta">five types — each has its own treatment</span></div>
+      <div class="img-cat-grid">
+
+        <div class="img-cat">
+          <div class="img-demo">
+            <div class="ph-card"><div class="ph ph-product"><span class="ph-label">PRODUCT SHOT · 1:1 · 1200px</span></div></div>
+          </div>
+          <div class="img-cat-body">
+            <div class="img-cat-name">01 · Product</div>
+            <div class="img-cat-use">Used in: search cards, brand profile galleries, category browse.</div>
+            <ul class="img-rules">
+              <li><span class="good">✓</span> Square crop, product centered, 15% padding min</li>
+              <li><span class="good">✓</span> Plain background or consistent brand treatment</li>
+              <li><span class="bad">✕</span> No overlay text, no “SALE” stickers, no lifestyle clutter</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-cat">
+          <div class="img-demo">
+            <div class="ph-card"><div class="ph ph-maker"><span class="ph-label">MAKER PORTRAIT · 4:5 · documentary</span></div></div>
+          </div>
+          <div class="img-cat-body">
+            <div class="img-cat-name">02 · Maker &amp; workshop</div>
+            <div class="img-cat-use">Used in: brand profile header, ownership sections, contributor evidence.</div>
+            <ul class="img-rules">
+              <li><span class="good">✓</span> Working portraits — hands, tools, process</li>
+              <li><span class="good">✓</span> Natural light, minimal color grading</li>
+              <li><span class="bad">✕</span> No staged smiles, no corporate headshots</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-cat">
+          <div class="img-demo">
+            <div class="ph-card"><div class="ph ph-doc"><span class="ph-label">DOCUMENT SCAN · 16:10 · cropped</span></div></div>
+          </div>
+          <div class="img-cat-body">
+            <div class="img-cat-name">03 · Document &amp; evidence</div>
+            <div class="img-cat-use">Used in: trust tier sources, audit trail, verification receipts.</div>
+            <ul class="img-rules">
+              <li><span class="good">✓</span> Real scans — B Corp certificates, SEC filings, cooperative bylaws</li>
+              <li><span class="good">✓</span> 8px corners, subtle shadow, always with source URL</li>
+              <li><span class="bad">✕</span> No mocked-up documents, no stock “paperwork” photos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-cat">
+          <div class="img-demo">
+            <div class="ph-card"><div class="ph ph-place"><span class="ph-label">PLACE · 16:9 · workshop / origin</span></div></div>
+          </div>
+          <div class="img-cat-body">
+            <div class="img-cat-name">04 · Place of origin</div>
+            <div class="img-cat-use">Used in: HQ location cards, manufacturing context, transparency sections.</div>
+            <ul class="img-rules">
+              <li><span class="good">✓</span> Wide establishing shots — the actual factory, farm, or studio</li>
+              <li><span class="good">✓</span> Include geographic context (map pin, region label)</li>
+              <li><span class="bad">✕</span> No generic city skylines, no stock “factory” photos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-cat">
+          <div class="img-demo">
+            <div class="ph-card" style="padding: 20px;">
+              <div class="logomark-preview">
+                <div class="lm">
+                  <svg viewBox="0 0 40 40" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14l4 12 4-8 4 8 4-12"/><circle cx="30" cy="14" r="2"/></svg>
+                </div>
+                <div class="lm">
+                  <svg viewBox="0 0 40 40" fill="#1A1A2E"><rect x="8" y="8" width="24" height="24" rx="4"/><path d="M20 14l-4 12M24 14l-4 12" stroke="#F5F0E8" stroke-width="1.5"/></svg>
+                </div>
+                <div class="lm">
+                  <svg viewBox="0 0 40 40" fill="none" stroke="#1A1A2E" stroke-width="1.8"><circle cx="20" cy="20" r="12"/><path d="M20 8v24M8 20h24"/></svg>
+                </div>
+              </div>
+              <span class="ph-label ph-label-below">BRAND LOGOMARK · 1:1 · SVG preferred</span>
+            </div>
+          </div>
+          <div class="img-cat-body">
+            <div class="img-cat-name">05 · Brand logomark</div>
+            <div class="img-cat-use">Used in: product cards, brand profile headers, search autocomplete.</div>
+            <ul class="img-rules">
+              <li><span class="good">✓</span> SVG where possible, PNG with transparent background as fallback</li>
+              <li><span class="good">✓</span> Sits on white — never on warm sand, never on teal</li>
+              <li><span class="bad">✕</span> No cropping wordmarks, no recoloring brand assets</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Treatment specs -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>9.3 Treatment</h3><span class="meta">ratios, corners, color handling</span></div>
+      <div class="comp-card" style="padding: 28px 32px;">
+        <div class="treat-grid">
+          <div class="treat-row">
+            <div class="treat-label">Aspect ratios</div>
+            <div class="treat-items">
+              <div class="treat-item"><div class="ratio-box" style="width: 60px; height: 60px;"></div><div class="ratio-meta"><strong>1:1</strong><span>Product, logo</span></div></div>
+              <div class="treat-item"><div class="ratio-box" style="width: 48px; height: 60px;"></div><div class="ratio-meta"><strong>4:5</strong><span>Maker portrait</span></div></div>
+              <div class="treat-item"><div class="ratio-box" style="width: 68px; height: 50px;"></div><div class="ratio-meta"><strong>16:10</strong><span>Document, hero</span></div></div>
+              <div class="treat-item"><div class="ratio-box" style="width: 72px; height: 40px;"></div><div class="ratio-meta"><strong>16:9</strong><span>Place, video</span></div></div>
+            </div>
+          </div>
+
+          <div class="treat-row">
+            <div class="treat-label">Corner radius</div>
+            <div class="treat-items">
+              <div class="treat-item"><div class="corner-box" style="border-radius: 8px;"></div><div class="ratio-meta"><strong>8px</strong><span>Evidence, docs</span></div></div>
+              <div class="treat-item"><div class="corner-box" style="border-radius: 12px;"></div><div class="ratio-meta"><strong>12px</strong><span>Product cards (default)</span></div></div>
+              <div class="treat-item"><div class="corner-box" style="border-radius: 16px;"></div><div class="ratio-meta"><strong>16px</strong><span>Hero, full-bleed</span></div></div>
+              <div class="treat-item"><div class="corner-box" style="border-radius: 9999px;"></div><div class="ratio-meta"><strong>Full</strong><span>Contributor avatars only</span></div></div>
+            </div>
+          </div>
+
+          <div class="treat-row">
+            <div class="treat-label">Color handling</div>
+            <div class="treat-items">
+              <div class="treat-item"><div class="cb cb-1"></div><div class="ratio-meta"><strong>Natural</strong><span>Default — shoot as-is</span></div></div>
+              <div class="treat-item"><div class="cb cb-2"></div><div class="ratio-meta"><strong>Warm tint</strong><span>Brand photography only</span></div></div>
+              <div class="treat-item"><div class="cb cb-3"></div><div class="ratio-meta"><strong>Duotone</strong><span>Never — implies styling</span></div></div>
+              <div class="treat-item"><div class="cb cb-4"></div><div class="ratio-meta"><strong>B&amp;W</strong><span>Historical context only</span></div></div>
+            </div>
+          </div>
+
+          <div class="treat-row">
+            <div class="treat-label">File &amp; loading</div>
+            <div class="treat-items treat-specs">
+              <div class="spec"><span class="k">Format</span><span class="v">WebP + AVIF; JPG fallback</span></div>
+              <div class="spec"><span class="k">Max file size</span><span class="v">200KB product · 400KB hero</span></div>
+              <div class="spec"><span class="k">Resolution</span><span class="v">2× for retina; max 2400px</span></div>
+              <div class="spec"><span class="k">Loading</span><span class="v">loading="lazy" below fold</span></div>
+              <div class="spec"><span class="k">Alt text</span><span class="v">Required. Describes product, not brand.</span></div>
+              <div class="spec"><span class="k">Placeholder</span><span class="v">Warm sand skeleton with subtle pulse</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Do / Don't gallery -->
+    <div class="comp" style="margin-bottom: 24px;">
+      <div class="comp-hd"><h3>9.4 Do &amp; Don't</h3><span class="meta">the calibration check</span></div>
+      <div class="dodont-grid">
+        <div class="dodont do">
+          <div class="dodont-tag">DO</div>
+          <div class="ph-card"><div class="ph ph-do-1"><span class="ph-label">Product-on-white · edges breathing</span></div></div>
+          <div class="dodont-cap">Clean, centered, product speaks for itself. Shopper's eye lands on the object.</div>
+        </div>
+        <div class="dodont dont">
+          <div class="dodont-tag bad">DON'T</div>
+          <div class="ph-card"><div class="ph ph-dont-1"><div class="fake-sale">35% OFF</div><span class="ph-label">Sale stickers · lifestyle clutter</span></div></div>
+          <div class="dodont-cap">Overlays imply a marketplace. We link out — pricing lives on the brand's store.</div>
+        </div>
+        <div class="dodont do">
+          <div class="dodont-tag">DO</div>
+          <div class="ph-card"><div class="ph ph-do-2"><span class="ph-label">Hands at work · natural light</span></div></div>
+          <div class="dodont-cap">Process over person. What they make is more interesting than how they smile.</div>
+        </div>
+        <div class="dodont dont">
+          <div class="dodont-tag bad">DON'T</div>
+          <div class="ph-card"><div class="ph ph-dont-2"><span class="ph-label">Stock founder portrait · crossed arms</span></div></div>
+          <div class="dodont-cap">Pose photography reads as PR. We are not the brand's agency.</div>
+        </div>
+        <div class="dodont do">
+          <div class="dodont-tag">DO</div>
+          <div class="ph-card"><div class="ph ph-do-3"><span class="ph-label">Scanned B Corp certificate · with URL</span></div></div>
+          <div class="dodont-cap">Real evidence. Source visible. Contributor name attached.</div>
+        </div>
+        <div class="dodont dont">
+          <div class="dodont-tag bad">DON'T</div>
+          <div class="ph-card"><div class="ph ph-dont-3"><div class="fake-leaf">🌿</div><span class="ph-label">Generic leaves, handshakes, globes</span></div></div>
+          <div class="dodont-cap">Sustainability clip art is the greenwashing tell. The data earns trust — not the icon.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholders -->
+    <div class="comp">
+      <div class="comp-hd"><h3>9.5 Missing imagery</h3><span class="meta">placeholder — not a default image</span></div>
+      <div class="comp-card" style="padding: 28px 32px;">
+        <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: center;">
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+            <div class="ph-card" style="aspect-ratio: 1/1;"><div class="ph ph-placeholder"><div class="ph-placeholder-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="7" width="22" height="18" rx="2"/><circle cx="11" cy="13" r="1.8"/><path d="M5 21l6-6 5 5 4-3 7 7"/></svg>
+            </div><span class="ph-label ph-label-below">No product image yet</span></div></div>
+            <div class="ph-card" style="aspect-ratio: 1/1;"><div class="ph ph-placeholder"><div class="ph-placeholder-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"><circle cx="16" cy="13" r="5"/><path d="M6 26c2-5 6-7 10-7s8 2 10 7"/></svg>
+            </div><span class="ph-label ph-label-below">No maker photo yet</span></div></div>
+          </div>
+          <div>
+            <div style="font-family:'Manrope', sans-serif; font-weight: 600; font-size: 18px; line-height: 1.3; color: var(--ink); margin-bottom: 10px;">When an image is missing, say so.</div>
+            <div style="font-size: 14px; line-height: 1.6; color: var(--slate); margin-bottom: 16px;">A warm-sand tile with a monospace label is better than a broken image, a stock fallback, or an AI-generated guess. It's also an honest invitation — contributors can see what's missing and submit it.</div>
+            <div class="fn">// if it can't be real, it can wait. placeholders are a feature, not a failure.</div>
+            <div style="margin-top: 16px;"><button class="btn btn-ghost" style="padding: 0; height: auto;">Contribute imagery →</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ 10 EMPTY STATE ============ -->
+  <section class="section" id="empty">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">10</span>
+        <h2 class="h2">Empty &amp; Error States</h2>
+      </div>
+      <p class="hd-desc">Never apologize. Just hand the user the next useful action. Illustration is an open magnifying glass — not a sad face.</p>
+    </div>
+
+    <div class="empty">
+      <div class="glyph"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="21" cy="21" r="13"></circle><path d="M30.5 30.5 40 40"></path><path d="M15 21h12" stroke="#0D7377" stroke-width="2"></path></svg></div>
+      <h3>No results for "purple widgets"</h3>
+      <p>Try a broader search, or browse by category. Every brand here is indexed — if you can't find it, help us add it.</p>
+      <div class="chip-row">
+        <button class="chip">Kitchen</button>
+        <button class="chip">Home</button>
+        <button class="chip">Outdoors</button>
+        <button class="chip">Office</button>
+      </div>
+      <div style="display: flex; gap: 12px; margin-top: 12px;">
+        <button class="btn btn-secondary">Browse all brands</button>
+        <button class="btn btn-ghost">Submit a brand →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 SAMPLE COMPOSITION ============ -->
+  <section class="section" id="sample">
+    <div class="section-head">
+      <div class="hd-title">
+        <span class="hd-num">11</span>
+        <h2 class="h2">Sample Composition</h2>
+      </div>
+      <p class="hd-desc">A partial search results view — nav, sticky search, active filter chips, three product cards at their real size. The system validating itself.</p>
+    </div>
+
+    <div class="canvas">
+      <div class="page-frame-label"><span class="dot"></span>wellsourced.io / search?q=wireless+earbuds</div>
+
+      <!-- Nav -->
+      <div class="nav" style="margin-bottom: 20px;">
+        <div class="mark-lock">
+          <svg viewBox="0 0 44 44" fill="none">
+            <rect width="44" height="44" rx="10" fill="#0D7377"></rect>
+            <path d="M10 14 L15 30 L22 20 L29 30 L34 14" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="22" cy="14" r="2.3" fill="#fff"></circle>
+          </svg>
+          <div class="wm">well<span class="ws-serif">sourced</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="search sm" style="max-width: 400px;">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input type="text" value="wireless earbuds">
+          <button class="clear" aria-label="Clear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+        </div>
+        <div class="spacer"></div>
+        <div class="links">
+          <a class="link" href="#">Browse Brands</a>
+          <a class="link" href="#">Submit a Brand</a>
+          <a class="link" href="#">About</a>
+          <div class="divider"></div>
+          <button class="btn btn-secondary" style="height: 36px; padding: 0 14px;">Sign In</button>
+        </div>
+      </div>
+
+      <!-- Results header -->
+      <div class="rs-head">
+        <h2>Wireless earbuds</h2>
+        <div class="query">Showing <strong>38 products</strong> from <strong>14 brands</strong></div>
+      </div>
+
+      <!-- Filter chips -->
+      <div class="chip-row" style="margin-bottom: 20px;">
+        <button class="chip is-active">Under $150 <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></span></button>
+        <button class="chip is-active">Worker-owned <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></span></button>
+        <button class="chip is-active">Tier 2+ <span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></span></button>
+        <button class="chip">+ Certifications <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+        <div style="flex: 1;"></div>
+        <button class="chip sort">Sort: Relevance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></button>
+      </div>
+
+      <!-- Products -->
+      <div class="product-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="product">
+          <div class="img">
+            <div class="ph-art" style="background: repeating-linear-gradient(45deg, #EFE7D6 0 8px, #E9DFC8 8px 16px);"></div>
+            <div class="placeholder" style="position:relative; z-index:2;">earbuds · matte black</div>
+            <button class="bookmark" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>
+          </div>
+          <div class="body-p">
+            <div class="name">Nomad LL Earbuds</div>
+            <div class="price-row"><span class="price">$89.00</span></div>
+            <div class="mid">
+              <span class="brand"><a href="#">Signal &amp; Drift</a></span>
+              <span class="tb t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m12 8 1.6 3.2L17 12l-2.5 2.3.6 3.4L12 16l-3.1 1.7.6-3.4L7 12l3.4-.8L12 8z"></path></svg>Audited</span>
+            </div>
+          </div>
+          <div class="foot">
+            <a class="btn-buy" href="#">Buy Direct <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M9 7h8v8"></path></svg></a>
+          </div>
+        </div>
+        <div class="product is-hover">
+          <div class="img">
+            <div class="ph-art" style="background: repeating-linear-gradient(135deg, #E5EEDA 0 8px, #D6E3C4 8px 16px);"></div>
+            <div class="placeholder" style="position:relative; z-index:2;">earbuds · moss</div>
+            <button class="bookmark" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>
+          </div>
+          <div class="body-p">
+            <div class="name">Kestrel Open-Ear Pro</div>
+            <div class="price-row"><span class="price">$148.00</span></div>
+            <div class="mid">
+              <span class="brand"><a href="#">Orrery Goods</a></span>
+              <span class="tb t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>Verified</span>
+            </div>
+          </div>
+          <div class="foot">
+            <a class="btn-buy" href="#" style="color: var(--teal-700);">Buy Direct <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: translateX(2px);"><path d="M7 17 17 7"></path><path d="M9 7h8v8"></path></svg></a>
+          </div>
+        </div>
+        <div class="product">
+          <div class="img">
+            <div class="ph-art" style="background: repeating-linear-gradient(90deg, #E6E8F0 0 8px, #D4D8E4 8px 16px);"></div>
+            <div class="placeholder" style="position:relative; z-index:2;">earbuds · fog gray</div>
+            <button class="bookmark" aria-label="Save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>
+          </div>
+          <div class="body-p">
+            <div class="name">Fieldnote Bud · Gen 2</div>
+            <div class="price-row"><span class="price">$72.00</span></div>
+            <div class="mid">
+              <span class="brand"><a href="#">Northlane Co-op</a></span>
+              <span class="tb t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.3 8.5 8 9 4.7-.5 8-4.5 8-9V6l-8-3z"></path><path d="m9 12 2 2 4-4"></path></svg>Verified</span>
+            </div>
+          </div>
+          <div class="foot">
+            <a class="btn-buy" href="#">Buy Direct <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M9 7h8v8"></path></svg></a>
+          </div>
+        </div>
+        <div class="product loading">
+          <div class="img"></div>
+          <div class="body-p">
+            <div class="sk sk-line" style="width: 80%;"></div>
+            <div class="sk sk-line" style="width: 30%; height: 18px;"></div>
+            <div class="mid">
+              <div class="sk sk-line" style="width: 40%;"></div>
+              <div class="sk sk-line" style="width: 70px; height: 20px; border-radius: 10px;"></div>
+            </div>
+          </div>
+          <div class="foot">
+            <div class="sk sk-line" style="width: 90px; height: 14px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; justify-content: center;">
+        <button class="btn btn-secondary">Load 34 more →</button>
+      </div>
+    </div>
+
+    <div class="fn" style="margin-top: 16px;">// system check: nav height consistent · chips active-color matches teal · cards maintain 1:1 image · trust badges readable at 12px · Buy Direct arrow nudges right on hover</div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--cloud-2); display: flex; justify-content: space-between; color: var(--slate); font-size: 13px;">
+    <div>WellSourced · Design System v1.0 · <span class="mono">built 2026-02-14</span></div>
+    <div>Not a startup. Not a marketplace. A commons.</div>
+  </footer>
+
+</div>
+
+
+<script>
+(function(){
+  // Motion: play duration scale
+  document.querySelectorAll('.motion-play').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var row = btn.closest('.motion-row');
+      if(!row) return;
+      row.classList.remove('is-playing');
+      // force reflow then add class
+      void row.offsetWidth;
+      row.classList.add('is-playing');
+      var dur = parseInt(row.getAttribute('data-dur'), 10);
+      setTimeout(function(){
+        // Let it rest at 100% for a moment, then ease back to 0 using the same duration
+        row.classList.remove('is-playing');
+      }, dur + 350);
+    });
+  });
+
+  // Motion: chip toggle demo
+  document.querySelectorAll('.m-chip').forEach(function(c){
+    c.addEventListener('click', function(){
+      var cur = c.getAttribute('data-active') === 'true';
+      c.setAttribute('data-active', cur ? 'false' : 'true');
+    });
+  });
+
+  // Motion: restart staggered
+  document.querySelectorAll('.m-restart').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var stage = btn.parentElement;
+      stage.querySelectorAll('.m-result').forEach(function(r){
+        r.style.animation = 'none';
+        void r.offsetWidth;
+        r.style.animation = '';
+      });
+    });
+  });
+})();
+</script>
+
+</body></html>

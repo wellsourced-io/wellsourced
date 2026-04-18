@@ -1,0 +1,103 @@
+import { CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Tokens" };
+
+# Tokens
+
+<div className="lede">
+  Every design decision in this system is a CSS variable. The full list is below. Copy what you need.
+</div>
+
+## How to use
+
+Tokens are declared on <code>:root</code> in <code>src/app/globals.css</code> and exposed to Tailwind v4 via <code>@theme inline</code>. Inside the app, prefer Tailwind utilities that reference the tokens (<code>bg-teal</code>, <code>text-fg</code>, <code>rounded-[16px]</code>, etc.). When Tailwind doesn't cover a case, use the raw variable: <code>var(--color-teal)</code>.
+
+## CSS variables
+
+<CodeBlock language="css" filename="globals.css">{`:root {
+  /* Fonts */
+  --font-display: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-serif: "DM Serif Display", Georgia, serif;
+
+  /* Core palette */
+  --color-teal: #0D7377;
+  --color-teal-700: #0A5C5F;
+  --color-teal-light: #E6F5F5;
+  --color-sand: #F5F0E8;
+  --color-sand-deep: #ECE4D4;
+  --color-ink: #1A1A2E;
+  --color-slate: #64748B;
+  --color-cloud: #F1F5F9;
+  --color-cloud-2: #E2E8F0;
+
+  /* Trust tiers */
+  --color-t1: #94A3B8;  --color-t1-bg: #F1F5F9;
+  --color-t2: #3B82F6;  --color-t2-bg: #EFF6FF;
+  --color-t3: #22C55E;  --color-t3-bg: #ECFDF5;
+
+  /* Utility */
+  --color-warn: #F59E0B;  --color-warn-bg: #FEF3C7;
+  --color-err: #EF4444;   --color-err-bg: #FEE2E2;
+  --color-success: #22C55E;
+
+  /* Semantic */
+  --color-bg: var(--color-sand);
+  --color-surface: #FFFFFF;
+  --color-fg: var(--color-ink);
+  --color-muted: var(--color-slate);
+  --color-border: var(--color-cloud-2);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgba(26,26,46,0.04), 0 1px 1px rgba(26,26,46,0.03);
+  --shadow-hover: 0 10px 24px -8px rgba(26,26,46,0.12), 0 2px 6px rgba(26,26,46,0.05);
+  --shadow-modal: 0 24px 48px -16px rgba(26,26,46,0.18);
+
+  /* Motion */
+  --dur-tick: 80ms;
+  --dur-crisp: 200ms;
+  --dur-tip: 240ms;
+  --dur-reveal: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  /* Space (4px base) */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;
+  --space-4: 16px;  --space-5: 20px;  --space-6: 24px;
+  --space-8: 32px;  --space-10: 40px; --space-12: 48px;
+  --space-16: 64px; --space-20: 80px; --space-24: 96px;
+}`}</CodeBlock>
+
+## Dark mode
+
+Dark mode re-points the semantic tokens. Core palette values stay where they are; the app's surfaces and text swap.
+
+<CodeBlock language="css" filename="globals.css">{`html[data-theme="dark"] {
+  --color-bg: #0c0c18;
+  --color-surface: #151527;
+  --color-fg: #f5f0e8;
+  --color-muted: #8a94a6;
+  --color-border: #232340;
+  --color-cloud: #1a1a2e;
+  --color-cloud-2: #232340;
+  --color-teal-light: #133c3e;
+  --color-t1-bg: #1a1a2e;
+  --color-t2-bg: #12233f;
+  --color-t3-bg: #0e2a1c;
+}`}</CodeBlock>
+
+## Tailwind mapping
+
+Tokens are exposed via <code>@theme inline</code> — class names like <code>bg-teal</code>, <code>text-fg</code>, <code>border-border</code>, <code>text-muted</code>, <code>bg-surface</code>, <code>bg-sand</code> all work out of the box.
+
+<CodeBlock language="tsx">{`<button className="h-11 px-5 rounded-full bg-teal text-white hover:bg-teal-700">
+  Buy direct
+</button>`}</CodeBlock>
+
+<div className="mt-10 text-[13px] text-muted">Downloadable token bundles (JSON, Style Dictionary, Figma Tokens) are on the roadmap — tracked in the <a href="/design/changelog">changelog</a>.</div>

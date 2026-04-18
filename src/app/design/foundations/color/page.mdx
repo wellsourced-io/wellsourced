@@ -1,0 +1,49 @@
+import { Swatch } from "@/components/design-site";
+
+export const metadata = { title: "Color" };
+
+# Color
+
+<div className="lede">
+  Teal anchors trust. Sand warms the canvas. Trust tiers run Gray → Blue → Green to signal verification depth — never emotion. Every color is a decision, not a default.
+</div>
+
+## Core palette
+
+<section className="not-prose my-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <Swatch name="Teal" hex="#0D7377" cssVar="--color-teal" role="Primary action, link, focus. The one color that says WellSourced." />
+  <Swatch name="Teal 700" hex="#0A5C5F" cssVar="--color-teal-700" role="Pressed and hover state for teal surfaces." />
+  <Swatch name="Teal light" hex="#E6F5F5" cssVar="--color-teal-light" role="Hover backgrounds, soft highlights." />
+  <Swatch name="Sand" hex="#F5F0E8" cssVar="--color-sand" role="Page background. Warm, premium, and decisively not white." />
+  <Swatch name="Sand deep" hex="#ECE4D4" cssVar="--color-sand-deep" role="Subtle surfaces, product image placeholder." />
+  <Swatch name="Ink" hex="#1A1A2E" cssVar="--color-ink" role="Headings and body text. Dark plum-black." />
+  <Swatch name="Slate" hex="#64748B" cssVar="--color-slate" role="Secondary text, metadata, captions." />
+  <Swatch name="Cloud" hex="#F1F5F9" cssVar="--color-cloud" role="Soft dividers and inactive surfaces." />
+</section>
+
+## Trust tiers
+
+The tier palette is **calibrated to verification depth**, not emotion. Green does not mean “good” and blue does not mean “maybe.” They mean “audited,” “community-verified,” and “self-reported” respectively.
+
+<section className="not-prose my-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+  <Swatch name="T1 · Self-reported" hex="#94A3B8" cssVar="--color-t1" role="The brand told us. Unverified — a starting point." />
+  <Swatch name="T2 · Community-verified" hex="#3B82F6" cssVar="--color-t2" role="A contributor cross-checked against public sources." />
+  <Swatch name="T3 · Independently audited" hex="#22C55E" cssVar="--color-t3" role="Third-party certified or audited. The highest tier." />
+</section>
+
+## Utility
+
+<section className="not-prose my-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <Swatch name="Warn" hex="#F59E0B" cssVar="--color-warn" role="Non-blocking caution — price change, low stock." />
+  <Swatch name="Error" hex="#EF4444" cssVar="--color-err" role="Blocking error — form validation, failed requests." />
+  <Swatch name="Success" hex="#22C55E" cssVar="--color-success" role="Successful state — matches T3 green by design." />
+  <Swatch name="Cloud 2" hex="#E2E8F0" cssVar="--color-cloud-2" role="Default border, component frames." />
+</section>
+
+## Usage rules
+
+- **Teal is for the one action the user should take.** One primary button per screen. Teal is never decorative.
+- **Sand is the page, not an accent.** Full-bleed backgrounds, never used as a small block of color.
+- **Trust colors never map to opinions.** Don't put green on “good” brands. Use it only when an audit exists.
+- **Ink over pure black.** `#1A1A2E` reads warmer against sand and doesn't punch holes in the page.
+- **Never hardcode a hex in component code.** Use the CSS variable. If it doesn't exist, add it here first.

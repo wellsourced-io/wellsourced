@@ -1,0 +1,73 @@
+import { ProductCard } from "@/components/ui/ProductCard";
+import { Preview, VariantTabs, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Product card" };
+
+# Product card
+
+<div className="lede">
+  The composed surface that shows up in search results and on brand pages. Image, brand eyebrow, title, price, trust badge, and a direct-to-brand CTA.
+</div>
+
+<VariantTabs
+  padding="lg"
+  variants={[
+    { label: "T3 · Audited", node: (
+      <div className="w-full max-w-[320px]">
+        <ProductCard
+          title="XX-002 Selvedge Jeans"
+          brand="Oyama Denim"
+          price="$298"
+          tier="t3"
+          buyUrl="https://example.com"
+        />
+      </div>
+    )},
+    { label: "T2 · Community", node: (
+      <div className="w-full max-w-[320px]">
+        <ProductCard
+          title="Field Shirt · Heavy Oxford"
+          brand="Resolute"
+          price="$128"
+          tier="t2"
+          buyUrl="https://example.com"
+        />
+      </div>
+    )},
+    { label: "T1 · Self-reported", node: (
+      <div className="w-full max-w-[320px]">
+        <ProductCard
+          title="Stoneware Mug"
+          brand="Kiln & Stone"
+          price="$42"
+          tier="t1"
+          buyUrl="https://example.com"
+        />
+      </div>
+    )},
+  ]}
+/>
+
+## Usage
+
+- **Price is always visible.** Never “See price” or “Contact for pricing”. If we don't have a price, we don't list the product.
+- **The CTA goes to the brand's store.** WellSourced is never in the transaction path. “Buy direct” opens in a new tab.
+- **Trust badge sits top-left.** Always. Never hide it behind an “i” icon; verification is a feature.
+- **Image is 4:3.** Swappable to 1:1 for category grids, but within a row all cards share the same aspect.
+
+## Props
+
+<PropsTable component="ProductCard" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { ProductCard } from "@/components/ui/ProductCard";
+
+<ProductCard
+  title="XX-002 Selvedge Jeans"
+  brand="Oyama Denim"
+  price="$298"
+  tier="t3"
+  image="/products/oyama-xx002.jpg"
+  buyUrl="https://oyama-denim.example.com/products/xx-002"
+/>`}</CodeBlock>

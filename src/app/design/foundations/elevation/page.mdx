@@ -1,0 +1,41 @@
+import { TokenCard } from "@/components/design-site";
+
+export const metadata = { title: "Elevation" };
+
+# Elevation
+
+<div className="lede">
+  Three shadow levels. Used to establish hierarchy, never to decorate. Shadows are tinted toward ink, not black, so they read as soft depth on sand.
+</div>
+
+## Scale
+
+<section className="not-prose my-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+  <TokenCard
+    name="shadow-card"
+    value="0 1px 2px rgba(26,26,46,0.04), 0 1px 1px rgba(26,26,46,0.03)"
+    cssVar="--shadow-card"
+    usage="Default surface lift. Product cards, filter chips, brand cards at rest."
+    visual={<span className="block h-20 w-20 rounded-[12px] bg-surface shadow-[var(--shadow-card)] border border-border" />}
+  />
+  <TokenCard
+    name="shadow-hover"
+    value="0 10px 24px -8px rgba(26,26,46,0.12), 0 2px 6px rgba(26,26,46,0.05)"
+    cssVar="--shadow-hover"
+    usage="Hover state for interactive cards. Pairs with a 1px upward translate."
+    visual={<span className="block h-20 w-20 rounded-[12px] bg-surface shadow-[var(--shadow-hover)] border border-border" />}
+  />
+  <TokenCard
+    name="shadow-modal"
+    value="0 24px 48px -16px rgba(26,26,46,0.18)"
+    cssVar="--shadow-modal"
+    usage="Overlays that need to feel decidedly above the page. Dialogs, dropdowns, tooltips."
+    visual={<span className="block h-20 w-20 rounded-[12px] bg-surface shadow-[var(--shadow-modal)] border border-border" />}
+  />
+</section>
+
+## Rules
+
+- **Shadow is a semantic signal, not a texture.** Use it only to establish layers. Two layers at the same elevation is a layout problem, not a shadow problem.
+- **Hover state always combines shadow and translate.** A 1&thinsp;px upward nudge + `shadow-hover`. Shadow alone reads flat; translate alone reads twitchy.
+- **Never stack shadows.** If something feels undercooked, fix the contrast or the border — not the shadow.

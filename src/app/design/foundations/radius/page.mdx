@@ -1,0 +1,49 @@
+import { TokenCard } from "@/components/design-site";
+
+export const metadata = { title: "Radius" };
+
+# Radius
+
+<div className="lede">
+  Four values, used with discipline. Rounded without being friendly-to-a-fault. Pills for controls, generous corners for containers, sharp never.
+</div>
+
+## Scale
+
+<section className="not-prose my-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <TokenCard
+    name="radius-sm"
+    value="8px"
+    cssVar="--radius-sm"
+    usage="Small UI: badges, verified tags, inline chips."
+    visual={<span className="block h-14 w-14 bg-teal rounded-[8px]" />}
+  />
+  <TokenCard
+    name="radius-md"
+    value="12px"
+    cssVar="--radius-md"
+    usage="Input fields, inner cards, image holders."
+    visual={<span className="block h-14 w-14 bg-teal rounded-[12px]" />}
+  />
+  <TokenCard
+    name="radius-lg"
+    value="16px"
+    cssVar="--radius-lg"
+    usage="Product cards, brand profile, containers."
+    visual={<span className="block h-14 w-14 bg-teal rounded-[16px]" />}
+  />
+  <TokenCard
+    name="radius-full"
+    value="9999px"
+    cssVar="--radius-full"
+    usage="Buttons, filter chips, search bar — anything that's a pill."
+    visual={<span className="block h-14 w-20 bg-teal rounded-full" />}
+  />
+</section>
+
+## Rules
+
+- **Controls are pills.** Buttons, chips, search bars, trust badges — all `radius-full`. Nothing that invites clicking should be square.
+- **Containers are `radius-lg` (16&thinsp;px).** Cards, modals, section surfaces. Large enough to feel deliberate, tight enough to feel like engineering.
+- **Inner elements are `radius-md` (12&thinsp;px).** An input inside a card is a step tighter than the card itself.
+- **Never square corners.** No exceptions in UI. Full-bleed images are the only rule-free surface.

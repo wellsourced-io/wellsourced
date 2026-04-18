@@ -1,0 +1,45 @@
+import { TrustBadge } from "@/components/ui/TrustBadge";
+import { VariantTabs, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Trust badge" };
+
+# Trust badge
+
+<div className="lede">
+  The verification badge is the most important component in the system. It's the thing that tells users whether a claim has been checked — and by whom.
+</div>
+
+<VariantTabs
+  variants={[
+    { label: "T1 · Self-reported",         node: <TrustBadge tier="t1" /> },
+    { label: "T2 · Community-verified",    node: <TrustBadge tier="t2" /> },
+    { label: "T3 · Independently audited", node: <TrustBadge tier="t3" /> },
+    { label: "T3 with source link",        node: <TrustBadge tier="t3" sourceUrl="https://example.com/cert" /> },
+  ]}
+/>
+
+## Usage
+
+- **Tiers never map to emotion.** T3 is not “good” — it's “audited”. T1 is not “bad” — it's “unverified”. A T1 product can be excellent; it just hasn't been independently checked.
+- **Color is calibrated to verification depth.** Gray (T1) reads neutral; blue (T2) reads cross-checked; green (T3) reads institutional. Do not swap palettes.
+- **Hover always reveals an explanation.** The tooltip is not decorative. Users should never have to guess what a tier means.
+- **T2 and T3 should link to a source.** If the claim is checkable, the badge is the shortcut to the check.
+- **Do not invent a T4.** The tier system is fixed. New verification depth means changing the definition of T3, not adding a fourth level.
+
+## Props
+
+<PropsTable component="TrustBadge" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { TrustBadge } from "@/components/ui/TrustBadge";
+
+<TrustBadge tier="t1" />
+<TrustBadge tier="t2" sourceUrl="https://example.com/source" />
+<TrustBadge tier="t3" sourceUrl="https://example.com/audit" />`}</CodeBlock>
+
+## Accessibility
+
+- Tooltip is keyboard-accessible via focus. Screen readers read the tooltip content on focus.
+- The badge never relies on color alone — the tier label is always present.
+- When `sourceUrl` is set, the badge is a real link and announces “view source”.

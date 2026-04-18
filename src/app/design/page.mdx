@@ -1,0 +1,112 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Card } from "@/components/ui/Card";
+
+# The WellSourced design system
+
+<div className="lede">
+  A living reference for everyone building WellSourced. Foundations, components, patterns,
+  and words — documented in one place so what we ship stays coherent with what we believe.
+</div>
+
+<section aria-label="Grid of sections" className="not-prose my-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <Link href="/design/foundations/color" className="no-underline">
+    <Card interactive className="h-full p-6">
+      <div className="flex items-start gap-4">
+        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">01</span>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Foundations</h3>
+          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">Color, typography, space, radius, elevation, motion, iconography. The atoms behind every screen.</p>
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
+      </div>
+    </Card>
+  </Link>
+
+  <Link href="/design/tokens" className="no-underline">
+    <Card interactive className="h-full p-6">
+      <div className="flex items-start gap-4">
+        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">02</span>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Tokens</h3>
+          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">Every design decision as a CSS variable. Copy and paste into the app or into Tailwind.</p>
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
+      </div>
+    </Card>
+  </Link>
+
+  <Link href="/design/components/button" className="no-underline">
+    <Card interactive className="h-full p-6">
+      <div className="flex items-start gap-4">
+        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">03</span>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Components</h3>
+          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">The primitives the app actually ships. Live previews, variant controls, and usage rules.</p>
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
+      </div>
+    </Card>
+  </Link>
+
+  <Link href="/design/patterns/brand-profile" className="no-underline">
+    <Card interactive className="h-full p-6">
+      <div className="flex items-start gap-4">
+        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">04</span>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Patterns</h3>
+          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">How primitives compose. Product grids, brand profiles, empty and error states.</p>
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
+      </div>
+    </Card>
+  </Link>
+
+  <Link href="/design/content" className="no-underline">
+    <Card interactive className="h-full p-6">
+      <div className="flex items-start gap-4">
+        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">05</span>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Content &amp; voice</h3>
+          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">How we write. Words we use. Words we avoid. Empty state copy, error tone, button labels.</p>
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
+      </div>
+    </Card>
+  </Link>
+
+  <Link href="/design/brand" className="no-underline">
+    <Card interactive className="h-full p-6">
+      <div className="flex items-start gap-4">
+        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">06</span>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Brand</h3>
+          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">Logo, wordmark, lockups, and how to use them. With downloadable kits.</p>
+        </div>
+        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
+      </div>
+    </Card>
+  </Link>
+</section>
+
+## Principles
+
+This design system exists to keep WellSourced **coherent with its values**. Trust is earned in detail — a hundred small moments of clarity add up to one trustworthy product. The guidelines below are how we hold that line.
+
+- **Clarity over cleverness.** A direct sentence beats a clever one. A plain button beats a novel one.
+- **Honesty over hype.** We show what's verified, and we say what isn't. Badges are calibrated, not motivational.
+- **Warmth without cuteness.** Rounded UI, approachable language — but never twee, never sing-songy.
+- **Convenience first.** Prices are visible. Buy-direct links are prominent. Friction is for what's earned, not what's expected.
+- **Institutional trust.** Deep teal, clean sans-serif, visible verification. Feels like it could be governmental in the best sense.
+
+## What's here
+
+<ul>
+  <li><strong>Foundations</strong> — the raw materials: color, type, space, radius, elevation, motion, iconography.</li>
+  <li><strong>Tokens</strong> — every decision as a variable; browse, copy, use.</li>
+  <li><strong>Components</strong> — production-ready React primitives, live in the browser, with code you can paste.</li>
+  <li><strong>Patterns</strong> — how those primitives compose into real interfaces.</li>
+  <li><strong>Content</strong>, <strong>brand</strong>, <strong>accessibility</strong>, <strong>changelog</strong> — the rest of what makes a design system usable across a team.</li>
+</ul>
+
+<div className="mt-10 text-[13px] text-muted">Questions, corrections, or contributions? Start at <Link href="/design/getting-started">getting started</Link>.</div>

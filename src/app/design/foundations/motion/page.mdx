@@ -1,0 +1,32 @@
+import { DurationVisualizer } from "@/components/design-site";
+
+export const metadata = { title: "Motion" };
+
+# Motion
+
+<div className="lede">
+  Motion is quiet. Four durations, one easing. Every transition is gated by <code>prefers-reduced-motion</code> — no exceptions.
+</div>
+
+<DurationVisualizer />
+
+## The one easing
+
+```css
+--ease-standard: cubic-bezier(0.2, 0.7, 0.3, 1);
+```
+
+This is the only easing used across the product. It starts fast, settles smoothly, and doesn't draw attention. If something needs a different curve, the composition is probably wrong.
+
+## When to use which
+
+- **Tick — 80ms** for press feedback. Button active, chip tap, input tick.
+- **Crisp — 200ms** for state transitions. Hover, focus, filter chip toggle, input focus ring expand.
+- **Tip — 240ms** for hints that appear in place. Tooltips, popovers, inline notices.
+- **Reveal — 320ms** for layout changes. Modal in/out, drawer open, page transition fade.
+
+## Rules
+
+- **Never animate layout unless the layout is changing.** Don't fake movement; move what's actually moving.
+- **Stagger is for groups, not individuals.** Reveal search results in a 60&thinsp;ms stagger; reveal one card instantly.
+- **Respect <code>prefers-reduced-motion: reduce</code>.** Globals disable every animation and transition to ≤1ms under this preference. If you add a new motion, assume the user will see it as an instant state change — and the design must still work.

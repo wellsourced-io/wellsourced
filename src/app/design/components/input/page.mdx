@@ -1,0 +1,60 @@
+import { Input, Textarea } from "@/components/ui/Input";
+import { Preview, VariantTabs, PropsTable, CodeBlock } from "@/components/design-site";
+
+export const metadata = { title: "Input" };
+
+# Input
+
+<div className="lede">
+  Single-line text input with label, helper text, and error state. Use <code>Textarea</code> for multi-line.
+</div>
+
+<VariantTabs
+  variants={[
+    { label: "Default", node: (
+      <div className="w-full max-w-[360px]"><Input label="Email address" placeholder="you@domain.com" helper="We'll use this for confirmation only." /></div>
+    )},
+    { label: "Filled",  node: (
+      <div className="w-full max-w-[360px]"><Input label="Email address" defaultValue="alex@example.com" /></div>
+    )},
+    { label: "Error",   node: (
+      <div className="w-full max-w-[360px]"><Input label="Email address" defaultValue="not-an-email" error="That doesn't look like a valid email address." /></div>
+    )},
+    { label: "Disabled", node: (
+      <div className="w-full max-w-[360px]"><Input label="Email address" disabled defaultValue="alex@example.com" /></div>
+    )},
+  ]}
+/>
+
+## Textarea
+
+<Preview>
+  <div className="w-full max-w-[420px]">
+    <Textarea
+      label="Tell us about this brand"
+      helper="A few sentences — what they make, who makes it, and what's verifiable."
+      rows={4}
+      placeholder="Founded in 2011, Oyama Denim is a three-person workshop in Hyogo…"
+    />
+  </div>
+</Preview>
+
+## Usage
+
+- **Every field has a label.** Placeholder text is not a label — placeholders disappear the moment the user types.
+- **Helper text explains, error text corrects.** When a field has an error, helper text is replaced by the error until the user fixes it.
+- **Error text tells the user what to do.** Not “Invalid email”. Try “That doesn't look like a valid email address.”
+- **Focus is teal.** Same rules as Button — never remove the focus ring.
+
+## Props
+
+<PropsTable component="Input" />
+
+## Code
+
+<CodeBlock language="tsx">{`import { Input, Textarea } from "@/components/ui/Input";
+
+<Input label="Email" placeholder="you@domain.com" />
+<Input label="Email" error="That doesn't look like a valid email." />
+
+<Textarea label="Notes" rows={4} />`}</CodeBlock>
