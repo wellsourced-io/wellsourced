@@ -1,0 +1,2511 @@
+/* =============================================================
+   WellSourced — Design System Poster (v1)
+   Faithful port of docs/design/design-system/Design System.html.
+   Scoped under .ds-poster so it never leaks into the rest of /design.
+   ============================================================= */
+
+.ds-poster {
+  /* The poster is a light-mode-only specimen: every hard-coded hex below
+     (and on the JSX side) assumes light. Pin tokens to light values here so
+     a user with system dark mode still sees the document as authored. */
+  --color-bg: #f5f0e8;
+  --color-surface: #ffffff;
+  --color-fg: #1a1a2e;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-cloud: #f1f5f9;
+  --color-cloud-2: #e2e8f0;
+  --color-teal-light: #e6f5f5;
+  --color-t1-bg: #f1f5f9;
+  --color-t2-bg: #eff6ff;
+  --color-t3-bg: #ecfdf5;
+
+  /* Alias project tokens into the prototype's short names so the CSS below
+     ports 1:1 from the prototype. */
+  --teal: var(--color-teal);
+  --teal-700: var(--color-teal-700);
+  --teal-light: var(--color-teal-light);
+  --sand: var(--color-sand);
+  --sand-deep: var(--color-sand-deep);
+  --white: var(--color-white);
+  --ink: var(--color-fg);
+  --slate: var(--color-muted);
+  --cloud: var(--color-cloud);
+  --cloud-2: var(--color-cloud-2);
+  --t1: var(--color-t1);
+  --t1-bg: var(--color-t1-bg);
+  --t2: var(--color-t2);
+  --t2-bg: var(--color-t2-bg);
+  --t3: var(--color-t3);
+  --t3-bg: var(--color-t3-bg);
+  --warn: var(--color-warn);
+  --warn-bg: var(--color-warn-bg);
+  --err: var(--color-err);
+  --err-bg: var(--color-err-bg);
+  --success: var(--color-success);
+  --r-sm: var(--radius-sm);
+  --r-md: var(--radius-md);
+  --r-lg: var(--radius-lg);
+  --r-full: var(--radius-full);
+  --ease: var(--ease-standard);
+  --bg-sand: var(--color-sand);
+
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--sand);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.ds-poster h1,
+.ds-poster h2,
+.ds-poster h3,
+.ds-poster h4 {
+  font-family: "Satoshi", "DM Sans", system-ui, sans-serif;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.ds-poster .display {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+.ds-poster .h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.ds-poster .h2 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.ds-poster .h3 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.ds-poster .body {
+  font-size: 16px;
+  font-weight: 400;
+}
+.ds-poster .small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--slate);
+}
+.ds-poster .mono {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+}
+
+.ds-poster a {
+  color: var(--teal);
+  text-decoration: none;
+}
+.ds-poster code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  background: var(--cloud);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--ink);
+}
+
+/* ---------- Page scaffolding ---------- */
+.ds-poster .page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 48px 120px;
+}
+
+.ds-poster .doc-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--cloud-2);
+  margin-bottom: 64px;
+}
+.ds-poster .doc-header .lede {
+  max-width: 620px;
+  color: var(--slate);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.ds-poster .doc-header .meta {
+  text-align: right;
+  color: var(--slate);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.ds-poster .doc-header .meta strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+.ds-poster .eyebrow {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+
+.ds-poster .section {
+  margin-bottom: 96px;
+}
+.ds-poster .section-head {
+  margin-bottom: 32px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--cloud-2);
+  padding-bottom: 20px;
+}
+.ds-poster .section-head .hd-title {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.ds-poster .section-head .hd-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: var(--slate);
+}
+.ds-poster .section-head .hd-desc {
+  color: var(--slate);
+  font-size: 14px;
+  max-width: 460px;
+  text-align: right;
+}
+
+.ds-poster .sub-label {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 12px;
+}
+
+/* ---------- Brand / Logo ---------- */
+.ds-poster .brand-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+}
+.ds-poster .brand-card {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.ds-poster .brand-card.hero {
+  background: linear-gradient(155deg, #0d7377 0%, #0a5c5f 100%);
+  color: #e6f5f5;
+  border: none;
+}
+.ds-poster .brand-card.hero .eyebrow {
+  color: #8dd5d8;
+}
+.ds-poster .brand-card.hero .sub-label {
+  color: rgba(230, 245, 245, 0.65);
+}
+.ds-poster .lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ds-poster .lockup .mark {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+}
+.ds-poster .lockup .wordmark {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.025em;
+  color: currentColor;
+}
+.ds-poster .ws-serif {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+.ds-poster .lockup .wordmark em {
+  font-style: normal;
+  font-weight: 500;
+  opacity: 0.55;
+}
+
+.ds-poster .logo-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+.ds-poster .logo-chip {
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 20px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  aspect-ratio: 1 / 1;
+}
+.ds-poster .logo-chip.dark {
+  background: var(--ink);
+}
+.ds-poster .logo-chip.sand {
+  background: var(--sand);
+}
+.ds-poster .logo-chip.teal {
+  background: var(--teal);
+}
+.ds-poster .logo-chip .cap {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+}
+.ds-poster .logo-chip.dark .cap,
+.ds-poster .logo-chip.teal .cap {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.ds-poster .verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  color: var(--slate);
+}
+.ds-poster .verified-badge .tick {
+  width: 18px;
+  height: 18px;
+  color: var(--teal);
+}
+.ds-poster .verified-badge strong {
+  color: var(--ink);
+  font-weight: 600;
+  font-family: "Satoshi", sans-serif;
+}
+
+/* ---------- Color ---------- */
+.ds-poster .palette {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.ds-poster .swatch {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.ds-poster .swatch .chip {
+  aspect-ratio: 16 / 10;
+}
+.ds-poster .swatch .meta {
+  padding: 14px 16px 16px;
+}
+.ds-poster .swatch .name {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.ds-poster .swatch .hex {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--slate);
+  margin-top: 2px;
+}
+.ds-poster .swatch .use {
+  font-size: 12px;
+  color: var(--slate);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.ds-poster .trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+.ds-poster .trust-swatch {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.ds-poster .trust-swatch .tier-ico {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-poster .tier-ico.t1 {
+  background: var(--t1-bg);
+  color: var(--t1);
+}
+.ds-poster .tier-ico.t2 {
+  background: var(--t2-bg);
+  color: var(--t2);
+}
+.ds-poster .tier-ico.t3 {
+  background: var(--t3-bg);
+  color: var(--t3);
+}
+.ds-poster .trust-swatch .copy .tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+}
+.ds-poster .trust-swatch .copy .title {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 2px 0 4px;
+}
+.ds-poster .trust-swatch .copy .desc {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.5;
+}
+
+/* ---------- Type scale ---------- */
+.ds-poster .type-grid {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.ds-poster .type-row {
+  display: grid;
+  grid-template-columns: 160px 120px 1fr;
+  align-items: baseline;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--cloud);
+  gap: 24px;
+}
+.ds-poster .type-row:last-child {
+  border-bottom: none;
+}
+.ds-poster .type-row .spec {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--slate);
+  line-height: 1.8;
+}
+.ds-poster .type-row .spec strong {
+  color: var(--ink);
+  font-weight: 500;
+  display: block;
+  font-size: 13px;
+}
+.ds-poster .type-row .font-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--teal);
+}
+.ds-poster .type-row .sample {
+  color: var(--ink);
+}
+.ds-poster .sample.t-display {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+.ds-poster .sample.t-h1 {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.ds-poster .sample.t-h2 {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.ds-poster .sample.t-h3 {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.3;
+}
+.ds-poster .sample.t-body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+.ds-poster .sample.t-small {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--slate);
+}
+.ds-poster .sample.t-price {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+.ds-poster .sample.t-badge {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ds-poster .sample.t-button {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+.ds-poster .sample.t-mono {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+}
+
+.ds-poster .font-pair-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.ds-poster .font-card {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 28px;
+}
+.ds-poster .font-card .role {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ds-poster .font-card .fname {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  margin-top: 6px;
+}
+.ds-poster .font-card.body .fname {
+  font-family: "DM Sans", sans-serif;
+}
+.ds-poster .font-card.mono .fname {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+  font-size: 24px;
+}
+.ds-poster .font-card .glyphs {
+  font-size: 22px;
+  margin-top: 16px;
+  line-height: 1.4;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.ds-poster .font-card.mono .glyphs {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+}
+.ds-poster .font-card.head .glyphs {
+  font-family: "Satoshi", sans-serif;
+}
+.ds-poster .font-card.body .glyphs {
+  font-family: "DM Sans", sans-serif;
+}
+.ds-poster .font-card .weights {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--slate);
+  flex-wrap: wrap;
+}
+.ds-poster .font-card .weights span {
+  padding: 4px 8px;
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-full);
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ---------- Spacing / Radius / Shadow ---------- */
+.ds-poster .sys-grid-3 {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 20px;
+}
+.ds-poster .sys-card {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 28px;
+}
+.ds-poster .sys-card h4 {
+  font-size: 14px;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.ds-poster .space-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.ds-poster .space-row .label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+  width: 48px;
+  flex: 0 0 48px;
+}
+.ds-poster .space-row .bar {
+  background: var(--teal);
+  height: 10px;
+  border-radius: 3px;
+}
+
+.ds-poster .radius-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+.ds-poster .radius-sample {
+  background: var(--teal-light);
+  border: 1px solid #bae5e5;
+  aspect-ratio: 2 / 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--teal);
+}
+.ds-poster .r-sm {
+  border-radius: 8px;
+}
+.ds-poster .r-md {
+  border-radius: 12px;
+}
+.ds-poster .r-lg {
+  border-radius: 16px;
+}
+.ds-poster .r-full {
+  border-radius: 9999px;
+  aspect-ratio: 2 / 1;
+}
+
+.ds-poster .shadow-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+.ds-poster .shadow-sample {
+  background: var(--white);
+  border-radius: var(--r-md);
+  aspect-ratio: 2 / 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+}
+.ds-poster .shadow-sample.s1 {
+  box-shadow: var(--shadow-card);
+}
+.ds-poster .shadow-sample.s2 {
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------- Grid viz ---------- */
+.ds-poster .grid-viz {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.ds-poster .grid-cols {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  height: 160px;
+}
+.ds-poster .grid-cols span {
+  background: var(--teal-light);
+  border-radius: 4px;
+}
+
+/* ---------- Icon set ---------- */
+.ds-poster .icon-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 28px;
+}
+.ds-poster .icon-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+  border-radius: var(--r-sm);
+}
+.ds-poster .icon-cell svg {
+  width: 24px;
+  height: 24px;
+  color: var(--ink);
+}
+.ds-poster .icon-cell .name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--slate);
+}
+
+/* ---------- Components: comp-card / buttons ---------- */
+.ds-poster .comp-card {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 32px;
+}
+.ds-poster .comp-card .comp-hd,
+.ds-poster .comp .comp-hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+  gap: 24px;
+}
+.ds-poster .comp-card .comp-hd h3,
+.ds-poster .comp .comp-hd h3 {
+  font-size: 18px;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+}
+.ds-poster .comp-card .comp-hd .meta,
+.ds-poster .comp .comp-hd .meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+}
+.ds-poster .states-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.ds-poster .state-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--slate);
+  width: 90px;
+  flex: 0 0 90px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ds-poster .btn {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 150ms var(--ease);
+  background: transparent;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.ds-poster .btn svg {
+  width: 16px;
+  height: 16px;
+}
+.ds-poster .btn-primary {
+  background: var(--teal);
+  color: #fff;
+}
+.ds-poster .btn-primary:hover {
+  background: var(--teal-700);
+}
+.ds-poster .btn-primary.is-active {
+  background: var(--teal-700);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.ds-poster .btn-secondary {
+  background: #fff;
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.ds-poster .btn-secondary:hover {
+  background: var(--teal-light);
+}
+.ds-poster .btn-ghost {
+  color: var(--teal);
+  padding: 0 12px;
+}
+.ds-poster .btn-ghost:hover {
+  background: var(--teal-light);
+}
+.ds-poster .btn-destructive {
+  background: var(--err);
+  color: #fff;
+}
+.ds-poster .btn-destructive:hover {
+  filter: brightness(0.95);
+}
+.ds-poster .btn-disabled {
+  background: var(--cloud);
+  color: var(--slate);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.ds-poster .btn-loading {
+  background: var(--teal);
+  color: #fff;
+  pointer-events: none;
+}
+.ds-poster .btn-loading .spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: ds-poster-spin 0.7s linear infinite;
+}
+@keyframes ds-poster-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ds-poster .btn .arrow {
+  transition: transform 150ms var(--ease);
+}
+.ds-poster .btn-primary:hover .arrow,
+.ds-poster .btn-buy:hover .arrow {
+  transform: translateX(2px);
+}
+
+/* ---------- Trust badges ---------- */
+.ds-poster .tb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px 4px 8px;
+  border-radius: var(--r-full);
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+}
+.ds-poster .tb svg {
+  width: 12px;
+  height: 12px;
+}
+.ds-poster .tb.t1 {
+  background: var(--t1-bg);
+  color: #475569;
+  border-color: #e2e8f0;
+}
+.ds-poster .tb.t1 svg {
+  color: var(--t1);
+}
+.ds-poster .tb.t2 {
+  background: var(--t2-bg);
+  color: #1d4ed8;
+  border-color: #dbeafe;
+}
+.ds-poster .tb.t2 svg {
+  color: var(--t2);
+}
+.ds-poster .tb.t3 {
+  background: var(--t3-bg);
+  color: #166534;
+  border-color: #d1fae5;
+}
+.ds-poster .tb.t3 svg {
+  color: var(--t3);
+}
+
+/* Tooltip demo */
+.ds-poster .tooltip-demo {
+  position: relative;
+  display: inline-flex;
+}
+.ds-poster .tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: #e6f5f5;
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  width: 260px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  box-shadow: var(--shadow-modal);
+}
+.ds-poster .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+}
+.ds-poster .tooltip strong {
+  color: #fff;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+.ds-poster .tooltip a {
+  color: #8dd5d8;
+  font-size: 12px;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* ---------- Search Bar ---------- */
+.ds-poster .search {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 0 16px;
+  gap: 12px;
+  transition: all 150ms var(--ease);
+  width: 100%;
+  max-width: 640px;
+}
+.ds-poster .search.lg {
+  height: 56px;
+}
+.ds-poster .search.sm {
+  height: 40px;
+  max-width: 420px;
+}
+.ds-poster .search.is-focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-light);
+}
+.ds-poster .search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  color: var(--ink);
+  background: transparent;
+}
+.ds-poster .search.lg input {
+  font-size: 17px;
+}
+.ds-poster .search input::placeholder {
+  color: var(--slate);
+}
+.ds-poster .search .ic {
+  color: var(--slate);
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+.ds-poster .search .clear {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cloud);
+  border: none;
+  color: var(--slate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.ds-poster .search .clear svg {
+  width: 12px;
+  height: 12px;
+}
+.ds-poster .search .divider {
+  width: 1px;
+  height: 24px;
+  background: var(--cloud-2);
+}
+.ds-poster .search .kbd {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+  padding: 2px 6px;
+  border: 1px solid var(--cloud-2);
+  border-radius: 5px;
+  background: var(--sand);
+}
+
+/* ---------- Filter chips ---------- */
+.ds-poster .chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.ds-poster .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--r-full);
+  border: 1px solid var(--cloud-2);
+  background: var(--white);
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms var(--ease);
+  font-family: "DM Sans", sans-serif;
+}
+.ds-poster .chip svg {
+  width: 12px;
+  height: 12px;
+  color: var(--slate);
+}
+.ds-poster .chip:hover {
+  border-color: #cbd5e1;
+}
+.ds-poster .chip.is-active {
+  background: var(--teal-light);
+  border-color: var(--teal);
+  color: var(--teal-700);
+}
+.ds-poster .chip.is-active svg {
+  color: var(--teal);
+}
+.ds-poster .chip .x {
+  margin-left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+}
+.ds-poster .chip .x:hover {
+  background: #d0eaea;
+}
+.ds-poster .chip.sort {
+  padding-right: 12px;
+}
+
+/* ---------- Product card ---------- */
+.ds-poster .product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.ds-poster .product {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 200ms var(--ease);
+}
+.ds-poster .product.is-hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: #d5dfe8;
+}
+.ds-poster .product .img {
+  aspect-ratio: 1 / 1;
+  background: var(--sand);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ds-poster .product .img .placeholder {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ds-poster .product .img .ph-art {
+  position: absolute;
+  inset: 16px;
+  border-radius: 8px;
+  background: repeating-linear-gradient(45deg, #efe7d6 0 8px, #e9dfc8 8px 16px);
+  opacity: 0.9;
+}
+.ds-poster .product .bookmark {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--slate);
+  backdrop-filter: blur(4px);
+}
+.ds-poster .product .bookmark svg {
+  width: 15px;
+  height: 15px;
+}
+.ds-poster .product .body-p {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.ds-poster .product .name {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.ds-poster .product .price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.ds-poster .product .price {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--ink);
+}
+.ds-poster .product .brand {
+  font-size: 13px;
+  color: var(--slate);
+}
+.ds-poster .product .brand a {
+  color: var(--slate);
+  border-bottom: 1px solid transparent;
+}
+.ds-poster .product .brand a:hover {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+}
+.ds-poster .product .mid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.ds-poster .product .foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid var(--cloud);
+}
+.ds-poster .btn-buy {
+  color: var(--teal);
+  font-weight: 500;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "DM Sans", sans-serif;
+}
+.ds-poster .btn-buy svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 150ms var(--ease);
+}
+.ds-poster .product:hover .btn-buy svg {
+  transform: translateX(2px);
+}
+.ds-poster .product .foot .meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+}
+
+/* skeleton */
+.ds-poster .sk {
+  background: linear-gradient(90deg, #eef2f6 0%, #f7f9fb 50%, #eef2f6 100%);
+  background-size: 200% 100%;
+  animation: ds-poster-sk 1.4s infinite linear;
+  border-radius: 6px;
+}
+@keyframes ds-poster-sk {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+.ds-poster .product.loading .img {
+  background: var(--cloud);
+}
+.ds-poster .product.loading .img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: ds-poster-sk 1.4s infinite linear;
+}
+.ds-poster .product.loading .sk-line {
+  height: 12px;
+}
+
+/* ---------- Nav ---------- */
+.ds-poster .nav {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ds-poster .nav .mark-lock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ds-poster .nav .mark-lock svg {
+  width: 28px;
+  height: 28px;
+}
+.ds-poster .nav .mark-lock .wm {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.025em;
+}
+.ds-poster .nav .links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.ds-poster .nav .link {
+  font-size: 14px;
+  color: var(--ink);
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  font-weight: 500;
+}
+.ds-poster .nav .link:hover {
+  background: var(--cloud);
+}
+.ds-poster .nav .divider {
+  width: 1px;
+  height: 24px;
+  background: var(--cloud-2);
+}
+.ds-poster .nav .spacer {
+  flex: 1;
+}
+
+/* ---------- Brand profile header ---------- */
+.ds-poster .bp {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 32px;
+  align-items: flex-start;
+}
+.ds-poster .bp .logo-slot {
+  width: 120px;
+  height: 120px;
+  background: var(--sand);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 900;
+  font-size: 44px;
+  color: var(--teal);
+  letter-spacing: -0.03em;
+}
+.ds-poster .bp .h-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ds-poster .bp .title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ds-poster .bp h1 {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+}
+.ds-poster .bp .ownership {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--sand);
+  border: 1px solid var(--sand-deep);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.ds-poster .bp .ownership svg {
+  width: 12px;
+  height: 12px;
+}
+.ds-poster .bp .tagline {
+  color: var(--slate);
+  font-size: 14px;
+  max-width: 540px;
+}
+.ds-poster .bp .stat-row {
+  display: flex;
+  gap: 24px;
+  border-top: 1px solid var(--cloud);
+  padding-top: 16px;
+}
+.ds-poster .bp .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ds-poster .bp .stat .lbl {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--slate);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ds-poster .bp .stat .val {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+}
+.ds-poster .bp .trust-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ds-poster .bp .trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 13px;
+}
+.ds-poster .bp .trust-row .field {
+  color: var(--slate);
+}
+.ds-poster .bp .cta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  min-width: 200px;
+}
+
+/* ---------- Category Card ---------- */
+.ds-poster .cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.ds-poster .cat {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 150ms var(--ease);
+}
+.ds-poster .cat:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.ds-poster .cat .cat-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  background: var(--sand);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-poster .cat .cat-ico svg {
+  width: 22px;
+  height: 22px;
+}
+.ds-poster .cat .cat-name {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+.ds-poster .cat .cat-count {
+  font-size: 12px;
+  color: var(--slate);
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* ---------- Motion section ---------- */
+.ds-poster .motion-scale {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ds-poster .motion-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 2fr 90px;
+  gap: 20px;
+  align-items: center;
+}
+.ds-poster .motion-row .dur-label .dur-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.ds-poster .motion-row .dur-label .dur-name {
+  font-size: 12px;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.ds-poster .motion-row .track {
+  position: relative;
+  height: 10px;
+  background: var(--cloud);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.ds-poster .motion-row .track .bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+  border-radius: 5px;
+  transition: width 150ms var(--ease);
+}
+.ds-poster .motion-row .track .ball {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background: var(--teal);
+  border-radius: 50%;
+  transform: translate(-7px, -7px);
+  box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.12);
+  transition: left 150ms var(--ease);
+}
+.ds-poster .motion-row[data-dur="80"] .bar,
+.ds-poster .motion-row[data-dur="80"] .ball {
+  transition-duration: 80ms;
+}
+.ds-poster .motion-row[data-dur="200"] .bar,
+.ds-poster .motion-row[data-dur="200"] .ball {
+  transition-duration: 200ms;
+}
+.ds-poster .motion-row[data-dur="240"] .bar,
+.ds-poster .motion-row[data-dur="240"] .ball {
+  transition-duration: 240ms;
+}
+.ds-poster .motion-row[data-dur="320"] .bar,
+.ds-poster .motion-row[data-dur="320"] .ball {
+  transition-duration: 320ms;
+}
+.ds-poster .motion-row.is-playing .bar {
+  width: 100%;
+}
+.ds-poster .motion-row.is-playing .ball {
+  left: 100%;
+}
+.ds-poster .motion-row .dur-use {
+  font-size: 13.5px;
+  color: var(--slate);
+  line-height: 1.5;
+}
+.ds-poster .motion-row .dur-use strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.ds-poster .motion-play {
+  appearance: none;
+  border: 1px solid var(--cloud-2);
+  background: var(--white);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 150ms var(--ease);
+}
+.ds-poster .motion-play:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.ds-poster .ease-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.ds-poster .ease-svg {
+  width: 100%;
+  height: 140px;
+  background: var(--bg-sand);
+  display: block;
+  border-bottom: 1px solid var(--cloud);
+}
+.ds-poster .ease-body {
+  padding: 18px 20px;
+}
+.ds-poster .ease-name {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.ds-poster .ease-code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--slate);
+  margin-bottom: 10px;
+}
+.ds-poster .ease-use {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--slate);
+}
+
+.ds-poster .motion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ds-poster .m-demo {
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.ds-poster .m-stage {
+  background: var(--bg-sand);
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+.ds-poster .m-caption {
+  padding: 16px 18px;
+  border-top: 1px solid var(--cloud);
+}
+.ds-poster .m-caption .m-title {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ds-poster .m-caption .m-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--slate);
+  margin-bottom: 10px;
+}
+.ds-poster .m-caption .m-spec {
+  display: flex;
+  justify-content: space-between;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+  padding-top: 8px;
+  border-top: 1px dashed var(--cloud);
+}
+.ds-poster .m-caption .m-spec .tok {
+  color: var(--teal);
+}
+
+.ds-poster .m-card {
+  width: 150px;
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: 12px;
+  padding: 10px;
+  transition: all 200ms var(--ease);
+}
+.ds-poster .m-card .m-thumb {
+  background: linear-gradient(135deg, #e6f5f5, #f5f0e8);
+  height: 90px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.ds-poster .m-card .m-name {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.ds-poster .m-card .m-price {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  margin-top: 2px;
+}
+.ds-poster .hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px -8px rgba(26, 26, 46, 0.18);
+  border-color: #d5dfe8;
+}
+
+.ds-poster .m-btn {
+  appearance: none;
+  border: none;
+  background: var(--teal);
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.ds-poster .m-btn svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 150ms var(--ease);
+}
+.ds-poster .arrow-nudge:hover svg {
+  transform: translateX(3px);
+}
+
+.ds-poster .m-chip {
+  appearance: none;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 150ms var(--ease);
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  color: var(--ink);
+}
+.ds-poster .m-chip[data-active="true"] {
+  background: var(--teal-light);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.ds-poster .m-chip:hover {
+  border-color: var(--teal);
+}
+
+.ds-poster .m-skel {
+  background: linear-gradient(90deg, #edf2f7 0%, #f8fafc 50%, #edf2f7 100%);
+  background-size: 200% 100%;
+  animation: ds-poster-skelPulse 1400ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes ds-poster-skelPulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.ds-poster .m-tooltip-wrap {
+  position: relative;
+}
+.ds-poster .m-tier-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 12.5px;
+  border: 1px solid #bfdbfe;
+  cursor: default;
+}
+.ds-poster .m-tier-pill svg {
+  width: 14px;
+  height: 14px;
+}
+.ds-poster .m-tooltip {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  opacity: 0;
+  pointer-events: none;
+  width: 220px;
+  padding: 10px 12px;
+  background: var(--ink);
+  color: #f5f0e8;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 8px;
+  transition: opacity 240ms var(--ease), transform 240ms var(--ease);
+  z-index: 2;
+}
+.ds-poster .m-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: var(--ink);
+}
+.ds-poster .m-tooltip-wrap:hover .m-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 10px);
+  pointer-events: auto;
+}
+
+.ds-poster .m-result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: ds-poster-staggerIn 200ms var(--ease) forwards;
+}
+.ds-poster .m-result .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+.ds-poster .m-result .m-result-bar {
+  height: 8px;
+  background: var(--cloud);
+  border-radius: 4px;
+}
+.ds-poster .stagger-1 {
+  animation-delay: 0ms;
+}
+.ds-poster .stagger-2 {
+  animation-delay: 40ms;
+}
+.ds-poster .stagger-3 {
+  animation-delay: 80ms;
+}
+.ds-poster .stagger-4 {
+  animation-delay: 120ms;
+}
+@keyframes ds-poster-staggerIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ds-poster .m-restart {
+  margin-top: 4px;
+  align-self: flex-start;
+  appearance: none;
+  border: 1px solid var(--cloud-2);
+  background: var(--white);
+  color: var(--slate);
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.ds-poster .m-restart:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.ds-poster .dont-card {
+  padding: 16px 18px;
+  border: 1px dashed #e5b4b4;
+  background: #fbeeee;
+  border-radius: 12px;
+}
+.ds-poster .dont-card .dont-x {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.ds-poster .dont-card .dont-title {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ds-poster .dont-card .dont-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--slate);
+}
+
+/* ---------- Imagery section ---------- */
+.ds-poster .img-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.ds-poster .img-cat {
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+.ds-poster .img-demo {
+  background: var(--bg-sand);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-poster .img-cat-body {
+  padding: 18px 20px;
+}
+.ds-poster .img-cat-name {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ds-poster .img-cat-use {
+  font-size: 12.5px;
+  color: var(--slate);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.ds-poster .img-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ds-poster .img-rules li {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--slate);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.ds-poster .img-rules .good {
+  color: #22c55e;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.ds-poster .img-rules .bad {
+  color: #ef4444;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.ds-poster .ph-card {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: 12px;
+  padding: 10px;
+  width: 100%;
+}
+.ds-poster .ph {
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--slate);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  text-align: center;
+  line-height: 1.4;
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.ds-poster .ph-label {
+  display: inline-block;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  color: var(--slate);
+}
+.ds-poster .ph-label-below {
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+  background: transparent;
+}
+.ds-poster .ph-product {
+  aspect-ratio: 1 / 1;
+  background: repeating-linear-gradient(135deg, #f1e9dc 0 12px, #eae0cf 12px 24px);
+}
+.ds-poster .ph-maker {
+  aspect-ratio: 4 / 5;
+  background: repeating-linear-gradient(135deg, #dcd6c5 0 12px, #cdc4ae 12px 24px);
+}
+.ds-poster .ph-doc {
+  aspect-ratio: 16 / 10;
+  background: repeating-linear-gradient(135deg, #ece5d6 0 12px, #dfd6c0 12px 24px);
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 14px;
+}
+.ds-poster .ph-place {
+  aspect-ratio: 16 / 9;
+  background: repeating-linear-gradient(135deg, #d9cfb8 0 12px, #c7bca1 12px 24px);
+}
+.ds-poster .ph-placeholder {
+  aspect-ratio: 1 / 1;
+  background: var(--bg-sand);
+  flex-direction: column;
+  gap: 8px;
+  border: 1px dashed #c9bfa8;
+}
+.ds-poster .ph-placeholder-icon {
+  opacity: 0.7;
+}
+
+.ds-poster .logomark-preview {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+.ds-poster .logomark-preview .lm {
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-poster .logomark-preview .lm svg {
+  width: 28px;
+  height: 28px;
+}
+
+.ds-poster .treat-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.ds-poster .treat-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 24px;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--cloud);
+}
+.ds-poster .treat-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.ds-poster .treat-label {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  padding-top: 4px;
+}
+.ds-poster .treat-items {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.ds-poster .treat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.ds-poster .ratio-box {
+  background: var(--bg-sand);
+  border: 1px solid #e0d4be;
+  border-radius: 4px;
+}
+.ds-poster .corner-box {
+  width: 60px;
+  height: 60px;
+  background: var(--bg-sand);
+  border: 1px solid #e0d4be;
+}
+.ds-poster .cb {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
+.ds-poster .cb-1 {
+  background: linear-gradient(135deg, #c9bfa8, #e8dfc9);
+}
+.ds-poster .cb-2 {
+  background: linear-gradient(135deg, #d4b89a, #e8cda8);
+}
+.ds-poster .cb-3 {
+  background: linear-gradient(135deg, #0d7377, #e6f5f5);
+  position: relative;
+}
+.ds-poster .cb-3::after {
+  content: "✕";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ef4444;
+  font-size: 32px;
+  font-weight: 700;
+}
+.ds-poster .cb-4 {
+  background: linear-gradient(135deg, #2a2a33, #b8b8bf);
+}
+.ds-poster .ratio-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ds-poster .ratio-meta strong {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+}
+.ds-poster .ratio-meta span {
+  font-size: 11.5px;
+  color: var(--slate);
+}
+.ds-poster .treat-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 24px;
+  width: 100%;
+}
+.ds-poster .spec {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--cloud);
+}
+.ds-poster .spec .k {
+  color: var(--slate);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+}
+.ds-poster .spec .v {
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+}
+
+.ds-poster .dodont-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ds-poster .dodont {
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+.ds-poster .dodont.do {
+  border-color: #c8e6c9;
+}
+.ds-poster .dodont.dont {
+  border-color: #f5caca;
+}
+.ds-poster .dodont-tag {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+.ds-poster .dodont-tag.bad {
+  background: #fdecec;
+  color: #b91c1c;
+}
+.ds-poster .dodont-cap {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--slate);
+}
+.ds-poster .ph-do-1 {
+  aspect-ratio: 1 / 1;
+  background: repeating-linear-gradient(135deg, #f3ecdb 0 14px, #e9dfc6 14px 28px);
+}
+.ds-poster .ph-dont-1 {
+  aspect-ratio: 1 / 1;
+  background: repeating-linear-gradient(135deg, #eee4cb 0 14px, #dfd1ae 14px 28px);
+  position: relative;
+}
+.ds-poster .ph-do-2 {
+  aspect-ratio: 1 / 1;
+  background: repeating-linear-gradient(135deg, #ded3b8 0 14px, #ccc09e 14px 28px);
+}
+.ds-poster .ph-dont-2 {
+  aspect-ratio: 1 / 1;
+  background: repeating-linear-gradient(135deg, #e5d9bd 0 14px, #d4c69f 14px 28px);
+}
+.ds-poster .ph-do-3 {
+  aspect-ratio: 1 / 1;
+  background: repeating-linear-gradient(135deg, #ece5d2 0 14px, #ded4b7 14px 28px);
+}
+.ds-poster .ph-dont-3 {
+  aspect-ratio: 1 / 1;
+  background: repeating-linear-gradient(135deg, #dfece0 0 14px, #c6d6c8 14px 28px);
+  position: relative;
+}
+.ds-poster .fake-sale {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ef4444;
+  color: #fff;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transform: rotate(8deg);
+}
+.ds-poster .fake-leaf {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+/* ---------- Empty State ---------- */
+.ds-poster .empty {
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  padding: 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.ds-poster .empty .glyph {
+  width: 88px;
+  height: 88px;
+  background: var(--sand);
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+}
+.ds-poster .empty .glyph svg {
+  width: 36px;
+  height: 36px;
+}
+.ds-poster .empty h3 {
+  font-size: 22px;
+}
+.ds-poster .empty p {
+  color: var(--slate);
+  max-width: 360px;
+  margin: 0;
+}
+.ds-poster .empty .chip-row {
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* ---------- Form elements ---------- */
+.ds-poster .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.ds-poster .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ds-poster .field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+}
+.ds-poster .field .help {
+  font-size: 13px;
+  color: var(--slate);
+}
+.ds-poster .field .err-msg {
+  font-size: 13px;
+  color: var(--err);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ds-poster .field .err-msg svg {
+  width: 13px;
+  height: 13px;
+}
+.ds-poster .input,
+.ds-poster .select,
+.ds-poster .textarea {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-sm);
+  background: var(--white);
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  transition: all 150ms var(--ease);
+  outline: none;
+  width: 100%;
+}
+.ds-poster .textarea {
+  height: 120px;
+  padding: 12px 14px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.55;
+}
+.ds-poster .input:focus,
+.ds-poster .select:focus,
+.ds-poster .textarea:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-light);
+}
+.ds-poster .input.is-error,
+.ds-poster .textarea.is-error {
+  border-color: var(--err);
+}
+.ds-poster .input.is-error:focus {
+  box-shadow: 0 0 0 3px var(--err-bg);
+}
+.ds-poster .select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* ---------- Sample composition ---------- */
+.ds-poster .canvas {
+  background: var(--sand);
+  border: 1px solid var(--sand-deep);
+  border-radius: var(--r-lg);
+  padding: 28px;
+}
+.ds-poster .canvas .page-frame-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ds-poster .canvas .page-frame-label .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.ds-poster .canvas .rs-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+.ds-poster .canvas .rs-head h2 {
+  font-family: "Satoshi", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+}
+.ds-poster .canvas .rs-head .query {
+  font-family: "DM Sans", sans-serif;
+  color: var(--slate);
+  font-size: 14px;
+}
+.ds-poster .canvas .rs-head .query strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- Utility ---------- */
+.ds-poster .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.ds-poster .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.ds-poster .muted {
+  color: var(--slate);
+}
+.ds-poster .row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ds-poster .stack-8 > * + * {
+  margin-top: 8px;
+}
+.ds-poster .stack-16 > * + * {
+  margin-top: 16px;
+}
+.ds-poster .stack-24 > * + * {
+  margin-top: 24px;
+}
+
+/* TOC */
+.ds-poster .toc {
+  position: sticky;
+  top: 24px;
+  margin-bottom: 40px;
+  padding: 14px 18px;
+  background: var(--white);
+  border: 1px solid var(--cloud-2);
+  border-radius: var(--r-md);
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  z-index: 10;
+}
+.ds-poster .toc a {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--slate);
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.ds-poster .toc a:hover {
+  background: var(--cloud);
+  color: var(--ink);
+}
+
+.ds-poster .fn {
+  font-size: 12px;
+  color: var(--slate);
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.04em;
+}
+
+.ds-poster hr.div {
+  border: none;
+  border-top: 1px solid var(--cloud-2);
+  margin: 32px 0;
+}
+
+/* Responsive: collapse multi-column grids on narrow viewports.
+   The prototype was authored for ≥1280px; on smaller screens
+   we degrade gracefully rather than horizontal-scroll. */
+@media (max-width: 1024px) {
+  .ds-poster .page {
+    padding: 40px 24px 80px;
+  }
+  .ds-poster .doc-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .ds-poster .doc-header .meta {
+    text-align: left;
+  }
+  .ds-poster .brand-grid,
+  .ds-poster .form-grid,
+  .ds-poster .sys-grid-3,
+  .ds-poster .img-cat-grid {
+    grid-template-columns: 1fr;
+  }
+  .ds-poster .palette {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ds-poster .trust-grid,
+  .ds-poster .motion-grid,
+  .ds-poster .dodont-grid {
+    grid-template-columns: 1fr;
+  }
+  .ds-poster .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ds-poster .cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ds-poster .icon-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .ds-poster .logo-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ds-poster .font-pair-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ds-poster .bp {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .ds-poster .bp .cta-col {
+    align-items: flex-start;
+  }
+  .ds-poster .motion-row {
+    grid-template-columns: 100px 1fr;
+    row-gap: 12px;
+  }
+  .ds-poster .motion-row .dur-use,
+  .ds-poster .motion-row .motion-play {
+    grid-column: 1 / -1;
+  }
+  .ds-poster .img-cat {
+    grid-template-columns: 1fr;
+  }
+}
