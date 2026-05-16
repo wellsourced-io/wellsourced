@@ -19,11 +19,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
   primary:
-    "bg-teal text-white hover:bg-teal-700 active:bg-teal-700 shadow-[var(--shadow-card)]",
+    "bg-teal text-on-teal hover:bg-teal-700 active:bg-teal-700 shadow-[var(--shadow-card)]",
   secondary:
     "bg-surface text-fg border border-border hover:border-teal hover:text-teal",
   ghost: "bg-transparent text-fg hover:bg-cloud",
-  destructive: "bg-err text-white hover:brightness-95",
+  destructive: "bg-err text-on-teal hover:brightness-95",
 };
 
 const SIZE_STYLES: Record<ButtonSize, string> = {

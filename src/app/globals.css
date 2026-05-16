@@ -37,6 +37,12 @@
      dark canvas. Backgrounds still use --color-teal so button contrast holds. */
   --color-teal-fg: var(--color-teal);
 
+  /* Foreground that sits ON deep teal — primary button label, etc. Stays
+     white in both themes because --color-teal itself doesn't shift between
+     light and dark. Use `text-on-teal` whenever the background is `bg-teal`
+     so the label never silently falls back to inherited `--color-fg`. */
+  --color-on-teal: #ffffff;
+
   /* -------- Trust tiers --------
      -fg variants are the semantic text-on-tier-bg roles; they flip with mode
      to keep small badge text above WCAG AA. The unsuffixed tokens stay as
@@ -184,6 +190,10 @@ html[data-theme="dark"] {
   --color-teal: var(--color-teal);
   --color-teal-700: var(--color-teal-700);
   --color-teal-light: var(--color-teal-light);
+  --color-on-teal: var(--color-on-teal);
+  --color-white: var(--color-white);
+  --color-ink: var(--color-ink);
+  --color-sand: var(--color-sand);
   --color-sand: var(--color-sand);
   --color-sand-deep: var(--color-sand-deep);
   --color-ink: var(--color-ink);

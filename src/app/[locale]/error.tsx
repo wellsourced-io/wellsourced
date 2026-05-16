@@ -32,7 +32,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         <button
           type="button"
           onClick={reset}
-          className="inline-flex h-11 items-center rounded-full bg-teal px-5 text-[14px] font-medium text-white transition-colors hover:bg-teal-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
+          className="inline-flex h-11 items-center rounded-full bg-teal px-5 text-[14px] font-medium text-on-teal transition-colors hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
         >
           Try again
         </button>

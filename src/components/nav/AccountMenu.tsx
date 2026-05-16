@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { UserCircle } from "lucide-react";
 import * as Dropdown from "@radix-ui/react-tooltip";
@@ -31,6 +32,25 @@ export function AccountMenu({
   locale,
   copy,
 }: AccountMenuProps) {
+  // FR-033/T069: emit `signin_completed` exactly once per mount when the
+  // signed-in variant first renders. Real OAuth wiring will set the cookie
+  // before navigation; this beacon fires on the next page after sign-in.
+  const signinBeaconFired = useRef(false);
+  useEffect(() => {
+    if (!signedIn) return;
+    if (signinBeaconFired.current) return;
+    signinBeaconFired.current = true;
+    sendEvent({
+      name: "signin_completed",
+      path: pathname,
+      viewport_bucket: getViewportBucket(),
+      referrer_category: getReferrerCategory(
+        typeof document !== "undefined" ? document.referrer : "",
+        typeof window !== "undefined" ? window.location.origin : "",
+      ),
+    });
+  }, [signedIn, pathname]);
+
   const onSignIn = () => {
     if (typeof window !== "undefined") {
       sendEvent({

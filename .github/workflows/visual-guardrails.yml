@@ -1,0 +1,93 @@
+name: Visual guardrails
+
+# Enforces the DESIGN.md "Don'ts" that are catchable by grep — keeping the
+# chrome from drifting back toward glassmorphism, border-stripe accents, or
+# pill-fill active states. See FR-008, SC-010, and DESIGN.md §6 Do's & Don'ts.
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - ".github/workflows/visual-guardrails.yml"
+  push:
+    branches: [main]
+
+jobs:
+  no-glassmorphism:
+    name: No glassmorphism
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject backdrop-blur in nav chrome
+        run: |
+          set -euo pipefail
+          # The /design poster is a self-contained specimen per FR-016 and
+          # may legitimately experiment with effects there. Consumer chrome
+          # under src/components/nav, src/components/ui, and src/app/[locale]
+          # must stay glassmorphism-free.
+          if grep -RIn --include='*.tsx' --include='*.ts' --include='*.css' \
+              -E 'backdrop-blur|backdrop-filter' \
+              src/components/nav/ \
+              src/components/ui/ \
+              'src/app/[locale]/' \
+              src/middleware.ts 2>/dev/null; then
+            echo ""
+            echo "::error::Glassmorphism detected in consumer chrome. DESIGN.md §6 forbids backdrop-blur outside the /design poster."
+            echo "SC-010 requires zero instances in navigation surfaces."
+            exit 1
+          fi
+          echo "OK: no backdrop-blur in consumer chrome"
+
+      - name: Reject translucent CHROME surface tokens
+        run: |
+          set -euo pipefail
+          # The header/footer background must be solid per DESIGN.md §5
+          # Navigation. `bg-surface/N`, `bg-bg/N`, `bg-white/N` patterns
+          # signal glassmorphism by another name and are forbidden ON THE
+          # CHROME SURFACES specifically.
+          #
+          # Overlays (`bg-ink/40` modal backdrop) and momentary interaction
+          # hovers (`hover:bg-ink/85`) are NOT chrome — they are interaction
+          # affordances and are allowed.
+          if grep -RIn --include='*.tsx' --include='*.ts' \
+              -E '\bbg-(surface|bg|white)\/[0-9]+\b' \
+              src/components/ui/NavBar.tsx \
+              src/components/nav/AppShell.tsx \
+              src/components/nav/Footer.tsx 2>/dev/null; then
+            echo ""
+            echo "::error::Translucent CHROME background detected on the header or footer."
+            echo "Use a solid token (bg-surface, bg-bg) per DESIGN.md §5."
+            exit 1
+          fi
+          echo "OK: chrome surfaces are solid"
+
+      - name: Reject border-left/right accent stripes >1px
+        run: |
+          set -euo pipefail
+          # border-l-[Npx] or border-r-[Npx] with N >= 2 is the forbidden
+          # accent-stripe pattern per DESIGN.md §6 (Don't).
+          if grep -RIn --include='*.tsx' --include='*.ts' --include='*.css' \
+              -E 'border-(l|r)-\[?[2-9]' src/; then
+            echo ""
+            echo "::error::Border-left/right accent stripe >1px detected."
+            echo "DESIGN.md §6 explicitly forbids this pattern."
+            exit 1
+          fi
+          echo "OK: no >1px border accent stripes"
+
+      - name: Reject pure black or white in src/
+        run: |
+          set -euo pipefail
+          # Pure #000 / #fff fail the tinted-black / tinted-white rule.
+          # Exclude SVG fill="currentColor" cases (lucide-react) by limiting
+          # to TSX/CSS class strings.
+          if grep -RIn --include='*.tsx' --include='*.ts' --include='*.css' \
+              -E '#[0fF]{3,6}\b' src/ | \
+              grep -iE 'color|background|fill|stroke|border|shadow' | \
+              grep -iE '#(000|fff|000000|ffffff)\b'; then
+            echo ""
+            echo "::warning::Pure black/white literal detected. Prefer tinted tokens per DESIGN.md §2 Neutral."
+            # Soft warn for now — promote to error once tokens are fully adopted.
+          fi
+          echo "OK: tinted-token discipline holds"

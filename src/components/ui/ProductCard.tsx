@@ -75,7 +75,7 @@ export function ProductCard({
           rel="noopener noreferrer"
           className={cn(
             "mt-1 inline-flex h-10 items-center justify-center gap-1.5 rounded-full " +
-              "bg-teal text-white px-4 text-[14px] font-medium " +
+              "bg-teal text-on-teal px-4 text-[14px] font-medium " +
               "transition-[background] duration-[200ms] [transition-timing-function:var(--ease-standard)] " +
               "hover:bg-teal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-teal)]",
           )}

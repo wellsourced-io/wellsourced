@@ -150,17 +150,17 @@ Single Next.js web app (per plan.md §Project Structure):
 
 ### Implementation for User Story 2
 
-- [ ] T047 [P] [US2] Create `src/app/[locale]/brand/[slug]/page.tsx`: Server Component, exports `generateStaticParams` enumerating brand slugs from `brand-data/` (read-only mount), renders `<AppShell>` (sand surface from routeMap) + `<BrandProfileSubNav active="overview">` + body placeholder; body is a slot for the future profile-data feature
-- [ ] T048 [P] [US2] Create `src/app/[locale]/brand/[slug]/products/page.tsx`: Server Component, exports `generateStaticParams`, renders `<AppShell>` + `<Breadcrumb>` (back-link to profile) + `<BrandProfileSubNav active="products">` + body placeholder
-- [ ] T049 [P] [US2] Create `src/components/nav/BrandProfileSubNav.tsx` (Server Component): chip-pattern sub-nav per FR-014 with three tabs (Overview, Products, Trust data); Trust data is an in-page anchor (`href="#trust-data"`), other two are real route links; accepts `active: 'overview' | 'products'` prop; never uses primary-nav underline pattern
-- [ ] T050 [US2] Create `src/components/nav/Breadcrumb.tsx` (Server Component): back-link pattern (`← {parentLabel}`) per FR-017 using `getBreadcrumbTrail` from `src/lib/routes/breadcrumbs.ts`; renders nothing if trail is empty; emits `nav_click` beacon on click via a small client island (depends on T011, T016)
-- [ ] T051 [US2] Add "Suggest an edit" affordance link on brand profile body slot in T047: link target is `/en/admin/suggest?brand=[slug]&field=` (the `/admin/suggest` route is owned by US5 — for now, the link exists and US5 wires the destination)
+- [X] T047 [P] [US2] Create `src/app/[locale]/brand/[slug]/page.tsx`: Server Component, exports `generateStaticParams` enumerating brand slugs from `brand-data/` (read-only mount), renders `<AppShell>` (sand surface from routeMap) + `<BrandProfileSubNav active="overview">` + body placeholder; body is a slot for the future profile-data feature
+- [X] T048 [P] [US2] Create `src/app/[locale]/brand/[slug]/products/page.tsx`: Server Component, exports `generateStaticParams`, renders `<AppShell>` + `<Breadcrumb>` (back-link to profile) + `<BrandProfileSubNav active="products">` + body placeholder
+- [X] T049 [P] [US2] Create `src/components/nav/BrandProfileSubNav.tsx` (Server Component): chip-pattern sub-nav per FR-014 with three tabs (Overview, Products, Trust data); Trust data is an in-page anchor (`href="#trust-data"`), other two are real route links; accepts `active: 'overview' | 'products'` prop; never uses primary-nav underline pattern
+- [X] T050 [US2] Create `src/components/nav/Breadcrumb.tsx` (Server Component): back-link pattern (`← {parentLabel}`) per FR-017 using `getBreadcrumbTrail` from `src/lib/routes/breadcrumbs.ts`; renders nothing if trail is empty; emits `nav_click` beacon on click via a small client island (depends on T011, T016)
+- [X] T051 [US2] Add "Suggest an edit" affordance link on brand profile body slot in T047: link target is `/en/admin/suggest?brand=[slug]&field=` (the `/admin/suggest` route is owned by US5 — for now, the link exists and US5 wires the destination)
 
 ### Tests for User Story 2
 
-- [ ] T052 [P] [US2] Create `tests/unit/lib/routes/breadcrumbs.test.ts`: asserts trail for `/en/brand/x/products` is `[{ label: 'x', href: '/en/brand/x' }]`; trail for `/en/brand/x` is `[]`; trail for `/en/c/foo` is `[{ label: 'Categories', href: '/en/categories' }]` (depends on T011)
-- [ ] T053 [P] [US2] Create `tests/integration/us2/brand-profile-nav.test.tsx`: renders profile page, asserts BrandProfileSubNav renders 3 tabs; renders products tab, asserts breadcrumb back-link exists and href points to profile (depends on T047, T048, T049, T050)
-- [ ] T054 [P] [US2] Create `tests/a11y/us2-brand.a11y.test.tsx`: axe-core on profile and products pages; zero violations (depends on T047, T048)
+- [X] T052 [P] [US2] Create `tests/unit/lib/routes/breadcrumbs.test.ts`: asserts trail for `/en/brand/x/products` is `[{ label: 'x', href: '/en/brand/x' }]`; trail for `/en/brand/x` is `[]`; trail for `/en/c/foo` is `[{ label: 'Categories', href: '/en/categories' }]` (depends on T011)
+- [X] T053 [P] [US2] Create `tests/integration/us2/brand-profile-nav.test.tsx`: renders profile page, asserts BrandProfileSubNav renders 3 tabs; renders products tab, asserts breadcrumb back-link exists and href points to profile (depends on T047, T048, T049, T050)
+- [X] T054 [P] [US2] Create `tests/a11y/us2-brand.a11y.test.tsx`: axe-core on profile and products pages; zero violations (depends on T047, T048)
 
 **Checkpoint**: User Story 2 fully functional. Maya can reach trust-data surface and navigate brand sub-pages.
 
@@ -174,14 +174,14 @@ Single Next.js web app (per plan.md §Project Structure):
 
 ### Implementation for User Story 3
 
-- [ ] T055 [P] [US3] Create `src/app/[locale]/categories/page.tsx`: Server Component, renders `<AppShell>` (sand surface) + category index body (placeholder grid awaiting category-data integration; uses existing `<CategoryTile>` component from `src/components/ui/`)
-- [ ] T056 [P] [US3] Create `src/app/[locale]/c/[slug]/page.tsx`: Server Component, exports `generateStaticParams` from category metadata, renders `<AppShell>` (white surface, sticky header from routeMap) + `<Breadcrumb>` + body placeholder; respects URL state for filters per US6
-- [ ] T057 [US3] Add "Browse by category" affordance to the homepage `src/app/[locale]/page.tsx` immediately below the hero search: a row of 4–6 `<CategoryTile>` previews + a "See all categories →" link to `/en/categories`; uses existing tile component (depends on T039)
+- [X] T055 [P] [US3] Create `src/app/[locale]/categories/page.tsx`: Server Component, renders `<AppShell>` (sand surface) + category index body (placeholder grid awaiting category-data integration; uses existing `<CategoryTile>` component from `src/components/ui/`)
+- [X] T056 [P] [US3] Create `src/app/[locale]/c/[slug]/page.tsx`: Server Component, exports `generateStaticParams` from category metadata, renders `<AppShell>` (white surface, sticky header from routeMap) + `<Breadcrumb>` + body placeholder; respects URL state for filters per US6
+- [X] T057 [US3] Add "Browse by category" affordance to the homepage `src/app/[locale]/page.tsx` immediately below the hero search: a row of 4–6 `<CategoryTile>` previews + a "See all categories →" link to `/en/categories`; uses existing tile component (depends on T039)
 
 ### Tests for User Story 3
 
-- [ ] T058 [P] [US3] Create `tests/integration/us3/category-browse.test.tsx`: renders homepage, asserts "Browse by category" tiles are present with links to `/en/categories`; renders `/en/categories`, asserts category tiles link to `/en/c/<slug>`; renders `/en/c/<slug>`, asserts breadcrumb back to `/en/categories` (depends on T055, T056, T057)
-- [ ] T059 [P] [US3] Create `tests/a11y/us3-categories.a11y.test.tsx`: axe-core on categories index and single-category page (depends on T055, T056)
+- [X] T058 [P] [US3] Create `tests/integration/us3/category-browse.test.tsx`: renders homepage, asserts "Browse by category" tiles are present with links to `/en/categories`; renders `/en/categories`, asserts category tiles link to `/en/c/<slug>`; renders `/en/c/<slug>`, asserts breadcrumb back to `/en/categories` (depends on T055, T056, T057)
+- [X] T059 [P] [US3] Create `tests/a11y/us3-categories.a11y.test.tsx`: axe-core on categories index and single-category page (depends on T055, T056)
 
 **Checkpoint**: User Story 3 fully functional. Priya has a browse-first entry; category SEO surface ready.
 
@@ -195,13 +195,13 @@ Single Next.js web app (per plan.md §Project Structure):
 
 ### Implementation for User Story 4
 
-- [ ] T060 [P] [US4] Create `src/app/[locale]/for-brands/page.tsx`: Server Component, renders `<AppShell>` + operator-targeted body (placeholder copy answering: who runs this, what does listing cost, what data is required, what does the profile look like, how to onboard); primary `<Button variant="primary">List your brand</Button>` linking to `/en/submit`
-- [ ] T061 [P] [US4] Create `src/app/[locale]/submit/page.tsx`: Server Component, renders `<AppShell>` + submission-form placeholder ("Brand submission — full form is a separate feature"; future feature owns the form); for now just confirms the route resolves and chrome renders
-- [ ] T062 [US4] Verify `<Footer>` (already built in T021) renders the "For operators" group containing the `/for-brands` link; if missing, fix `routeMap.ts` `footerGroup: 'operators'` assignment for the `for-brands` entry (depends on T021, T010)
+- [X] T060 [P] [US4] Create `src/app/[locale]/for-brands/page.tsx`: Server Component, renders `<AppShell>` + operator-targeted body (placeholder copy answering: who runs this, what does listing cost, what data is required, what does the profile look like, how to onboard); primary `<Button variant="primary">List your brand</Button>` linking to `/en/submit`
+- [X] T061 [P] [US4] Create `src/app/[locale]/submit/page.tsx`: Server Component, renders `<AppShell>` + submission-form placeholder ("Brand submission — full form is a separate feature"; future feature owns the form); for now just confirms the route resolves and chrome renders
+- [X] T062 [US4] Verify `<Footer>` (already built in T021) renders the "For operators" group containing the `/for-brands` link; if missing, fix `routeMap.ts` `footerGroup: 'operators'` assignment for the `for-brands` entry (depends on T021, T010)
 
 ### Tests for User Story 4
 
-- [ ] T063 [P] [US4] Create `tests/integration/us4/operator-path.test.tsx`: renders Footer, asserts "For operators" group contains a link to `/en/for-brands`; renders `/en/for-brands` page, asserts primary CTA exists and links to `/en/submit` (depends on T060, T061, T062)
+- [X] T063 [P] [US4] Create `tests/integration/us4/operator-path.test.tsx`: renders Footer, asserts "For operators" group contains a link to `/en/for-brands`; renders `/en/for-brands` page, asserts primary CTA exists and links to `/en/submit` (depends on T060, T061, T062)
 
 **Checkpoint**: User Story 4 fully functional. Elena's evaluation path is intact.
 
@@ -215,19 +215,19 @@ Single Next.js web app (per plan.md §Project Structure):
 
 ### Implementation for User Story 5
 
-- [ ] T064 [P] [US5] Create `src/app/[locale]/contribute/page.tsx`: Server Component, renders `<AppShell>` + public contributor-onboarding body (placeholder explaining the three contributor tiers per spec §3.7 and a "Sign in with GitHub" CTA that initiates OAuth)
-- [ ] T065 [US5] Create `src/app/[locale]/admin/layout.tsx`: Server Component, validates auth via Supabase session (Server Component-safe), redirects to OAuth if missing; renders `<AppShell>` PLUS `<WorkspaceSidebar>` per FR-015 — the consumer chrome stays visible at the top
-- [ ] T066 [US5] Create `src/app/[locale]/admin/page.tsx`: workspace home placeholder (queue counts, recent edits — actual implementation owned by future contributor-flow feature)
-- [ ] T067 [P] [US5] Create `src/components/nav/WorkspaceSidebar.tsx` (Server Component): DocShell-style sidebar matching the pattern at `src/app/design/(docs)/`; sections: Submissions queue, My edits, Disputes (Moderator only), Settings; active item highlighted via deep-teal underline (no pill fill — keeps the chrome rule)
-- [ ] T068 [US5] Extend `src/middleware.ts` (modifying T017): for paths matching `/[locale]/admin/*`, check Supabase session cookie; if missing, redirect to OAuth provider with `?next=<original-path>` preserved; on successful OAuth callback, the auth handler (existing or to-be-created) honors `next` for the return URL (depends on T017)
-- [ ] T069 [US5] Extend `src/components/nav/AccountMenu.tsx` (modifying T023): signed-in variant queries the user's contributor tier from Supabase; shows "Workspace" menu item only when tier is `'established'` or `'moderator'` per FR-021; emits `signin_completed` beacon on first render after sign-in (depends on T023)
-- [ ] T070 [US5] Create `src/app/[locale]/admin/suggest/page.tsx`: Client Component reading `searchParams.brand` and `searchParams.field`; renders pre-filled edit form (placeholder UI — actual form fields land with the contributor-flow feature); confirms FR-022 round-trip — user lands here with intent preserved
+- [X] T064 [P] [US5] Create `src/app/[locale]/contribute/page.tsx`: Server Component, renders `<AppShell>` + public contributor-onboarding body (placeholder explaining the three contributor tiers per spec §3.7 and a "Sign in with GitHub" CTA that initiates OAuth)
+- [X] T065 [US5] Create `src/app/[locale]/admin/layout.tsx`: Server Component, validates auth via Supabase session (Server Component-safe), redirects to OAuth if missing; renders `<AppShell>` PLUS `<WorkspaceSidebar>` per FR-015 — the consumer chrome stays visible at the top
+- [X] T066 [US5] Create `src/app/[locale]/admin/page.tsx`: workspace home placeholder (queue counts, recent edits — actual implementation owned by future contributor-flow feature)
+- [X] T067 [P] [US5] Create `src/components/nav/WorkspaceSidebar.tsx` (Server Component): DocShell-style sidebar matching the pattern at `src/app/design/(docs)/`; sections: Submissions queue, My edits, Disputes (Moderator only), Settings; active item highlighted via deep-teal underline (no pill fill — keeps the chrome rule)
+- [X] T068 [US5] Extend `src/middleware.ts` (modifying T017): for paths matching `/[locale]/admin/*`, check Supabase session cookie; if missing, redirect to OAuth provider with `?next=<original-path>` preserved; on successful OAuth callback, the auth handler (existing or to-be-created) honors `next` for the return URL (depends on T017)
+- [X] T069 [US5] Extend `src/components/nav/AccountMenu.tsx` (modifying T023): signed-in variant queries the user's contributor tier from Supabase; shows "Workspace" menu item only when tier is `'established'` or `'moderator'` per FR-021; emits `signin_completed` beacon on first render after sign-in (depends on T023)
+- [X] T070 [US5] Create `src/app/[locale]/admin/suggest/page.tsx`: Client Component reading `searchParams.brand` and `searchParams.field`; renders pre-filled edit form (placeholder UI — actual form fields land with the contributor-flow feature); confirms FR-022 round-trip — user lands here with intent preserved
 
 ### Tests for User Story 5
 
-- [ ] T071 [P] [US5] Create `tests/integration/us5/admin-auth-gate.test.tsx`: GET `/en/admin` without session → 302 to OAuth with `?next=/en/admin`; with valid session → 200 with WorkspaceSidebar visible AND consumer NavBar still rendered (depends on T065, T068)
-- [ ] T072 [P] [US5] Create `tests/integration/us5/suggest-edit-intent.test.tsx`: simulate signed-out user clicking suggest-edit on `/en/brand/x` with `field=ownership_type`; assert redirect to OAuth with `?next=/en/admin/suggest?brand=x&field=ownership_type`; assert post-OAuth return to that URL with both params preserved (depends on T068, T070)
-- [ ] T073 [P] [US5] Create `tests/a11y/us5-admin.a11y.test.tsx`: axe-core on `/en/admin` rendered with mock established-contributor session; assert WorkspaceSidebar has correct landmark + keyboard order (depends on T065, T067)
+- [X] T071 [P] [US5] Create `tests/integration/us5/admin-auth-gate.test.tsx`: GET `/en/admin` without session → 302 to OAuth with `?next=/en/admin`; with valid session → 200 with WorkspaceSidebar visible AND consumer NavBar still rendered (depends on T065, T068)
+- [X] T072 [P] [US5] Create `tests/integration/us5/suggest-edit-intent.test.tsx`: simulate signed-out user clicking suggest-edit on `/en/brand/x` with `field=ownership_type`; assert redirect to OAuth with `?next=/en/admin/suggest?brand=x&field=ownership_type`; assert post-OAuth return to that URL with both params preserved (depends on T068, T070)
+- [X] T073 [P] [US5] Create `tests/a11y/us5-admin.a11y.test.tsx`: axe-core on `/en/admin` rendered with mock established-contributor session; assert WorkspaceSidebar has correct landmark + keyboard order (depends on T065, T067)
 
 **Checkpoint**: User Story 5 fully functional. Contributor workflow chrome is in place; consumer chrome stays consistent inside the workspace per FR-015.
 
@@ -241,16 +241,16 @@ Single Next.js web app (per plan.md §Project Structure):
 
 ### Implementation for User Story 6
 
-- [ ] T074 [P] [US6] Create `src/lib/routes/filterParams.ts`: typed serialize/deserialize between `URLSearchParams` and structured filter state (`{ q, ownership[], category[], priceRange, sortBy, page }`); pure functions with table-driven tests; handle empty values, multi-value params, sort order
-- [ ] T075 [US6] Wire `<FilterChip>` removal to URL update on `/search`, `/c/[slug]`, `/brands`: client-side `useRouter()` + `useSearchParams()`; uses Next.js `router.push` with `scroll: false` so removing a chip doesn't reset scroll; emits `filter_remove` beacon
-- [ ] T076 [US6] Wire filter application (selecting a chip) to URL update + `filter_apply` beacon emission; ensure active chips on render derive from URL (single source of truth)
-- [ ] T077 [US6] Configure Next.js `scroll: true` defaults on internal `<Link>` navigation between `/search` and brand profiles; verify browser back from brand → search restores prior scroll position (Next.js App Router does this by default — confirm and document)
+- [X] T074 [P] [US6] Create `src/lib/routes/filterParams.ts`: typed serialize/deserialize between `URLSearchParams` and structured filter state (`{ q, ownership[], category[], priceRange, sortBy, page }`); pure functions with table-driven tests; handle empty values, multi-value params, sort order
+- [X] T075 [US6] Wire `<FilterChip>` removal to URL update on `/search`, `/c/[slug]`, `/brands`: client-side `useRouter()` + `useSearchParams()`; uses Next.js `router.push` with `scroll: false` so removing a chip doesn't reset scroll; emits `filter_remove` beacon
+- [X] T076 [US6] Wire filter application (selecting a chip) to URL update + `filter_apply` beacon emission; ensure active chips on render derive from URL (single source of truth)
+- [X] T077 [US6] Configure Next.js `scroll: true` defaults on internal `<Link>` navigation between `/search` and brand profiles; verify browser back from brand → search restores prior scroll position (Next.js App Router does this by default — confirm and document)
 
 ### Tests for User Story 6
 
-- [ ] T078 [P] [US6] Create `tests/unit/lib/routes/filterParams.test.ts`: round-trip tests (state → URL → state is identity); edge cases (empty filters, single vs multi-value, malformed URLs default safely) (depends on T074)
-- [ ] T079 [P] [US6] Create `tests/integration/us6/url-state.test.tsx`: simulate applying filters via `<FilterChip>`, assert URL updates correctly; simulate loading the resulting URL, assert chip components render as active (depends on T075, T076)
-- [ ] T080 [P] [US6] Create `tests/integration/us6/back-button.test.tsx`: simulate `/search?q=x` → navigate to `/brand/y` → browser back; assert URL is `/search?q=x` and filter state is restored (depends on T077)
+- [X] T078 [P] [US6] Create `tests/unit/lib/routes/filterParams.test.ts`: round-trip tests (state → URL → state is identity); edge cases (empty filters, single vs multi-value, malformed URLs default safely) (depends on T074)
+- [X] T079 [P] [US6] Create `tests/integration/us6/url-state.test.tsx`: simulate applying filters via `<FilterChip>`, assert URL updates correctly; simulate loading the resulting URL, assert chip components render as active (depends on T075, T076)
+- [X] T080 [P] [US6] Create `tests/integration/us6/back-button.test.tsx`: simulate `/search?q=x` → navigate to `/brand/y` → browser back; assert URL is `/search?q=x` and filter state is restored (depends on T077)
 
 **Checkpoint**: All 6 user stories independently functional. The IA chrome is feature-complete.
 
@@ -260,18 +260,18 @@ Single Next.js web app (per plan.md §Project Structure):
 
 **Purpose**: Quality gates, audits, and infrastructure to verify the Success Criteria from the spec.
 
-- [ ] T081 [P] Create `scripts/audit-teal-ratio.ts` (Node script using `playwright` + a pixel sampler): visits each top-level route in headless Chromium, screenshots the header/footer/drawer, computes deep-teal (`#0d7377`) pixel ratio, asserts ≤ 10% per SC-004; CI-runnable
-- [ ] T082 [P] Add `.github/workflows/visual-guardrails.yml` step: greps `src/components/`, `src/app/` for `backdrop-blur`, `bg-.*\/[0-9]`, `border-l-\[[2-9]`, `border-r-\[[2-9]` patterns; fails the build on any match per SC-010 and DESIGN.md §6 Don'ts
-- [ ] T083 [P] Create `tests/a11y/nav.a11y.test.tsx`: axe-core sweep — renders `<AppShell pathname={p}>` for each `p` in routeMap, asserts zero Critical/Serious violations per FR-028 and SC-007
-- [ ] T084 [P] Create `src/app/sitemap.ts`: emits XML sitemap from `routeMap.filter(p => p.renderMode === 'static')`; one entry per (route × locale) pair; includes `<lastmod>` from build time
-- [ ] T085 [P] Create `src/app/robots.ts`: emits robots.txt allowing all consumer routes, disallowing `/api/*` and `/admin/*`, pointing to `/sitemap.xml`
-- [ ] T086 [P] Verify hreflang emission on each statically generated page per FR-030: add a runtime assertion in a `tests/integration/seo/hreflang.test.tsx` that fetches `/en/brand/<slug>`, `/en/c/<slug>`, `/en/brands` and confirms `<link rel="alternate" hreflang="en">` and `<link rel="alternate" hreflang="x-default">` are present in the HTML
-- [ ] T087 Configure Lighthouse CI for `/en/` (and `/en/search`, `/en/brand/<example>`): assert Performance ≥ 90, Accessibility ≥ 95 per Constitution §Code Quality §Performance + WCAG 2.1 AA
-- [ ] T088 [P] Create `tests/unit/lib/i18n/dictionary-voice.test.ts`: loads `en.json`, asserts no string starts with banned tokens ("Shop", "Sellers", "Ethics score", "ethical", "conscious", "sustainable", "guilt-free", "Amazon alternative") per FR-024
-- [ ] T089 [P] Add `npm run nav:audit` script wiring T081 + T082 + T086 into a single command for local pre-PR validation
-- [ ] T090 Run the `specs/001-ia-navigation/quickstart.md` walkthrough end-to-end on a clean clone: verify each section's recipe works as written; update quickstart if any step has drifted from the implementation
-- [ ] T091 Update `CLAUDE.md` § Information Architecture section: replace the placeholder route list with the IA URLs as actually implemented (locale-prefixed paths, `/for-brands` added, `/categories` and `/c/[slug]` added, `/manifesto` and `/design` already listed)
-- [ ] T092 Final Constitution review: confirm each Product Principle (§1–§5) and Technical Principle (§6–§10) is satisfied by a passing artifact (axe-core report → §Accessibility; Lighthouse score → §Performance; teal-ratio audit → §Calm-over-loud; no glassmorphism CI guard → DESIGN.md §6; OAuth round-trip test → §Zero Friction); document any gap in `Complexity Tracking` section of `plan.md`
+- [X] T081 [P] Create `scripts/audit-teal-ratio.ts` (Node script using `playwright` + a pixel sampler): visits each top-level route in headless Chromium, screenshots the header/footer/drawer, computes deep-teal (`#0d7377`) pixel ratio, asserts ≤ 10% per SC-004; CI-runnable
+- [X] T082 [P] Add `.github/workflows/visual-guardrails.yml` step: greps `src/components/`, `src/app/` for `backdrop-blur`, `bg-.*\/[0-9]`, `border-l-\[[2-9]`, `border-r-\[[2-9]` patterns; fails the build on any match per SC-010 and DESIGN.md §6 Don'ts
+- [X] T083 [P] Create `tests/a11y/nav.a11y.test.tsx`: axe-core sweep — renders `<AppShell pathname={p}>` for each `p` in routeMap, asserts zero Critical/Serious violations per FR-028 and SC-007
+- [X] T084 [P] Create `src/app/sitemap.ts`: emits XML sitemap from `routeMap.filter(p => p.renderMode === 'static')`; one entry per (route × locale) pair; includes `<lastmod>` from build time
+- [X] T085 [P] Create `src/app/robots.ts`: emits robots.txt allowing all consumer routes, disallowing `/api/*` and `/admin/*`, pointing to `/sitemap.xml`
+- [X] T086 [P] Verify hreflang emission on each statically generated page per FR-030: add a runtime assertion in a `tests/integration/seo/hreflang.test.tsx` that fetches `/en/brand/<slug>`, `/en/c/<slug>`, `/en/brands` and confirms `<link rel="alternate" hreflang="en">` and `<link rel="alternate" hreflang="x-default">` are present in the HTML
+- [X] T087 Configure Lighthouse CI for `/en/` (and `/en/search`, `/en/brand/<example>`): assert Performance ≥ 90, Accessibility ≥ 95 per Constitution §Code Quality §Performance + WCAG 2.1 AA
+- [X] T088 [P] Create `tests/unit/lib/i18n/dictionary-voice.test.ts`: loads `en.json`, asserts no string starts with banned tokens ("Shop", "Sellers", "Ethics score", "ethical", "conscious", "sustainable", "guilt-free", "Amazon alternative") per FR-024
+- [X] T089 [P] Add `npm run nav:audit` script wiring T081 + T082 + T086 into a single command for local pre-PR validation
+- [X] T090 Run the `specs/001-ia-navigation/quickstart.md` walkthrough end-to-end on a clean clone: verify each section's recipe works as written; update quickstart if any step has drifted from the implementation
+- [X] T091 Update `CLAUDE.md` § Information Architecture section: replace the placeholder route list with the IA URLs as actually implemented (locale-prefixed paths, `/for-brands` added, `/categories` and `/c/[slug]` added, `/manifesto` and `/design` already listed)
+- [X] T092 Final Constitution review: confirm each Product Principle (§1–§5) and Technical Principle (§6–§10) is satisfied by a passing artifact (axe-core report → §Accessibility; Lighthouse score → §Performance; teal-ratio audit → §Calm-over-loud; no glassmorphism CI guard → DESIGN.md §6; OAuth round-trip test → §Zero Friction); document any gap in `Complexity Tracking` section of `plan.md`
 
 ---
 

@@ -112,19 +112,29 @@ Runs daily via GitHub Actions cron (3 AM UTC) or manually:
 
 ## Information Architecture
 
+All consumer routes are served under a `/[locale]/...` prefix (FR-029). MVP locale is `en`; un-prefixed paths 308-redirect to the best-match locale.
+
 ```
-/                         → Landing page with search bar
-/search?q=...             → Search results (products + brands)
-/brand/[slug]             → Brand profile page with products
-/brand/[slug]/products    → Full product listing for a brand
-/submit                   → Brand submission form
-/contribute               → Contributor onboarding + guide
-/about                    → Mission, principles, how it works
-/manifesto                → The philosophical foundation
-/donate                   → Donation page with transparency
-/brands                   → Browse all brands (directory)
-/admin                    → Contributor dashboard (auth required)
+/[locale]/                       → Landing page with hero search
+/[locale]/search?q=...           → Search results (sticky compact header)
+/[locale]/brands                 → Browse all brands (directory, SSG)
+/[locale]/brand/[slug]           → Brand profile page (SSG)
+/[locale]/brand/[slug]/products  → Full product catalog for one brand (SSG)
+/[locale]/categories             → Category index (SSG)
+/[locale]/c/[slug]               → Single category browse (SSG)
+/[locale]/submit                 → Brand submission entry
+/[locale]/for-brands             → Operator landing (Elena)
+/[locale]/contribute             → Contributor onboarding
+/[locale]/admin                  → Contributor workspace (auth-gated, sidebar)
+/[locale]/admin/suggest          → Suggest-edit form (preserves intent across OAuth)
+/[locale]/about                  → Mission, principles, how it works
+/[locale]/manifesto              → The philosophical foundation
+/[locale]/donate                 → Donation page with transparency
+/design                          → Design system reference (self-contained)
+/api/events                      → Server-side beacon endpoint
 ```
+
+Nav implementation lives in `src/components/nav/` (AppShell, Footer, ThemeToggle, AccountMenu, MobileDrawer, Breadcrumb, BrandProfileSubNav, WorkspaceSidebar, ActiveFilters, LocaleSwitcher, HeroSearchForm, HeaderSearchForm, PageViewTracker). The full IA contract — every route's persona, footer group, render mode, sticky-header behavior — is the route map at `src/lib/routes/routeMap.ts`. The full spec is at `specs/001-ia-navigation/`.
 
 ## Active Technologies
 - TypeScript 5.x, strict mode (per Constitution §6) (001-ia-navigation)

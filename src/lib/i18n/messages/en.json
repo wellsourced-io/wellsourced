@@ -99,10 +99,22 @@
   },
   "errors": {
     "notFound": {
-      "title": "Nothing at this address",
-      "lede": "The page you tried to reach isn't here. Try a search, or browse the directory.",
-      "ctaSearch": "Search WellSourced",
-      "ctaBrowse": "Browse brands"
+      "eyebrow": "404 · not in catalog",
+      "title": "We have no record of this page.",
+      "ledePrefix": "Our index doesn't include",
+      "ledeSuffix": "We checked. Even our 404s have provenance.",
+      "auditQuery": "GET {0}",
+      "auditCatalog": "queried catalog            0 results",
+      "auditBrandIndex": "queried brand index        0 results",
+      "auditContributor": "queried contributor queue  0 results",
+      "auditNoEntry": "→ no entry",
+      "searchPlaceholder": "Try organic cotton shirts, Japanese denim, …",
+      "searchAriaLabel": "Search WellSourced",
+      "ctaBrowse": "Browse brands",
+      "ctaCategories": "Browse categories",
+      "ctaSubmit": "Suggest a brand",
+      "suggestPrompt": "Think this page should exist?",
+      "suggestCta": "Suggest an edit →"
     },
     "serverError": {
       "title": "Something went wrong on our end",

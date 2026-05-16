@@ -82,10 +82,22 @@ export interface Dictionary {
   };
   errors: {
     notFound: {
+      eyebrow: string;
       title: string;
-      lede: string;
-      ctaSearch: string;
+      ledePrefix: string;
+      ledeSuffix: string;
+      auditQuery: string;
+      auditCatalog: string;
+      auditBrandIndex: string;
+      auditContributor: string;
+      auditNoEntry: string;
+      searchPlaceholder: string;
+      searchAriaLabel: string;
       ctaBrowse: string;
+      ctaCategories: string;
+      ctaSubmit: string;
+      suggestPrompt: string;
+      suggestCta: string;
     };
     serverError: {
       title: string;

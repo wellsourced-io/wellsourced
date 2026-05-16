@@ -9,6 +9,7 @@ import { TrustBadge } from "@/components/ui/TrustBadge";
 import { HeroSearchForm } from "@/components/nav/HeroSearchForm";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { defaultLocale, locales, type Locale } from "@/lib/i18n/config";
+import { featuredCategories } from "@/lib/data/categories";
 import { cn } from "@/lib/cn";
 
 type Tier = "t1" | "t2" | "t3";
@@ -114,6 +115,44 @@ export default async function Home({ params }: PageProps) {
         </div>
       </section>
 
+      {/* BROWSE BY CATEGORY — Priya's on-ramp */}
+      <section className="mx-auto max-w-[1280px] px-6 py-16 md:py-20">
+        <header className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+              Browse
+            </div>
+            <h2 className="mt-3 font-display text-[1.75rem] font-semibold leading-[1.2] text-fg">
+              Or start with a category.
+            </h2>
+          </div>
+          <Link
+            href={`/${locale}/categories`}
+            className="inline-flex items-center gap-1.5 text-[14px] font-medium text-fg transition-colors hover:text-teal-fg"
+          >
+            See all categories
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+          </Link>
+        </header>
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredCategories().map((cat) => (
+            <li key={cat.slug}>
+              <Link
+                href={`/${locale}/c/${cat.slug}`}
+                className="group flex h-full flex-col rounded-[16px] border border-border bg-surface p-5 transition-[transform,box-shadow,border-color] duration-[200ms] [transition-timing-function:var(--ease-standard)] hover:-translate-y-px hover:border-cloud-2 hover:shadow-[var(--shadow-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-teal)]"
+              >
+                <h3 className="font-display text-[17px] font-semibold leading-[1.2] text-fg">
+                  {cat.name}
+                </h3>
+                <p className="mt-1.5 text-[13px] leading-[1.5] text-muted">
+                  {cat.blurb}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {/* FEATURED BRANDS — preview rail */}
       <section className="mx-auto max-w-[1280px] px-6 py-16 md:py-24">
         <header className="flex flex-wrap items-end justify-between gap-6">
@@ -186,7 +225,7 @@ export default async function Home({ params }: PageProps) {
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href={`/${locale}/submit`}
-              className="inline-flex h-11 items-center rounded-full bg-teal px-5 text-[14px] font-medium text-white transition-colors hover:bg-teal-pressed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
+              className="inline-flex h-11 items-center rounded-full bg-teal px-5 text-[14px] font-medium text-on-teal transition-colors hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
             >
               Suggest a brand
               <ArrowUpRight className="ml-2 h-3.5 w-3.5" aria-hidden />

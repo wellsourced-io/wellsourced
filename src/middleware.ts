@@ -3,10 +3,13 @@ import { locales, defaultLocale, type Locale } from "@/lib/i18n/config";
 import { matchLocale } from "@/lib/i18n/matchLocale";
 
 /**
- * Locale routing middleware per FR-029.
+ * Locale routing + auth gate middleware per FR-029 and FR-022.
  *
  * Strategy (research.md R2):
- *   - Paths bearing a known locale prefix pass through unchanged.
+ *   - Paths bearing a known locale prefix pass through unchanged, with one
+ *     exception: `/[locale]/admin(/.*)?` requires a `ws-session` cookie
+ *     (FR-022). Missing session → 307 redirect to
+ *     `/[locale]/contribute?next=<original-path-with-query>`.
  *   - Paths missing a locale prefix → 308 permanent redirect to the
  *     best-match locale (currently always 'en' at MVP).
  *   - Query string and hash are preserved.
@@ -28,11 +31,33 @@ function bestMatch(request: NextRequest): Locale {
   return matchLocale(request.headers.get("accept-language"));
 }
 
+/**
+ * Returns the locale segment when `pathname` is `/[locale]/admin` or
+ * `/[locale]/admin/<anything>`. Returns null otherwise. Pure helper —
+ * doesn't read cookies.
+ */
+function matchAdminPath(pathname: string): Locale | null {
+  const [, first, second] = pathname.split("/");
+  if (!first || !(locales as readonly string[]).includes(first)) return null;
+  if (second !== "admin") return null;
+  return first as Locale;
+}
+
 export function middleware(request: NextRequest) {
   const { pathname, search, hash } = request.nextUrl;
 
   // Pass-through: locale-prefixed paths are canonical.
   if (hasLocalePrefix(pathname)) {
+    // Auth gate (FR-022): /[locale]/admin/* requires a ws-session cookie.
+    const adminLocale = matchAdminPath(pathname);
+    if (adminLocale && !request.cookies.get("ws-session")) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${adminLocale}/contribute`;
+      url.search = `?next=${encodeURIComponent(pathname + search + hash)}`;
+      url.hash = "";
+      return NextResponse.redirect(url, 307);
+    }
+
     const res = NextResponse.next();
     res.headers.set("x-pathname", pathname);
     return res;
