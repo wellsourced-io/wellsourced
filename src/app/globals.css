@@ -235,6 +235,17 @@ html[data-theme="dark"] {
 }
 
 /* =============================================================
+   Explicit utility rules — defensive against Tailwind JIT
+   cache misses. These are the same rules Tailwind would emit
+   from the @theme inline tokens above, written out so they
+   ship in the bundle regardless of whether the source scanner
+   has caught up with newly-added class usages.
+   ============================================================= */
+
+.text-on-teal { color: var(--color-on-teal); }
+.bg-on-teal { background-color: var(--color-on-teal); }
+
+/* =============================================================
    Base styles
    ============================================================= */
 
