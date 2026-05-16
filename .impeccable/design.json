@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-15T22:00:00.000Z",
+  "title": "Design System: WellSourced",
+  "extensions": {
+    "colorMeta": {
+      "teal-deep": {
+        "role": "primary",
+        "displayName": "Deep Teal",
+        "canonical": "#0d7377",
+        "tonalRamp": ["#052f31", "#07474a", "#0a5c5f", "#0d7377", "#128f93", "#2eb1b5", "#6fcfd1", "#c5ebec"]
+      },
+      "teal-light": {
+        "role": "secondary",
+        "displayName": "Soft Teal",
+        "canonical": "#e6f5f5",
+        "tonalRamp": ["#062b2c", "#0a4344", "#0d5c5e", "#108588", "#3aafb2", "#7ccfd1", "#b0e2e3", "#e6f5f5"]
+      },
+      "sand": {
+        "role": "neutral",
+        "displayName": "Warm Sand",
+        "canonical": "#f5f0e8",
+        "tonalRamp": ["#5c5240", "#847864", "#a89d8a", "#c8bfae", "#ddd5c5", "#ece4d4", "#f5f0e8", "#faf7f1"]
+      },
+      "sand-deep": {
+        "role": "neutral",
+        "displayName": "Sand Deep",
+        "canonical": "#ece4d4"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinted Ink",
+        "canonical": "#1a1a2e",
+        "tonalRamp": ["#07070d", "#0c0c18", "#151527", "#1a1a2e", "#2c2c47", "#4a4a68", "#6c6c8a", "#a3a3b8"]
+      },
+      "slate": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#64748b",
+        "tonalRamp": ["#1f2433", "#313847", "#444d61", "#50596e", "#64748b", "#8590a4", "#a8b1c1", "#cdd3dd"]
+      },
+      "cloud": {
+        "role": "neutral",
+        "displayName": "Cloud",
+        "canonical": "#f1f5f9"
+      },
+      "cloud-2": {
+        "role": "neutral",
+        "displayName": "Cloud Border",
+        "canonical": "#e2e8f0"
+      },
+      "trust-self-reported": {
+        "role": "tertiary",
+        "displayName": "Self-Reported Slate",
+        "canonical": "#94a3b8",
+        "tonalRamp": ["#2b3340", "#404a5a", "#555f72", "#6e7889", "#94a3b8", "#b0bcca", "#ccd3dc", "#e6eaef"]
+      },
+      "trust-community": {
+        "role": "tertiary",
+        "displayName": "Community Blue",
+        "canonical": "#3b82f6",
+        "tonalRamp": ["#0a2452", "#143a78", "#1e51a0", "#2868c8", "#3b82f6", "#6a9ff8", "#99bcfa", "#c8dafc"]
+      },
+      "trust-audited": {
+        "role": "tertiary",
+        "displayName": "Verified Green",
+        "canonical": "#22c55e",
+        "tonalRamp": ["#06321a", "#0a4a26", "#0e6332", "#167e44", "#22c55e", "#5dd687", "#98e6b1", "#d0f4dd"]
+      },
+      "warn": {
+        "role": "utility",
+        "displayName": "Warning Amber",
+        "canonical": "#f59e0b"
+      },
+      "err": {
+        "role": "utility",
+        "displayName": "Error Red",
+        "canonical": "#ef4444"
+      },
+      "ink-dark-bg": {
+        "role": "neutral",
+        "displayName": "Dark Canvas",
+        "canonical": "#0c0c18"
+      },
+      "ink-dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Surface",
+        "canonical": "#151527"
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page titles and the landing-page hero. Satoshi 700, fluid clamp." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings on profile pages and the design site." },
+      "title": { "displayName": "Title", "purpose": "Subsection headings and card titles on dense surfaces." },
+      "body": { "displayName": "Body", "purpose": "Default UI text. DM Sans 400 with humanist OpenType alternates." },
+      "label": { "displayName": "Label", "purpose": "Trust badges, table headers, eyebrow labels. The all-caps ceiling." },
+      "mono": { "displayName": "Mono", "purpose": "Inline code, audit data, the 'no product image yet' placeholder." },
+      "editorial": { "displayName": "Editorial", "purpose": "Blockquotes, manifesto openings, the 'sourced' wordmark split. Italic by default." }
+    },
+    "shadows": [
+      { "name": "card", "value": "0 1px 2px rgba(26, 26, 46, 0.04), 0 1px 1px rgba(26, 26, 46, 0.03)", "purpose": "Resting state of every surface — hairline plus a hint of weight." },
+      { "name": "hover", "value": "0 10px 24px -8px rgba(26, 26, 46, 0.12), 0 2px 6px rgba(26, 26, 46, 0.05)", "purpose": "Interactive cards on hover, paired with a 1px upward translate." },
+      { "name": "modal", "value": "0 24px 48px -16px rgba(26, 26, 46, 0.18)", "purpose": "Modal dialogs and tooltips floating above the canvas." },
+      { "name": "focus-ring", "value": "0 0 0 4px #e6f5f5", "purpose": "Soft-Teal halo paired with a teal border on input focus." }
+    ],
+    "motion": [
+      { "name": "dur-tick", "value": "80ms", "purpose": "Tap feedback, focus ring, checkbox tick." },
+      { "name": "dur-crisp", "value": "200ms", "purpose": "Card lift, tooltip fade, chip dismiss, default state transitions." },
+      { "name": "dur-tip", "value": "240ms", "purpose": "Tooltip popover, drawer slide, modal open." },
+      { "name": "dur-reveal", "value": "320ms", "purpose": "Full-screen and route transitions only." },
+      { "name": "ease-standard", "value": "cubic-bezier(0.2, 0.7, 0.3, 1)", "purpose": "The single easing curve. No bounce, no elastic, no spring." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single most important action on a screen. Pill, deep teal, white text.",
+      "html": "<button class=\"ds-btn-primary\">Find brands</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 20px; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1; color: #ffffff; background: #0d7377; border: none; border-radius: 9999px; box-shadow: 0 1px 2px rgba(26, 26, 46, 0.04), 0 1px 1px rgba(26, 26, 46, 0.03); cursor: pointer; transition: background 200ms cubic-bezier(0.2, 0.7, 0.3, 1), color 200ms cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 200ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-btn-primary:hover { background: #0a5c5f; } .ds-btn-primary:active { background: #0a5c5f; } .ds-btn-primary:focus-visible { outline: 2px solid #0d7377; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The second action. White surface, ink text. Hover swaps border + text to teal — never a fill change.",
+      "html": "<button class=\"ds-btn-secondary\">Browse all brands</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 20px; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 15px; font-weight: 500; line-height: 1; color: #1a1a2e; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 9999px; cursor: pointer; transition: border-color 200ms cubic-bezier(0.2, 0.7, 0.3, 1), color 200ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-btn-secondary:hover { border-color: #0d7377; color: #0d7377; } .ds-btn-secondary:focus-visible { outline: 2px solid #0d7377; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-default",
+      "description": "The signature focus state — deep-teal border plus a 4px Soft-Teal halo. Copy this combination wherever a field needs focus emphasis.",
+      "html": "<input class=\"ds-input-default\" type=\"text\" placeholder=\"Brand name or domain\" />",
+      "css": ".ds-input-default { width: 100%; height: 44px; padding: 0 14px; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 14px; color: #1a1a2e; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; transition: border-color 200ms cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 200ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-input-default::placeholder { color: rgba(100, 116, 139, 0.7); } .ds-input-default:focus { outline: none; border-color: #0d7377; box-shadow: 0 0 0 4px #e6f5f5; }"
+    },
+    {
+      "name": "SearchBar — Hero",
+      "kind": "input",
+      "refersTo": "search-bar-hero",
+      "description": "The primary entry point of the system — pill-shaped, 60px tall, leading Search icon, optional trailing keyboard-shortcut chip. Inherits the input focus halo.",
+      "html": "<label class=\"ds-searchbar\"><svg class=\"ds-searchbar-icon\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/></svg><input class=\"ds-searchbar-input\" type=\"search\" placeholder=\"Search organic cotton shirts, Japanese denim, …\" /><kbd class=\"ds-searchbar-kbd\" aria-hidden=\"true\">⌘K</kbd></label>",
+      "css": ".ds-searchbar { display: inline-flex; align-items: center; gap: 12px; width: 100%; height: 60px; padding: 0 20px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 9999px; transition: border-color 200ms cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 200ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-searchbar:focus-within { border-color: #0d7377; box-shadow: 0 0 0 4px #e6f5f5; } .ds-searchbar-icon { flex-shrink: 0; color: #64748b; } .ds-searchbar-input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 16px; color: #1a1a2e; } .ds-searchbar-input::placeholder { color: rgba(100, 116, 139, 0.8); } .ds-searchbar-kbd { display: inline-flex; align-items: center; justify-content: center; height: 28px; min-width: 28px; padding: 0 6px; font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 11.5px; color: #64748b; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; }"
+    },
+    {
+      "name": "Filter Chip — Default",
+      "kind": "chip",
+      "refersTo": "chip-default",
+      "description": "Toggle filter beneath the search bar. Default is white surface with ink text and a hairline border.",
+      "html": "<button class=\"ds-chip-default\">Worker-owned <span class=\"ds-chip-count\">12</span></button>",
+      "css": ".ds-chip-default { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 13px; font-weight: 500; line-height: 1; color: #1a1a2e; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 9999px; cursor: pointer; transition: border-color 150ms cubic-bezier(0.2, 0.7, 0.3, 1), color 150ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-chip-default:hover { border-color: #0d7377; color: #0d7377; } .ds-chip-default:focus-visible { outline: 2px solid #0d7377; outline-offset: 2px; } .ds-chip-count { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 11.5px; font-variant-numeric: tabular-nums; color: #64748b; }"
+    },
+    {
+      "name": "Filter Chip — Selected",
+      "kind": "chip",
+      "refersTo": "chip-selected",
+      "description": "Selected filter inverts to ink fill with sand text. Pulls visual weight without spending teal — preserving teal for true CTAs.",
+      "html": "<button class=\"ds-chip-selected\" aria-pressed=\"true\">Worker-owned <span class=\"ds-chip-count-selected\">12</span></button>",
+      "css": ".ds-chip-selected { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 13px; font-weight: 500; line-height: 1; color: #f5f0e8; background: #1a1a2e; border: 1px solid transparent; border-radius: 9999px; cursor: pointer; transition: background 150ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-chip-selected:focus-visible { outline: 2px solid #0d7377; outline-offset: 2px; } .ds-chip-count-selected { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 11.5px; font-variant-numeric: tabular-nums; opacity: 0.7; }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "The result that closes James's loop. Trust badge overlays the image at top-left; uppercase brand eyebrow; Satoshi title with line-clamp; price right-aligned with tabular-nums; teal pill 'Buy direct' CTA opening outbound with an ArrowUpRight icon. WellSourced is never in the transaction path.",
+      "html": "<article class=\"ds-product-card\"><div class=\"ds-product-card-image\"><span class=\"ds-product-card-badge\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>Community-verified</span></div><div class=\"ds-product-card-body\"><div class=\"ds-product-card-row\"><div class=\"ds-product-card-meta\"><div class=\"ds-product-card-brand\">Hardpan Workshop</div><h3 class=\"ds-product-card-title\">Heavy Cotton Field Tee, Indigo</h3></div><div class=\"ds-product-card-price\">$48</div></div><a class=\"ds-product-card-cta\" href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\">Buy direct<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7\"/><path d=\"M7 7h10v10\"/></svg></a></div></article>",
+      "css": ".ds-product-card { display: flex; flex-direction: column; overflow: hidden; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 1px 2px rgba(26, 26, 46, 0.04), 0 1px 1px rgba(26, 26, 46, 0.03); cursor: pointer; transition: transform 200ms cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 200ms cubic-bezier(0.2, 0.7, 0.3, 1), border-color 200ms cubic-bezier(0.2, 0.7, 0.3, 1); font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; } .ds-product-card:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgba(26, 26, 46, 0.12), 0 2px 6px rgba(26, 26, 46, 0.05); border-color: #cbd5e1; } .ds-product-card-image { position: relative; aspect-ratio: 4 / 3; background: #ece4d4; } .ds-product-card-badge { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 11.5px; font-weight: 500; line-height: 1; letter-spacing: 0.02em; background: #eff6ff; color: #3b82f6; border-radius: 9999px; } .ds-product-card-body { display: flex; flex-direction: column; gap: 12px; padding: 20px; } .ds-product-card-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; } .ds-product-card-meta { min-width: 0; } .ds-product-card-brand { font-size: 11.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: #64748b; } .ds-product-card-title { margin: 4px 0 0; font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 600; line-height: 1.25; color: #1a1a2e; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } .ds-product-card-price { font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; color: #1a1a2e; white-space: nowrap; } .ds-product-card-cta { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 40px; padding: 0 16px; font-size: 14px; font-weight: 500; color: #ffffff; background: #0d7377; border-radius: 9999px; text-decoration: none; transition: background 200ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-product-card-cta:hover { background: #0a5c5f; } .ds-product-card-cta:focus-visible { outline: 2px solid #0d7377; outline-offset: 2px; }"
+    },
+    {
+      "name": "Trust Badge — Community Verified",
+      "kind": "custom",
+      "refersTo": "trust-badge-community",
+      "description": "Signature component. Carries icon, label, and a tooltip; clickable to source URL when one exists. Tier 2 of three (Self-Reported / Community-Verified / Independently Audited).",
+      "html": "<span class=\"ds-trust-badge ds-trust-badge--community\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>Community-verified</span>",
+      "css": ".ds-trust-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-size: 11.5px; font-weight: 500; line-height: 1; letter-spacing: 0.02em; border-radius: 9999px; transition: opacity 200ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-trust-badge--community { background: #eff6ff; color: #3b82f6; } .ds-trust-badge--audited { background: #ecfdf5; color: #22c55e; } .ds-trust-badge--self-reported { background: #f1f5f9; color: #94a3b8; }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky on the search results page; transparent over the canvas elsewhere. Active nav item gets a 2px deep-teal underline — never a pill background. Background is solid; sticky-nav glassmorphism is still glassmorphism.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"/\"><span>well</span><em>sourced</em></a><ul class=\"ds-nav-links\"><li><a class=\"ds-nav-link ds-nav-link--active\" href=\"/search\">Find</a></li><li><a class=\"ds-nav-link\" href=\"/brands\">Brands</a></li><li><a class=\"ds-nav-link\" href=\"/about\">About</a></li><li><a class=\"ds-nav-link\" href=\"/contribute\">Contribute</a></li></ul></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 16px 24px; background: #f5f0e8; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; } .ds-nav-brand { display: inline-flex; gap: 0; font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif; font-size: 18px; font-weight: 700; color: #1a1a2e; text-decoration: none; letter-spacing: -0.01em; } .ds-nav-brand em { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-weight: 400; } .ds-nav-links { display: flex; gap: 24px; margin: 0; padding: 0; list-style: none; } .ds-nav-link { font-size: 14px; font-weight: 500; color: #64748b; text-decoration: none; padding-bottom: 4px; transition: color 150ms cubic-bezier(0.2, 0.7, 0.3, 1); } .ds-nav-link:hover { color: #1a1a2e; } .ds-nav-link--active { color: #1a1a2e; border-bottom: 2px solid #0d7377; }"
+    },
+    {
+      "name": "Lockup / Wordmark",
+      "kind": "custom",
+      "refersTo": "lockup",
+      "description": "The one place the editorial serif appears in the application chrome. 'Well' in Satoshi 700 immediately followed by 'Sourced' in DM Serif Display italic at 80% opacity. The teal monogram never recolors.",
+      "html": "<span class=\"ds-lockup\"><svg class=\"ds-lockup-mark\" width=\"30\" height=\"30\" viewBox=\"0 0 44 44\" fill=\"none\" aria-label=\"WellSourced\" role=\"img\"><rect x=\"0.5\" y=\"0.5\" width=\"43\" height=\"43\" rx=\"12\" fill=\"currentColor\" opacity=\"0.08\"/><path d=\"M10 15 L14.5 29 L19 18 L23.5 29 L28 15\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M30 21 c0 -2.5 2 -4 4.5 -4 c2.5 0 4.5 1.5 4.5 4 c0 4 -9 4 -9 8 c0 2.5 2 4 4.5 4 c2.5 0 4.5 -1.5 4.5 -4\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><span class=\"ds-lockup-word\">Well<em class=\"ds-lockup-serif\">Sourced</em></span></span>",
+      "css": ".ds-lockup { display: inline-flex; align-items: center; gap: 10px; color: #1a1a2e; user-select: none; } .ds-lockup-mark { color: #0d7377; flex-shrink: 0; } .ds-lockup-word { font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.025em; line-height: 1; } .ds-lockup-serif { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-weight: 400; opacity: 0.8; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Verified Commons",
+    "overview": "WellSourced is public infrastructure that happens to look like a fast shopping tool. The visual system is built around one signature pattern — the gray → blue → green trust-tier spectrum that runs through every claim, every brand, every product card. Verification is not a marketing flourish; it is the load-bearing element of the interface. Sources are linked. Tiers are visible. Everything claimed is also cited. Around that spine, the system is calm and warm: a sand canvas instead of Amazon's sterile white, a single deep-teal accent that earns attention because nothing else competes for it, documentary imagery never stock, type that reads as civic and grown-up. The result feels closer to a public library or a government data portal than to a DTC brand site, which is exactly the point: public infrastructure, not a brand. The system explicitly rejects the visual vocabulary of the things it competes with — no Amazon-style sterile-white canvas, no purple-to-blue gradients on dark, no glowing accents, no glassmorphism, no green-everything greenwashing.",
+    "keyCharacteristics": [
+      "One accent (deep teal) used on ≤10% of any screen",
+      "Trust-tier color is semantic, never decorative",
+      "Warm sand canvas (#f5f0e8) replaces sterile white in light mode",
+      "Documentary imagery only — never stock, never AI-generated",
+      "Motion is functional: four named durations, one easing curve, no bounce",
+      "Theme follows prefers-color-scheme; both light and dark are first-class"
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "The deep-teal accent appears on ≤10% of any screen. It is the only saturated color permitted outside the trust spectrum. If a second accent feels needed, the design is wrong before the color is.", "section": "colors" },
+      { "name": "The Verification Lock Rule", "body": "Slate, Community Blue, and Verified Green belong to the trust tiers. They are never used decoratively — never as chip fills, never as section accents, never as illustration colors. Rebinding these hues anywhere else dissolves the spectrum users have learned to read.", "section": "colors" },
+      { "name": "The Warm Canvas Rule", "body": "Sand is the page; white is the surface. Inverting this — white page with sand cards — reads as Amazon by accident.", "section": "colors" },
+      { "name": "The Reserved Serif Rule", "body": "DM Serif Display appears in three places only: the wordmark's 'sourced' split, blockquotes inside editorial pages, and explicitly-marked manifesto moments. Every other use dilutes its meaning.", "section": "typography" },
+      { "name": "The Caps Ceiling Rule", "body": "All-caps is permitted only on labels at 0.75rem and smaller. Headings are never all-caps. Body copy is never all-caps. This keeps the system from sliding into either a hospital portal or a hardware-store sign.", "section": "typography" },
+      { "name": "The Earned Shadow Rule", "body": "A shadow must answer a state question. Resting cards get the hairline --shadow-card. Interaction earns --shadow-hover. Floating layers get --shadow-modal. There is no fourth shadow, and there is no shadow used as decoration.", "section": "elevation" },
+      { "name": "The Tinted Black Rule", "body": "Shadow ink is never rgba(0, 0, 0, …). Always the ink-tinted alpha so shadows feel like they belong to the surface they sit under.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use Deep Teal (#0d7377) as the only brand accent, on ≤10% of any screen.",
+      "Do keep the trust spectrum (Slate / Community Blue / Verified Green) reserved for trust tiers and their variants.",
+      "Do use Sand (#f5f0e8) as the page canvas in light mode and white as the surface — never invert.",
+      "Do tint everything (text, shadows, surfaces) toward the brand hue family. Never pure black, never pure white.",
+      "Do cap body line length at 65–75ch; cap editorial passages at 56ch.",
+      "Do pair every trust claim with a linkable source. Trust is shown, not asserted.",
+      "Do use the four named motion durations (--dur-tick 80ms, --dur-crisp 200ms, --dur-tip 240ms, --dur-reveal 320ms) and the single --ease-standard curve.",
+      "Do respect prefers-reduced-motion and prefers-color-scheme — both themes are first-class.",
+      "Do offer the next useful action in every empty/error state — never apologize, never dead-end.",
+      "Do use documentary imagery sourced from the brand itself. Credit non-product photos. Show process, not pose.",
+      "Do treat missing imagery as a feature: warm-sand placeholder tile with a JetBrains-Mono 'No product image yet' label is the canonical fallback.",
+      "Do say 'Find' not 'Shop'; 'Buy direct' not 'Add to cart'; 'Brands' not 'Sellers'; 'Trust data' not 'Ethics score'; 'Suggest an edit' not 'Report an error.'",
+      "Do test every decision against 'Would Amazon do this?' — if yes, reconsider."
+    ],
+    "donts": [
+      "Don't use border-left or border-right greater than 1px as a colored accent stripe on cards, list items, callouts, or alerts. Forbidden in every form, including CSS variables.",
+      "Don't use gradient text. Never combine background-clip: text with any gradient.",
+      "Don't use the AI palette: cyan-on-dark, purple-to-blue gradients, neon accents on dark backgrounds, glowing teal halos.",
+      "Don't use glassmorphism (blur cards, glass borders) — the system is flat with three earned shadows.",
+      "Don't repurpose trust-tier colors (Slate / Blue / Green) for unrelated UI.",
+      "Don't use pure black (#000) or pure white (#fff) anywhere — surfaces, shadows, borders, type. Always tint.",
+      "Don't use sterile-white page backgrounds in light mode. Sand is the canvas.",
+      "Don't introduce a second brand accent. Teal is the one voice.",
+      "Don't wrap everything in cards. Don't nest cards inside cards.",
+      "Don't use bouncy or elastic easing. Real objects decelerate smoothly.",
+      "Don't animate width, height, padding, or margin. Transform and opacity only.",
+      "Don't use lifestyle stock photography, AI-generated imagery, or staged smiles. Documentary or nothing.",
+      "Don't ship dark patterns: countdown timers, fake urgency, newsletter pop-ups on first visit, autoplay video, infinite scroll without URL state, ratings/scores for brands.",
+      "Don't use lead messaging like 'ethical / conscious / sustainable / guilt-free / save the planet / Amazon alternative / curated.' These preach to the choir and lose James.",
+      "Don't apologize in empty or error states. Helpful, not contrite.",
+      "Don't propose alternative fonts. Satoshi / DM Sans / DM Serif Display / JetBrains Mono are project-locked."
+    ]
+  }
+}
