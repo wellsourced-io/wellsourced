@@ -1,93 +1,105 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { Card } from "@/components/ui/Card";
 
 # The WellSourced design system
 
 <div className="lede">
-  A living reference for everyone building WellSourced. Foundations, components, patterns,
-  and words — documented in one place so what we ship stays coherent with what we believe.
+  A living reference for everyone building WellSourced. Foundations, components, patterns, and words — documented in one place so what we ship stays coherent with what we believe.
 </div>
 
-<section aria-label="Grid of sections" className="not-prose my-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-  <Link href="/design/foundations/color" className="no-underline">
-    <Card interactive className="h-full p-6">
-      <div className="flex items-start gap-4">
-        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">01</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Foundations</h3>
-          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">Color, typography, space, radius, elevation, motion, iconography. The atoms behind every screen.</p>
-        </div>
-        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
-      </div>
-    </Card>
-  </Link>
+## Start here
 
-  <Link href="/design/tokens" className="no-underline">
-    <Card interactive className="h-full p-6">
-      <div className="flex items-start gap-4">
-        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">02</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Tokens</h3>
-          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">Every design decision as a CSS variable. Copy and paste into the app or into Tailwind.</p>
-        </div>
-        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
-      </div>
-    </Card>
-  </Link>
+<section className="not-prose my-12 grid gap-12 md:grid-cols-2 md:gap-16">
+  <div>
+    <h3 className="font-[var(--font-display)] text-[26px] font-semibold tracking-[-0.015em] leading-[1.15] text-fg m-0">
+      Foundations
+    </h3>
+    <p className="mt-3 text-[15px] leading-[1.6] text-muted m-0">
+      Color, typography, space, radius, elevation, motion, iconography. The atoms behind every screen — each one a deliberate choice, documented with the why.
+    </p>
+    <Link
+      href="/design/foundations/color"
+      className="no-prose group mt-5 inline-flex items-center gap-1 text-[14px] font-medium text-teal"
+    >
+      <span className="border-b border-teal/30 group-hover:border-teal transition-colors duration-[150ms] [transition-timing-function:var(--ease-standard)]">
+        Browse foundations
+      </span>
+      <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+    </Link>
+  </div>
 
-  <Link href="/design/components/button" className="no-underline">
-    <Card interactive className="h-full p-6">
-      <div className="flex items-start gap-4">
-        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">03</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Components</h3>
-          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">The primitives the app actually ships. Live previews, variant controls, and usage rules.</p>
-        </div>
-        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
-      </div>
-    </Card>
-  </Link>
-
-  <Link href="/design/patterns/brand-profile" className="no-underline">
-    <Card interactive className="h-full p-6">
-      <div className="flex items-start gap-4">
-        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">04</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Patterns</h3>
-          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">How primitives compose. Product grids, brand profiles, empty and error states.</p>
-        </div>
-        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
-      </div>
-    </Card>
-  </Link>
-
-  <Link href="/design/content" className="no-underline">
-    <Card interactive className="h-full p-6">
-      <div className="flex items-start gap-4">
-        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">05</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Content &amp; voice</h3>
-          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">How we write. Words we use. Words we avoid. Empty state copy, error tone, button labels.</p>
-        </div>
-        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
-      </div>
-    </Card>
-  </Link>
-
-  <Link href="/design/brand" className="no-underline">
-    <Card interactive className="h-full p-6">
-      <div className="flex items-start gap-4">
-        <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-teal-light text-teal font-mono text-[13px]">06</span>
-        <div className="min-w-0 flex-1">
-          <h3 className="font-[var(--font-display)] text-[18px] font-semibold text-fg m-0">Brand</h3>
-          <p className="mt-1 text-[14px] leading-[1.55] text-muted m-0">Logo, wordmark, lockups, and how to use them. With downloadable kits.</p>
-        </div>
-        <ArrowUpRight className="h-4 w-4 text-muted" aria-hidden />
-      </div>
-    </Card>
-  </Link>
+  <div>
+    <h3 className="font-[var(--font-display)] text-[26px] font-semibold tracking-[-0.015em] leading-[1.15] text-fg m-0">
+      Components
+    </h3>
+    <p className="mt-3 text-[15px] leading-[1.6] text-muted m-0">
+      The primitives the app actually ships. Live previews, variant controls, copy-pasteable code, and the usage rules that hold the system together.
+    </p>
+    <Link
+      href="/design/components/button"
+      className="no-prose group mt-5 inline-flex items-center gap-1 text-[14px] font-medium text-teal"
+    >
+      <span className="border-b border-teal/30 group-hover:border-teal transition-colors duration-[150ms] [transition-timing-function:var(--ease-standard)]">
+        Browse components
+      </span>
+      <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+    </Link>
+  </div>
 </section>
+
+## Everything else
+
+<ul className="not-prose flex flex-col">
+  <li className="border-t border-border first:border-t-0">
+    <Link href="/design/tokens" className="no-prose group grid grid-cols-[140px_minmax(0,1fr)_auto] items-baseline gap-6 py-4 text-fg">
+      <span className="text-[15px] font-semibold text-fg group-hover:text-teal transition-colors">Tokens</span>
+      <span className="text-[14px] leading-[1.55] text-muted">Every design decision as a CSS variable. Browse, copy, use.</span>
+      <ArrowUpRight className="h-3.5 w-3.5 text-muted/50 group-hover:text-teal transition-colors" aria-hidden />
+    </Link>
+  </li>
+  <li className="border-t border-border">
+    <Link href="/design/patterns/brand-profile" className="no-prose group grid grid-cols-[140px_minmax(0,1fr)_auto] items-baseline gap-6 py-4 text-fg">
+      <span className="text-[15px] font-semibold text-fg group-hover:text-teal transition-colors">Patterns</span>
+      <span className="text-[14px] leading-[1.55] text-muted">How primitives compose. Brand profiles, product grids, empty and error states.</span>
+      <ArrowUpRight className="h-3.5 w-3.5 text-muted/50 group-hover:text-teal transition-colors" aria-hidden />
+    </Link>
+  </li>
+  <li className="border-t border-border">
+    <Link href="/design/content" className="no-prose group grid grid-cols-[140px_minmax(0,1fr)_auto] items-baseline gap-6 py-4 text-fg">
+      <span className="text-[15px] font-semibold text-fg group-hover:text-teal transition-colors">Content &amp; voice</span>
+      <span className="text-[14px] leading-[1.55] text-muted">How we write. Words we use, words we avoid, button labels, error tone.</span>
+      <ArrowUpRight className="h-3.5 w-3.5 text-muted/50 group-hover:text-teal transition-colors" aria-hidden />
+    </Link>
+  </li>
+  <li className="border-t border-border">
+    <Link href="/design/brand" className="no-prose group grid grid-cols-[140px_minmax(0,1fr)_auto] items-baseline gap-6 py-4 text-fg">
+      <span className="text-[15px] font-semibold text-fg group-hover:text-teal transition-colors">Brand</span>
+      <span className="text-[14px] leading-[1.55] text-muted">Logo, wordmark, lockups, and how to use them across surfaces.</span>
+      <ArrowUpRight className="h-3.5 w-3.5 text-muted/50 group-hover:text-teal transition-colors" aria-hidden />
+    </Link>
+  </li>
+  <li className="border-t border-border">
+    <Link href="/design/getting-started" className="no-prose group grid grid-cols-[140px_minmax(0,1fr)_auto] items-baseline gap-6 py-4 text-fg">
+      <span className="text-[15px] font-semibold text-fg group-hover:text-teal transition-colors">Getting started</span>
+      <span className="text-[14px] leading-[1.55] text-muted">How to use, extend, and contribute to the system.</span>
+      <ArrowUpRight className="h-3.5 w-3.5 text-muted/50 group-hover:text-teal transition-colors" aria-hidden />
+    </Link>
+  </li>
+  <li className="border-t border-border">
+    <Link href="/design/accessibility" className="no-prose group grid grid-cols-[140px_minmax(0,1fr)_auto] items-baseline gap-6 py-4 text-fg">
+      <span className="text-[15px] font-semibold text-fg group-hover:text-teal transition-colors">Accessibility</span>
+      <span className="text-[14px] leading-[1.55] text-muted">WCAG floor, per-component checklist, what we never do.</span>
+      <ArrowUpRight className="h-3.5 w-3.5 text-muted/50 group-hover:text-teal transition-colors" aria-hidden />
+    </Link>
+  </li>
+  <li className="border-t border-border">
+    <Link href="/design/changelog" className="no-prose group grid grid-cols-[140px_minmax(0,1fr)_auto] items-baseline gap-6 py-4 text-fg">
+      <span className="text-[15px] font-semibold text-fg group-hover:text-teal transition-colors">Changelog</span>
+      <span className="text-[14px] leading-[1.55] text-muted">What's new, what's known to be broken, what's next.</span>
+      <ArrowUpRight className="h-3.5 w-3.5 text-muted/50 group-hover:text-teal transition-colors" aria-hidden />
+    </Link>
+  </li>
+</ul>
 
 ## Principles
 
@@ -98,15 +110,5 @@ This design system exists to keep WellSourced **coherent with its values**. Trus
 - **Warmth without cuteness.** Rounded UI, approachable language — but never twee, never sing-songy.
 - **Convenience first.** Prices are visible. Buy-direct links are prominent. Friction is for what's earned, not what's expected.
 - **Institutional trust.** Deep teal, clean sans-serif, visible verification. Feels like it could be governmental in the best sense.
-
-## What's here
-
-<ul>
-  <li><strong>Foundations</strong> — the raw materials: color, type, space, radius, elevation, motion, iconography.</li>
-  <li><strong>Tokens</strong> — every decision as a variable; browse, copy, use.</li>
-  <li><strong>Components</strong> — production-ready React primitives, live in the browser, with code you can paste.</li>
-  <li><strong>Patterns</strong> — how those primitives compose into real interfaces.</li>
-  <li><strong>Content</strong>, <strong>brand</strong>, <strong>accessibility</strong>, <strong>changelog</strong> — the rest of what makes a design system usable across a team.</li>
-</ul>
 
 <div className="mt-10 text-[13px] text-muted">Questions, corrections, or contributions? Start at <Link href="/design/getting-started">getting started</Link>.</div>

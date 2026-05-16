@@ -1,4 +1,8 @@
-import { Children, type ComponentPropsWithoutRef, type ReactNode } from "react";
+import {
+  isValidElement,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+} from "react";
 import { cn } from "@/lib/cn";
 
 type Level = 1 | 2 | 3 | 4;
@@ -7,10 +11,19 @@ interface MDXHeadingProps extends ComponentPropsWithoutRef<"h1"> {
   level: Level;
 }
 
+function flatten(node: ReactNode): string {
+  if (node === null || node === undefined || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(flatten).join("");
+  if (isValidElement(node)) {
+    const { children } = node.props as { children?: ReactNode };
+    return flatten(children);
+  }
+  return "";
+}
+
 function slugify(children: ReactNode): string {
-  return Children.toArray(children)
-    .map((c) => (typeof c === "string" ? c : ""))
-    .join("")
+  return flatten(children)
     .toLowerCase()
     .trim()
     .replace(/[^\w\s-]/g, "")
@@ -39,7 +52,7 @@ export function MDXHeading({ level, children, className, id, ...rest }: MDXHeadi
         <a
           href={`#${resolvedId}`}
           aria-label="Link to this section"
-          className="ml-2 text-muted/40 opacity-0 group-hover:opacity-100 transition-opacity text-[0.7em] font-normal no-underline"
+          className="ml-2 text-muted/40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 focus-visible:text-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-teal)] transition-opacity text-[0.7em] font-normal no-underline"
         >
           #
         </a>

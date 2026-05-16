@@ -26,16 +26,16 @@ export function PropsTable({ component, className }: PropsTableProps) {
       <table className="w-full border-collapse text-left">
         <thead>
           <tr className="bg-cloud/50">
-            <th className="px-4 py-3 text-[11.5px] font-medium uppercase tracking-[0.1em] text-muted">
+            <th className="px-4 py-3 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-muted">
               Name
             </th>
-            <th className="px-4 py-3 text-[11.5px] font-medium uppercase tracking-[0.1em] text-muted">
+            <th className="px-4 py-3 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-muted">
               Type
             </th>
-            <th className="px-4 py-3 text-[11.5px] font-medium uppercase tracking-[0.1em] text-muted">
+            <th className="px-4 py-3 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-muted">
               Default
             </th>
-            <th className="px-4 py-3 text-[11.5px] font-medium uppercase tracking-[0.1em] text-muted">
+            <th className="px-4 py-3 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-muted">
               Description
             </th>
           </tr>
