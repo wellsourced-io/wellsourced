@@ -24,7 +24,7 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <Card interactive padding="none" className={cn("overflow-hidden flex flex-col", className)}>
-      <div className="relative aspect-[4/3] w-full bg-sand-deep overflow-hidden">
+      <div className="relative aspect-[4/3] w-full bg-placeholder overflow-hidden">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

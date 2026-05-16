@@ -28,26 +28,52 @@
   --color-cloud: #f1f5f9;
   --color-cloud-2: #e2e8f0;
 
-  /* -------- Trust tiers -------- */
+  /* Semantic image-well placeholder: flips with theme so brand cards
+     stay legible in both modes. Light = warm sand-deep; dark = lifted ink. */
+  --color-placeholder: var(--color-sand-deep);
+
+  /* Teal-as-text: a brighter teal reserved for small-text usages in dark mode
+     where the primitive --color-teal (#0d7377) falls below WCAG AA on the
+     dark canvas. Backgrounds still use --color-teal so button contrast holds. */
+  --color-teal-fg: var(--color-teal);
+
+  /* -------- Trust tiers --------
+     -fg variants are the semantic text-on-tier-bg roles; they flip with mode
+     to keep small badge text above WCAG AA. The unsuffixed tokens stay as
+     canonical spectrum hues (icons, indicators, ramps). */
   --color-t1: #94a3b8;
   --color-t1-bg: #f1f5f9;
+  --color-t1-fg: #50596e;
   --color-t2: #3b82f6;
   --color-t2-bg: #eff6ff;
+  --color-t2-fg: #1d4ed8;
   --color-t3: #22c55e;
   --color-t3-bg: #ecfdf5;
+  --color-t3-fg: #16803c;
 
-  /* -------- Utility -------- */
+  /* -------- Utility --------
+     -fg variants are the semantic text-on-tint-bg roles; the unsuffixed
+     tokens stay as canonical hues (icons, indicators). */
   --color-warn: #f59e0b;
   --color-warn-bg: #fef3c7;
+  --color-warn-fg: #92400e;
   --color-err: #ef4444;
   --color-err-bg: #fee2e2;
+  --color-err-fg: #b91c1c;
   --color-success: #22c55e;
+
+  /* Teal-on-teal-light tinted-badge foreground. The same hue family at the
+     same darkness fails contrast in dark mode; this token resolves that. */
+  --color-teal-tint-fg: var(--color-teal);
 
   /* -------- Semantic (light) -------- */
   --color-bg: var(--color-sand);
   --color-surface: var(--color-white);
   --color-fg: var(--color-ink);
-  --color-muted: var(--color-slate);
+  /* Muted is decoupled from --color-slate so the semantic role can be tuned
+     for WCAG without changing the primitive. Slate stays the icon/list hue;
+     muted owns secondary-text contrast on the sand canvas. */
+  --color-muted: #50596e;
   --color-border: var(--color-cloud-2);
 
   /* -------- Radii -------- */
@@ -94,14 +120,24 @@ html[data-theme="system"]:where(:root) {
     --color-bg: #0c0c18;
     --color-surface: #151527;
     --color-fg: #f5f0e8;
-    --color-muted: #8a94a6;
+    --color-muted: #a8b1c1;
     --color-border: #232340;
     --color-cloud: #1a1a2e;
     --color-cloud-2: #232340;
     --color-teal-light: #133c3e;
     --color-t1-bg: #1a1a2e;
+    --color-t1-fg: #cdd3dd;
     --color-t2-bg: #12233f;
+    --color-t2-fg: #93b9fc;
     --color-t3-bg: #0e2a1c;
+    --color-t3-fg: #5dd687;
+    --color-placeholder: #1f1f33;
+    --color-teal-fg: #128f93;
+    --color-teal-tint-fg: #c5ebec;
+    --color-warn-bg: #422006;
+    --color-warn-fg: #fde68a;
+    --color-err-bg: #3a0a0a;
+    --color-err-fg: #fca5a5;
   }
 }
 
@@ -109,14 +145,24 @@ html[data-theme="dark"] {
   --color-bg: #0c0c18;
   --color-surface: #151527;
   --color-fg: #f5f0e8;
-  --color-muted: #8a94a6;
+  --color-muted: #a8b1c1;
   --color-border: #232340;
   --color-cloud: #1a1a2e;
   --color-cloud-2: #232340;
   --color-teal-light: #133c3e;
   --color-t1-bg: #1a1a2e;
+  --color-t1-fg: #cdd3dd;
   --color-t2-bg: #12233f;
+  --color-t2-fg: #93b9fc;
   --color-t3-bg: #0e2a1c;
+  --color-t3-fg: #5dd687;
+  --color-placeholder: #1f1f33;
+  --color-teal-fg: #128f93;
+  --color-teal-tint-fg: #c5ebec;
+  --color-warn-bg: #422006;
+  --color-warn-fg: #fde68a;
+  --color-err-bg: #3a0a0a;
+  --color-err-fg: #fca5a5;
 }
 
 /* =============================================================
@@ -144,19 +190,27 @@ html[data-theme="dark"] {
   --color-slate: var(--color-slate);
   --color-cloud: var(--color-cloud);
   --color-cloud-2: var(--color-cloud-2);
+  --color-placeholder: var(--color-placeholder);
+  --color-teal-fg: var(--color-teal-fg);
 
   --color-t1: var(--color-t1);
   --color-t1-bg: var(--color-t1-bg);
+  --color-t1-fg: var(--color-t1-fg);
   --color-t2: var(--color-t2);
   --color-t2-bg: var(--color-t2-bg);
+  --color-t2-fg: var(--color-t2-fg);
   --color-t3: var(--color-t3);
   --color-t3-bg: var(--color-t3-bg);
+  --color-t3-fg: var(--color-t3-fg);
 
   --color-warn: var(--color-warn);
   --color-warn-bg: var(--color-warn-bg);
+  --color-warn-fg: var(--color-warn-fg);
   --color-err: var(--color-err);
   --color-err-bg: var(--color-err-bg);
+  --color-err-fg: var(--color-err-fg);
   --color-success: var(--color-success);
+  --color-teal-tint-fg: var(--color-teal-tint-fg);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);

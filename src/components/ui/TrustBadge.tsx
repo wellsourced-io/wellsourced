@@ -29,7 +29,7 @@ const TIERS: Record<
     helper:
       "The brand provided this information. Not independently checked. Treat as a starting point.",
     bg: "bg-t1-bg",
-    fg: "text-[color:var(--color-t1)]",
+    fg: "text-[color:var(--color-t1-fg)]",
     icon: UserCheck,
   },
   t2: {
@@ -37,7 +37,7 @@ const TIERS: Record<
     helper:
       "A contributor cross-checked this claim against public sources. Traceable to a sourcing link.",
     bg: "bg-t2-bg",
-    fg: "text-[color:var(--color-t2)]",
+    fg: "text-[color:var(--color-t2-fg)]",
     icon: Users,
   },
   t3: {
@@ -45,7 +45,7 @@ const TIERS: Record<
     helper:
       "Backed by a third-party certification or audit we trust. The highest verification tier.",
     bg: "bg-t3-bg",
-    fg: "text-[color:var(--color-t3)]",
+    fg: "text-[color:var(--color-t3-fg)]",
     icon: ShieldCheck,
   },
 };

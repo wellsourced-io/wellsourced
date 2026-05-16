@@ -46,17 +46,18 @@ export interface LockupProps {
 export function Lockup({ className, size = "md", tone = "default" }: LockupProps) {
   const fontSize = size === "sm" ? 20 : size === "lg" ? 32 : 26;
   const markSize = size === "sm" ? 22 : size === "lg" ? 36 : 30;
+  const wordmarkColor =
+    tone === "inverse" ? "text-white" : "text-fg";
   return (
     <span
-      className={cn(
-        "inline-flex items-center gap-2.5 select-none",
-        tone === "inverse" ? "text-white" : "text-ink",
-        className,
-      )}
+      className={cn("inline-flex items-center gap-2.5 select-none", className)}
     >
       <LogoMark size={markSize} className="text-teal" />
       <span
-        className="font-[var(--font-display)] font-bold tracking-[-0.025em] leading-none"
+        className={cn(
+          "font-[var(--font-display)] font-bold tracking-[-0.025em] leading-none",
+          wordmarkColor,
+        )}
         style={{ fontSize }}
       >
         Well

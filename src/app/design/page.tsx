@@ -8,7 +8,7 @@ import { MotionStagger } from "./MotionStagger";
 export const metadata: Metadata = {
   title: "Design System v1",
   description:
-    "The WellSourced design system — a single-page reference for brand, color, type, motion, imagery, and the components that compose every page.",
+    "The WellSourced design system: a single-page reference for brand, color, type, motion, imagery, and the components that compose every page.",
 };
 
 const Wordmark = () => (
@@ -248,7 +248,7 @@ export default function DesignSystemPosterPage() {
               not a storefront.
             </h1>
             <p className="lede">
-              The visual system for WellSourced &mdash; an open-source product discovery engine for ethical
+              The visual system for WellSourced, an open-source product discovery engine for ethical
               shopping. Built to feel like trusted public infrastructure: fast, honest, and warm. Convenience
               leads; values follow.
             </p>
@@ -287,7 +287,7 @@ export default function DesignSystemPosterPage() {
             </div>
             <p className="hd-desc">
               Grounded organic meets clean modernity. Lowercase wordmark. A single-color mark that reads as a
-              &ldquo;w&rdquo; folded into a well &mdash; origin, source, enclosed.
+              &ldquo;w&rdquo; folded into a well: origin, source, enclosed.
             </p>
           </div>
 
@@ -317,7 +317,7 @@ export default function DesignSystemPosterPage() {
             </div>
 
             <div className="brand-card">
-              <div className="sub-label">Badge &mdash; embeddable on brand sites</div>
+              <div className="sub-label">Badge, embeddable on brand sites</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
                 <div className="verified-badge">
                   <svg
@@ -366,7 +366,7 @@ export default function DesignSystemPosterPage() {
                 </div>
               </div>
               <div className="fn">
-                Embed as an <code>&lt;iframe&gt;</code> or an <code>&lt;a&gt;</code> &mdash; both include a
+                Embed as an <code>&lt;iframe&gt;</code> or an <code>&lt;a&gt;</code>. Both include a
                 citation link back to the brand profile.
               </div>
             </div>
@@ -411,16 +411,16 @@ export default function DesignSystemPosterPage() {
             </div>
             <p className="hd-desc">
               Teal as trust anchor; warm sand as the page temperature. Trust tiers use a calibrated gray &rarr;
-              blue &rarr; green spectrum that maps to verification depth &mdash; never to emotion.
+              blue &rarr; green spectrum that maps to verification depth. Never to emotion.
             </p>
           </div>
 
           <div className="sub-label">Core palette</div>
           <div className="palette">
             {[
-              { hex: "#0D7377", name: "Deep Teal", use: "Primary — CTAs, active links, logo, selected states." },
+              { hex: "#0D7377", name: "Deep Teal", use: "Primary: CTAs, active links, logo, selected states." },
               { hex: "#E6F5F5", name: "Teal Light", use: "Selected chips, hover bg, subtle highlights." },
-              { hex: "#F5F0E8", name: "Warm Sand", use: "Page background — away from Amazon-white." },
+              { hex: "#F5F0E8", name: "Warm Sand", use: "Page background, away from Amazon-white." },
               { hex: "#FFFFFF", name: "Pure White", use: "Card surfaces, modals, inputs." },
               { hex: "#1A1A2E", name: "Charcoal", use: "Headings, body copy, primary text." },
               { hex: "#64748B", name: "Slate", use: "Metadata, secondary text, descriptions." },
@@ -445,7 +445,7 @@ export default function DesignSystemPosterPage() {
           </div>
 
           <div className="sub-label" style={{ marginTop: 40 }}>
-            Trust tier &mdash; a calibrated spectrum
+            Trust tier, a calibrated spectrum
           </div>
           <div className="trust-grid">
             <div className="trust-swatch">
@@ -582,7 +582,7 @@ export default function DesignSystemPosterPage() {
           </div>
 
           <div className="sub-label" style={{ marginTop: 32 }}>
-            DM Serif Display in use &mdash; pair with Satoshi for editorial emphasis
+            DM Serif Display in use. Pair with Satoshi for editorial emphasis
           </div>
           <div className="comp-card" style={{ padding: "36px 40px" }}>
             <div
@@ -649,12 +649,12 @@ export default function DesignSystemPosterPage() {
                   className="ws-serif"
                   style={{ fontSize: 19, lineHeight: 1.5, color: "var(--color-slate)" }}
                 >
-                  We show data, not judgment &mdash; and we say so out loud.
+                  We show data, not judgment, and we say so out loud.
                 </div>
               </div>
             </div>
             <div className="fn" style={{ marginTop: 20 }}>
-              {"// use italic sparingly — headlines, pull-quotes, one emphasized word per passage. never for body, UI labels, or data."}
+              {"// use italic sparingly: headlines, pull-quotes, one emphasized word per passage. never for body, UI labels, or data."}
             </div>
           </div>
 
@@ -784,7 +784,7 @@ export default function DesignSystemPosterPage() {
               <h2 className="h2">Space, Radius &amp; Elevation</h2>
             </div>
             <p className="hd-desc">
-              4px base unit. Radii stay friendly but restrained &mdash; no pill-everything. Elevation is quiet;
+              4px base unit. Radii stay friendly but restrained. No pill-everything. Elevation is quiet;
               hover states earn attention.
             </p>
           </div>
@@ -815,7 +815,7 @@ export default function DesignSystemPosterPage() {
                 <div className="shadow-sample s2">shadow-hover &middot; lift</div>
               </div>
               <div style={{ marginTop: 16, fontSize: 12, color: "var(--color-slate)", lineHeight: 1.6 }}>
-                Cards use either a 1px border <em>or</em> shadow-card &mdash; never both. Hover promotes to
+                Cards use either a 1px border <em>or</em> shadow-card. Never both. Hover promotes to
                 shadow-hover with a -2px lift.
               </div>
             </div>
@@ -864,7 +864,7 @@ export default function DesignSystemPosterPage() {
             </div>
             <p className="hd-desc">
               Line icons, 1.75px stroke, rounded caps. Lucide as the base set. Custom marks only where semantics
-              demand it &mdash; trust tiers, ownership types, the Buy Direct arrow.
+              demand it: trust tiers, ownership types, the Buy Direct arrow.
             </p>
           </div>
 
@@ -945,7 +945,7 @@ export default function DesignSystemPosterPage() {
             </div>
             <p className="hd-desc">
               Ten components, each with required states. Built in this order because this is the order
-              they&rsquo;ll be used in anger &mdash; nav, search, chips, then product cards.
+              they&rsquo;ll be used in anger: nav, search, chips, then product cards.
             </p>
           </div>
 
@@ -1060,7 +1060,7 @@ export default function DesignSystemPosterPage() {
               <button type="button" className="btn btn-destructive">
                 Remove claim
               </button>
-              <span className="fn">Used in contributor tools only &mdash; never in shopper-facing flows.</span>
+              <span className="fn">Used in contributor tools only. Never in shopper-facing flows.</span>
             </div>
           </div>
 
@@ -1070,7 +1070,7 @@ export default function DesignSystemPosterPage() {
               <h3>6.3 Search Bar</h3>
               <span className="meta">landing &middot; 56px &middot; results &middot; 40px</span>
             </div>
-            <div className="sub-label">Landing &mdash; default</div>
+            <div className="sub-label">Landing, default</div>
             <div className="search lg" style={{ marginBottom: 16 }}>
               <span className="ic">
                 <SearchIcon />
@@ -1081,7 +1081,7 @@ export default function DesignSystemPosterPage() {
               />
               <span className="kbd">Enter &crarr;</span>
             </div>
-            <div className="sub-label">Landing &mdash; focused, with active query</div>
+            <div className="sub-label">Landing, focused with active query</div>
             <div className="search lg is-focus" style={{ marginBottom: 16 }}>
               <span className="ic" style={{ color: "var(--color-teal)" }}>
                 <SearchIcon />
@@ -1091,7 +1091,7 @@ export default function DesignSystemPosterPage() {
                 <ClearIcon />
               </button>
             </div>
-            <div className="sub-label">Results &mdash; compact, in header</div>
+            <div className="sub-label">Results, compact in header</div>
             <div className="search sm">
               <span className="ic">
                 <SearchIcon />
@@ -1159,7 +1159,7 @@ export default function DesignSystemPosterPage() {
               </span>
             </div>
             <hr className="div" />
-            <div className="sub-label">Tooltip &mdash; on hover/focus</div>
+            <div className="sub-label">Tooltip, on hover/focus</div>
             <div
               style={{
                 padding: "80px 40px 20px",
@@ -1381,7 +1381,7 @@ export default function DesignSystemPosterPage() {
           <div className="comp-card" style={{ marginBottom: 24 }}>
             <div className="comp-hd">
               <h3>6.8 Category Cards</h3>
-              <span className="meta">landing &mdash; browse entry point</span>
+              <span className="meta">landing, browse entry point</span>
             </div>
             <div className="cat-grid">
               <CategoryCard name="Kitchen" count="342 products">
@@ -1519,7 +1519,7 @@ export default function DesignSystemPosterPage() {
             </div>
             <p className="hd-desc">
               Motion is structural, never decorative. We move things to confirm an action, surface a state, or
-              hand off focus &mdash; nothing swoops, nothing bounces. A shopper should never wait on an
+              hand off focus. Nothing swoops, nothing bounces. A shopper should never wait on an
               animation to complete.
             </p>
           </div>
@@ -1540,7 +1540,7 @@ export default function DesignSystemPosterPage() {
                 shouldn&apos;t animate.
               </MotionPrinciple>
               <MotionPrinciple num="03" name="QUIET" title="No bounce, no overshoot.">
-                We use <code>cubic-bezier(.2,.7,.3,1)</code> for everything. No spring, no elastic &mdash; this
+                We use <code>cubic-bezier(.2,.7,.3,1)</code> for everything. No spring, no elastic. This
                 is research infrastructure, not a game.
               </MotionPrinciple>
               <MotionPrinciple num="04" name="RESPECTFUL" title="Respects reduced-motion.">
@@ -1553,7 +1553,7 @@ export default function DesignSystemPosterPage() {
           <div className="comp" style={{ marginBottom: 24 }}>
             <div className="comp-hd">
               <h3>8.2 Duration scale</h3>
-              <span className="meta">five timings &mdash; use these, don&apos;t invent new ones</span>
+              <span className="meta">five timings: use these, don&apos;t invent new ones</span>
             </div>
             <div className="comp-card" style={{ padding: "28px 32px" }}>
               <MotionScale />
@@ -1582,7 +1582,7 @@ export default function DesignSystemPosterPage() {
                 stroke="#0D7377"
                 name={
                   <>
-                    Standard &mdash;{" "}
+                    Standard,{" "}
                     <em
                       style={{
                         fontFamily: "'DM Serif Display', Georgia, serif",
@@ -1596,21 +1596,21 @@ export default function DesignSystemPosterPage() {
                   </>
                 }
                 code="cubic-bezier(.2, .7, .3, 1)"
-                use="Confident entrance, quiet settle. Use for hover, fade, lift, slide — 99% of motion."
+                use="Confident entrance, quiet settle. Use for hover, fade, lift, slide. 99% of motion."
               />
               <EasingCard
                 d="M 0 120 C 48 120, 96 0, 120 0"
                 stroke="#64748B"
                 name="Symmetrical"
                 code="cubic-bezier(.4, 0, .2, 1)"
-                use="Content shifts that need to feel neutral — accordion open, skeleton pulse. No directional bias."
+                use="Content shifts that need to feel neutral: accordion open, skeleton pulse. No directional bias."
               />
               <EasingCard
                 d="M 0 120 C 72 120, 48 0, 120 0"
                 stroke="#64748B"
                 name="Exit"
                 code="cubic-bezier(.4, 0, 1, 1)"
-                use="For things leaving the screen — modal close, toast dismiss. Faster start, no lingering."
+                use="For things leaving the screen: modal close, toast dismiss. Faster start, no lingering."
               />
             </div>
             <div className="fn" style={{ marginTop: 16 }}>
@@ -1622,7 +1622,7 @@ export default function DesignSystemPosterPage() {
           <div className="comp" style={{ marginBottom: 24 }}>
             <div className="comp-hd">
               <h3>8.4 Patterns</h3>
-              <span className="meta">interact with each &mdash; hover, click, wait</span>
+              <span className="meta">interact with each: hover, click, wait</span>
             </div>
             <div className="motion-grid">
               {/* Hover lift */}
@@ -1698,7 +1698,7 @@ export default function DesignSystemPosterPage() {
                 <div className="m-caption">
                   <div className="m-title">Skeleton pulse</div>
                   <div className="m-desc">
-                    Background fades between two neutrals. Honest loading &mdash; only shown when we&apos;re
+                    Background fades between two neutrals. Honest loading. Only shown when we&apos;re
                     actually fetching.
                   </div>
                   <div className="m-spec">
@@ -1726,7 +1726,7 @@ export default function DesignSystemPosterPage() {
                       <span>Community Verified</span>
                     </div>
                     <div className="m-tooltip">
-                      A contributor researched this claim and cited sources &mdash; hover to open
+                      A contributor researched this claim and cited sources. Hover to open
                     </div>
                   </div>
                 </div>
@@ -1746,7 +1746,7 @@ export default function DesignSystemPosterPage() {
                 <div className="m-caption">
                   <div className="m-title">Staggered results entrance</div>
                   <div className="m-desc">
-                    Results fade up with a 40ms stagger. Max 8 items animate &mdash; the rest appear instantly.
+                    Results fade up with a 40ms stagger. Max 8 items animate. The rest appear instantly.
                   </div>
                   <div className="m-spec">
                     <span>opacity &middot; translateY(6px)</span>
@@ -1774,7 +1774,7 @@ export default function DesignSystemPosterPage() {
                 Undermines the institutional tone. Leave overshoot to consumer apps.
               </DontCard>
               <DontCard title="Decorative loops">
-                Animated backgrounds, floating shapes, gradient pulses &mdash; all out. Motion means something
+                Animated backgrounds, floating shapes, gradient pulses. All out. Motion means something
                 happened.
               </DontCard>
             </div>
@@ -1790,8 +1790,8 @@ export default function DesignSystemPosterPage() {
             </div>
             <p className="hd-desc">
               Imagery must earn its place. Product shots do the job, brand photography provides context, and
-              everything else &mdash; stock illustrations of handshakes, planet icons, smiling families
-              &mdash; is out. If an image doesn&apos;t tell the user something they can&apos;t read, delete
+              everything else (stock illustrations of handshakes, planet icons, smiling families)
+              is out. If an image doesn&apos;t tell the user something they can&apos;t read, delete
               it.
             </p>
           </div>
@@ -1800,7 +1800,7 @@ export default function DesignSystemPosterPage() {
           <div className="comp" style={{ marginBottom: 24 }}>
             <div className="comp-hd">
               <h3>9.1 Principles</h3>
-              <span className="meta">four rules &mdash; every image is evaluated against these</span>
+              <span className="meta">four rules: every image is evaluated against these</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
               <MotionPrinciple num="01" name="USEFUL" title="Shows the product.">
@@ -1824,7 +1824,7 @@ export default function DesignSystemPosterPage() {
           <div className="comp" style={{ marginBottom: 24 }}>
             <div className="comp-hd">
               <h3>9.2 Image categories</h3>
-              <span className="meta">five types &mdash; each has its own treatment</span>
+              <span className="meta">five types: each has its own treatment</span>
             </div>
             <div className="img-cat-grid">
               <ImageCategory
@@ -1844,7 +1844,7 @@ export default function DesignSystemPosterPage() {
                 name="02 · Maker & workshop"
                 use="Used in: brand profile header, ownership sections, contributor evidence."
                 rules={[
-                  ["good", "Working portraits — hands, tools, process"],
+                  ["good", "Working portraits: hands, tools, process"],
                   ["good", "Natural light, minimal color grading"],
                   ["bad", "No staged smiles, no corporate headshots"],
                 ]}
@@ -1855,7 +1855,7 @@ export default function DesignSystemPosterPage() {
                 name="03 · Document & evidence"
                 use="Used in: trust tier sources, audit trail, verification receipts."
                 rules={[
-                  ["good", "Real scans — B Corp certificates, SEC filings, cooperative bylaws"],
+                  ["good", "Real scans: B Corp certificates, SEC filings, cooperative bylaws"],
                   ["good", "8px corners, subtle shadow, always with source URL"],
                   ["bad", "No mocked-up documents, no stock “paperwork” photos"],
                 ]}
@@ -1866,7 +1866,7 @@ export default function DesignSystemPosterPage() {
                 name="04 · Place of origin"
                 use="Used in: HQ location cards, manufacturing context, transparency sections."
                 rules={[
-                  ["good", "Wide establishing shots — the actual factory, farm, or studio"],
+                  ["good", "Wide establishing shots: the actual factory, farm, or studio"],
                   ["good", "Include geographic context (map pin, region label)"],
                   ["bad", "No generic city skylines, no stock “factory” photos"],
                 ]}
@@ -1922,7 +1922,7 @@ export default function DesignSystemPosterPage() {
                       as fallback
                     </li>
                     <li>
-                      <span className="good">&#10003;</span> Sits on white &mdash; never on warm sand, never on
+                      <span className="good">&#10003;</span> Sits on white. Never on warm sand, never on
                       teal
                     </li>
                     <li>
@@ -1969,7 +1969,7 @@ export default function DesignSystemPosterPage() {
                       <div className="cb cb-1" />
                       <div className="ratio-meta">
                         <strong>Natural</strong>
-                        <span>Default &mdash; shoot as-is</span>
+                        <span>Default, shoot as-is</span>
                       </div>
                     </div>
                     <div className="treat-item">
@@ -1983,7 +1983,7 @@ export default function DesignSystemPosterPage() {
                       <div className="cb cb-3" />
                       <div className="ratio-meta">
                         <strong>Duotone</strong>
-                        <span>Never &mdash; implies styling</span>
+                        <span>Never, implies styling</span>
                       </div>
                     </div>
                     <div className="treat-item">
@@ -2047,7 +2047,7 @@ export default function DesignSystemPosterPage() {
                 label="Sale stickers · lifestyle clutter"
                 badgeChild={<div className="fake-sale">35% OFF</div>}
               >
-                Overlays imply a marketplace. We link out &mdash; pricing lives on the brand&apos;s store.
+                Overlays imply a marketplace. We link out. Pricing lives on the brand&apos;s store.
               </DoDont>
               <DoDont kind="do" phClass="ph ph-do-2" label="Hands at work · natural light">
                 Process over person. What they make is more interesting than how they smile.
@@ -2064,7 +2064,7 @@ export default function DesignSystemPosterPage() {
                 label="Generic leaves, handshakes, globes"
                 badgeChild={<div className="fake-leaf">&#127807;</div>}
               >
-                Sustainability clip art is the greenwashing tell. The data earns trust &mdash; not the icon.
+                Sustainability clip art is the greenwashing tell. The data earns trust, not the icon.
               </DoDont>
             </div>
           </div>
@@ -2073,7 +2073,7 @@ export default function DesignSystemPosterPage() {
           <div className="comp">
             <div className="comp-hd">
               <h3>9.5 Missing imagery</h3>
-              <span className="meta">placeholder &mdash; not a default image</span>
+              <span className="meta">placeholder, not a default image</span>
             </div>
             <div className="comp-card" style={{ padding: "28px 32px" }}>
               <div
@@ -2145,7 +2145,7 @@ export default function DesignSystemPosterPage() {
                     }}
                   >
                     A warm-sand tile with a monospace label is better than a broken image, a stock fallback, or
-                    an AI-generated guess. It&apos;s also an honest invitation &mdash; contributors can see
+                    an AI-generated guess. It&apos;s also an honest invitation. Contributors can see
                     what&apos;s missing and submit it.
                   </div>
                   <div className="fn">
@@ -2171,7 +2171,7 @@ export default function DesignSystemPosterPage() {
             </div>
             <p className="hd-desc">
               Never apologize. Just hand the user the next useful action. Illustration is an open magnifying
-              glass &mdash; not a sad face.
+              glass, not a sad face.
             </p>
           </div>
 
@@ -2193,7 +2193,7 @@ export default function DesignSystemPosterPage() {
             </div>
             <h3>No results for &ldquo;purple widgets&rdquo;</h3>
             <p>
-              Try a broader search, or browse by category. Every brand here is indexed &mdash; if you can&apos;t
+              Try a broader search, or browse by category. Every brand here is indexed. If you can&apos;t
               find it, help us add it.
             </p>
             <div className="chip-row">
@@ -2222,7 +2222,7 @@ export default function DesignSystemPosterPage() {
               <h2 className="h2">Sample Composition</h2>
             </div>
             <p className="hd-desc">
-              A partial search results view &mdash; nav, sticky search, active filter chips, three product cards
+              A partial search results view: nav, sticky search, active filter chips, three product cards
               at their real size. The system validating itself.
             </p>
           </div>

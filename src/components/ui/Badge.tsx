@@ -9,10 +9,10 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 
 const TONES: Record<BadgeTone, string> = {
   neutral: "bg-cloud text-fg",
-  teal: "bg-teal-light text-teal",
-  success: "bg-t3-bg text-[color:var(--color-t3)]",
-  warn: "bg-warn-bg text-[color:var(--color-warn)]",
-  err: "bg-err-bg text-[color:var(--color-err)]",
+  teal: "bg-teal-light text-[color:var(--color-teal-tint-fg)]",
+  success: "bg-t3-bg text-[color:var(--color-t3-fg)]",
+  warn: "bg-warn-bg text-[color:var(--color-warn-fg)]",
+  err: "bg-err-bg text-[color:var(--color-err-fg)]",
 };
 
 export function Badge({ tone = "neutral", className, children, ...rest }: BadgeProps) {

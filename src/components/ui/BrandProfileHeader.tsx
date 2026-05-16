@@ -33,8 +33,8 @@ export function BrandProfileHeader({
         className,
       )}
     >
-      <div className="h-20 w-20 md:h-24 md:w-24 rounded-[12px] bg-sand flex items-center justify-center text-muted">
-        <span className="font-[var(--font-display)] text-[28px] font-bold tracking-[-0.025em] text-ink/70">
+      <div className="h-20 w-20 md:h-24 md:w-24 rounded-[12px] bg-placeholder flex items-center justify-center text-muted">
+        <span className="font-[var(--font-display)] text-[28px] font-bold tracking-[-0.025em] text-fg/70">
           {logoText ?? name.slice(0, 2).toUpperCase()}
         </span>
       </div>
