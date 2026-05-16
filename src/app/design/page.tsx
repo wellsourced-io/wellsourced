@@ -944,8 +944,8 @@ export default function DesignSystemPosterPage() {
               <h2 className="h2">Components</h2>
             </div>
             <p className="hd-desc">
-              Ten components, each with required states. Built in this order because this is the order they
-              &rsquo;ll be used in anger &mdash; nav, search, chips, then product cards.
+              Ten components, each with required states. Built in this order because this is the order
+              they&rsquo;ll be used in anger &mdash; nav, search, chips, then product cards.
             </p>
           </div>
 
@@ -1077,7 +1077,7 @@ export default function DesignSystemPosterPage() {
               </span>
               <input
                 type="text"
-                placeholder="Search for products, brands, or try &lsquo;birthday gift under $50&rsquo;"
+                placeholder="Search for products, brands, or try ‘birthday gift under $50’"
               />
               <span className="kbd">Enter &crarr;</span>
             </div>
@@ -1417,7 +1417,7 @@ export default function DesignSystemPosterPage() {
                 <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6" />
                 <circle cx="12" cy="9" r="4" />
               </CategoryCard>
-              <CategoryCard name="Food &amp; Drink" count="391 products">
+              <CategoryCard name="Food & Drink" count="391 products">
                 <path d="M8 4h8v4a4 4 0 0 1-4 4 4 4 0 0 1-4-4z" />
                 <path d="M12 12v8M8 20h8" />
               </CategoryCard>
@@ -1449,8 +1449,8 @@ export default function DesignSystemPosterPage() {
                 <input
                   id="bn"
                   className="input"
-                  placeholder="e.g. Signal &amp; Drift"
-                  defaultValue="Signal &amp; Drift"
+                  placeholder="e.g. Signal & Drift"
+                  defaultValue="Signal & Drift"
                 />
                 <span className="help">The public brand name as customers know it.</span>
               </div>
@@ -2423,7 +2423,7 @@ function CategoryCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="cat" role="button" tabIndex={0}>
+    <div className="cat">
       <div className="cat-ico">
         <svg
           viewBox="0 0 24 24"
@@ -2437,7 +2437,7 @@ function CategoryCard({
           {children}
         </svg>
       </div>
-      <div className="cat-name" dangerouslySetInnerHTML={{ __html: name }} />
+      <div className="cat-name">{name}</div>
       <div className="cat-count">{count}</div>
     </div>
   );
@@ -2538,7 +2538,7 @@ function ImageCategory({
         </div>
       </div>
       <div className="img-cat-body">
-        <div className="img-cat-name" dangerouslySetInnerHTML={{ __html: name }} />
+        <div className="img-cat-name">{name}</div>
         <div className="img-cat-use">{use}</div>
         <ul className="img-rules">
           {rules.map(([kind, text], i) => (

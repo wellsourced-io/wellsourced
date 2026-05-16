@@ -165,6 +165,8 @@
 
 .ds-poster .section {
   margin-bottom: 96px;
+  /* Land below the sticky TOC after anchor jumps. TOC = 24px top + ~50px tall. */
+  scroll-margin-top: 88px;
 }
 .ds-poster .section-head {
   margin-bottom: 32px;
