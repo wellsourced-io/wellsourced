@@ -3,24 +3,40 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Lockup } from "./Logo";
 
+export interface NavBarLink {
+  label: string;
+  href: string;
+}
+
 export interface NavBarProps {
   current?: string;
+  links?: NavBarLink[];
+  rightSlot?: ReactNode;
   right?: ReactNode;
+  surface?: "sand" | "white";
   className?: string;
 }
 
-const LINKS = [
+const DEFAULT_LINKS: NavBarLink[] = [
+  { label: "Find", href: "/search" },
   { label: "Brands", href: "/brands" },
   { label: "Categories", href: "/categories" },
-  { label: "Submit", href: "/submit" },
   { label: "About", href: "/about" },
 ];
 
-export function NavBar({ current, right, className }: NavBarProps) {
+export function NavBar({
+  current,
+  links = DEFAULT_LINKS,
+  rightSlot,
+  right,
+  surface = "sand",
+  className,
+}: NavBarProps) {
   return (
     <header
       className={cn(
-        "w-full border-b border-border bg-surface/70 backdrop-blur-md",
+        "w-full border-b border-border",
+        surface === "white" ? "bg-surface" : "bg-bg",
         className,
       )}
     >
@@ -28,8 +44,11 @@ export function NavBar({ current, right, className }: NavBarProps) {
         <Link href="/" aria-label="WellSourced — home" className="shrink-0">
           <Lockup size="sm" />
         </Link>
-        <nav className="hidden md:flex items-center gap-1">
-          {LINKS.map((l) => {
+        <nav
+          aria-label="Primary"
+          className="hidden md:flex items-center gap-1"
+        >
+          {links.map((l) => {
             const active = current === l.href;
             return (
               <Link
@@ -37,12 +56,12 @@ export function NavBar({ current, right, className }: NavBarProps) {
                 href={l.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "h-9 px-3 rounded-full text-[14px] font-medium " +
-                    "transition-[color,background] duration-[150ms] [transition-timing-function:var(--ease-standard)] " +
-                    "inline-flex items-center",
+                  "h-9 px-3 text-[14px] font-medium inline-flex items-center",
+                  "border-b-2 -mb-px",
+                  "transition-[color,border-color] duration-[150ms] [transition-timing-function:var(--ease-standard)]",
                   active
-                    ? "text-teal bg-teal-light"
-                    : "text-muted hover:text-fg hover:bg-cloud",
+                    ? "text-fg border-teal"
+                    : "text-muted border-transparent hover:text-fg",
                 )}
               >
                 {l.label}
@@ -50,7 +69,10 @@ export function NavBar({ current, right, className }: NavBarProps) {
             );
           })}
         </nav>
-        <div className="flex items-center gap-2">{right}</div>
+        <div className="flex items-center gap-2">
+          {rightSlot}
+          {right}
+        </div>
       </div>
     </header>
   );

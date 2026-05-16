@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "find": "Find",
+    "brands": "Brands",
+    "categories": "Categories",
+    "about": "About"
+  },
+  "footer": {
+    "discover": "Discover",
+    "contribute": "Contribute",
+    "about": "About",
+    "operators": "For operators",
+    "system": "System",
+    "tagline": "Public infrastructure for finding products that are actually made well."
+  },
+  "routes": {
+    "home": {
+      "label": "Home",
+      "description": "Search the catalog of brands and products vetted by the community."
+    },
+    "search": {
+      "label": "Find",
+      "description": "Search products and brands. Filter by ownership, certifications, country, and price."
+    },
+    "brands": {
+      "label": "Brands",
+      "description": "Browse the full directory of brands in the commons."
+    },
+    "brand": {
+      "label": "Brand profile",
+      "description": "Who runs this brand, where it's made, and what's been independently verified."
+    },
+    "brand-products": {
+      "label": "Products",
+      "description": "Every product this brand sells, with prices direct from the brand."
+    },
+    "categories": {
+      "label": "Categories",
+      "description": "Browse brands and products by category."
+    },
+    "category": {
+      "label": "Category",
+      "description": "Brands and products in this category, ranked by trust and recency."
+    },
+    "submit": {
+      "label": "Suggest a brand",
+      "description": "Know a brand worth listing? Send it in. A contributor will review."
+    },
+    "for-brands": {
+      "label": "For brands",
+      "description": "What listing on WellSourced means, what data is required, and how to apply."
+    },
+    "contribute": {
+      "label": "Contribute",
+      "description": "Help maintain the commons. Suggest edits, cite sources, review submissions."
+    },
+    "admin": {
+      "label": "Workspace",
+      "description": "Contributor workspace for reviewing submissions and edit suggestions."
+    },
+    "about": {
+      "label": "About",
+      "description": "What WellSourced is, who runs it, and how it works."
+    },
+    "manifesto": {
+      "label": "Manifesto",
+      "description": "Why this exists, and what we will and won't do to keep it honest."
+    },
+    "donate": {
+      "label": "Donate",
+      "description": "Fund the commons. Every dollar is accounted for in public."
+    },
+    "design": {
+      "label": "Design system",
+      "description": "The component library, tokens, and visual language that build the site."
+    }
+  },
+  "drawer": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "searchPlaceholder": "Search WellSourced"
+  },
+  "theme": {
+    "label": "Change theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "account": {
+    "signIn": "Sign in",
+    "myContributions": "My contributions",
+    "workspace": "Workspace",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "avatarLabel": "Open account menu"
+  },
+  "breadcrumb": {
+    "backTo": "← {0}"
+  },
+  "errors": {
+    "notFound": {
+      "title": "Nothing at this address",
+      "lede": "The page you tried to reach isn't here. Try a search, or browse the directory.",
+      "ctaSearch": "Search WellSourced",
+      "ctaBrowse": "Browse brands"
+    },
+    "serverError": {
+      "title": "Something went wrong on our end",
+      "lede": "The page didn't load. Reload to try again, or head back to search."
+    }
+  },
+  "localeName": "English (US)"
+}

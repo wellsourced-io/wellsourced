@@ -6,49 +6,55 @@
 
 Each item is tagged with a phase (`W1`–`W8`), a track (`DES` design / `DEV` development / `OPS` infrastructure / `CON` content), and a priority (`P0` required for launch, `P1` should-have, `P2` nice-to-have, `PX` post-MVP).
 
+## Status snapshot — 2026-05-15
+
+- **Done:** repo scaffolding (Next.js 15 + TS + Tailwind, standalone output, gitleaks hook), three-repo split (`wellsourced` / `brand-data` / `infrastructure`), Docker Compose dev stack, brand JSON schema with per-field trust tiers, design-system docs site at `/design` with tokens + most core components, landing page with search bar and featured brands, CI workflows (secret scan, brand-data validation, Docker build, daily Shopify-sync cron skeleton).
+- **In progress:** IA & navigation spec on branch `001-ia-navigation` (Draft).
+- **Not started:** actual Shopify sync / Meilisearch wiring / LLM search / `/search` / `/brand/[slug]` / `/submit` / auth / `/admin` / donate / observability — see sections 3–17 below. Only 1 brand profile seeded (`patagonia.json`) vs. 50–100 target.
+
 ---
 
 ## 0. Foundations (W1 · OPS · P0)
 
 Things that block every other workstream. Get these done first.
 
-- [ ] Initialize Next.js 15 + TypeScript + Tailwind project (`output: "standalone"` in `next.config.ts`)
-- [ ] Configure `.env.example` with all keys from CLAUDE.md (Meilisearch, Anthropic, Supabase, Shopify tokens)
-- [ ] Install gitleaks pre-commit hook (`./scripts/setup-hooks.sh`)
-- [ ] Create sibling `brand-data` repo with initial schema folder structure
-- [ ] Create sibling `infrastructure` repo with `docker-compose.yml` (app + Meilisearch on :7700)
-- [ ] Set up Supabase project + GitHub OAuth provider
+- [x] Initialize Next.js 15 + TypeScript + Tailwind project (`output: "standalone"` in `next.config.ts`)
+- [x] Configure `.env.example` with all keys from CLAUDE.md (Meilisearch, Anthropic, Supabase, Shopify tokens) — lives at `infrastructure/docker/.env.example`
+- [x] Install gitleaks pre-commit hook (`./scripts/setup-hooks.sh`) — installed in all three repos
+- [x] Create sibling `brand-data` repo with initial schema folder structure
+- [x] Create sibling `infrastructure` repo with `docker-compose.yml` (app + Meilisearch on :7700)
+- [ ] Set up Supabase project + GitHub OAuth provider — local `supabase/config.toml` stubbed; remote project + OAuth not yet provisioned
 - [ ] Register Open Collective fiscal-sponsorship application (parallel — can take weeks)
-- [ ] Decide license (MIT vs AGPL) — open question in PRD §12
+- [ ] Decide license (MIT vs AGPL) — open question in PRD §12 (`brand-data` has a LICENSE; `wellsourced` does not yet)
 - [ ] Decide Storefront Access Token collection strategy (manual vs automated) — open question in PRD §12
 
 ---
 
 ## 1. Design System & IA (W1–W2 · DES · P0)
 
-Branch `001-ia-navigation` is already in progress. Design system doc exists per commit `7e8e9f1`.
+Branch `001-ia-navigation` is in progress. Design-system docs site lives at `/design` (MDX) with sidebar nav, theme toggle, code blocks, and component pages.
 
-- [ ] Finalize design tokens: color palette, type scale, spacing scale, radii, shadows
-- [ ] Define trust-tier visual language (Tier 1 neutral / Tier 2 blue / Tier 3 green) with accessible contrast
-- [ ] Component library: Button, Input, SearchBar, Chip, Card, Badge, TrustTierBadge, Tooltip
-- [ ] Information architecture: confirm route map matches PRD §5
-- [ ] Navigation: global header, footer, mobile menu
-- [ ] Empty / loading / error states for every async surface (search, profile, submission queue)
+- [x] Finalize design tokens: color palette, type scale, spacing scale, radii, shadows — token MDX pages exist under `/design/(docs)/foundations/*` (color, typography, space, radius, elevation, motion, iconography)
+- [x] Define trust-tier visual language (Tier 1 neutral / Tier 2 blue / Tier 3 green) with accessible contrast — `TrustBadge` component + docs page
+- [x] Component library: Button, Input, SearchBar, Chip, Card, Badge, TrustTierBadge, Tooltip — all built **except Tooltip** (still missing); also added `ProductCard`, `CategoryTile`, `BrandProfileHeader`, `Skeleton`, `Logo`, `NavBar`
+- [ ] Information architecture: confirm route map matches PRD §5 — spec drafted in `specs/001-ia-navigation/spec.md` (status: Draft)
+- [ ] Navigation: global header, footer, mobile menu — `NavBar` exists with placeholder links; footer + mobile menu not built; per spec, the current `backdrop-blur-md` style needs to come off
+- [ ] Empty / loading / error states for every async surface (search, profile, submission queue) — `Skeleton` component + `patterns/empty-states` and `patterns/error-states` MDX docs exist; not wired into real surfaces yet
 - [ ] Mobile-first responsive breakpoints
-- [ ] Accessibility baseline: WCAG 2.1 AA, keyboard nav, focus rings, screen reader labels
-- [ ] Brand identity polish: logo lockups, favicon, OG image template
+- [ ] Accessibility baseline: WCAG 2.1 AA, keyboard nav, focus rings, screen reader labels — accessibility guidance page exists at `/design/(docs)/accessibility`; baseline audit pending
+- [ ] Brand identity polish: logo lockups, favicon, OG image template — `Logo` + `Lockup` components shipped; favicon is the Next.js default; OG template not built
 - [ ] Plain-language pattern: how cert jargon ("SA8000") renders alongside human summaries ("Workers earn a living wage")
 
 ---
 
 ## 2. Brand Data Schema & Seed (W1 · DEV+CON · P0)
 
-- [ ] Lock JSON schema (matches PRD §3.2): `name`, `slug`, `shopify_domain`, `storefront_access_token` (env, not JSON), `trust_tiers`, `sources`, etc.
-- [ ] Write JSON Schema validator (CI on `brand-data` repo)
-- [ ] Research and draft 50–100 initial brand profiles (manual)
+- [x] Lock JSON schema (matches PRD §3.2): `name`, `slug`, `shopify_domain`, `storefront_access_token` (env, not JSON), `trust_tiers`, `sources`, etc. — `brand-data/schema/brand.schema.json` (draft-07)
+- [x] Write JSON Schema validator (CI on `brand-data` repo) — `wellsourced/.github/workflows/validate.yml` runs ajv-cli on PRs (note: workflow lives in `wellsourced` repo today; may want to move to `brand-data`)
+- [ ] Research and draft 50–100 initial brand profiles (manual) — 1 of 50–100 done (`patagonia.json`); `templates/brand-template.json` ready
 - [ ] Collect Storefront Access Tokens for each → populate `SHOPIFY_STOREFRONT_TOKENS` env blob
-- [ ] Conflict-of-interest field on each profile
-- [ ] Per-field `trust_tier` defaults for self-reported submissions
+- [ ] Conflict-of-interest field on each profile — `COI_POLICY.md` exists in `brand-data`, but schema has no explicit `conflict_of_interest` field yet
+- [x] Per-field `trust_tier` defaults for self-reported submissions — schema's `trust_tiers` object keys each verifiable field (ownership_type, certifications, worker_conditions, country_manufactured, ceo_worker_ratio)
 
 ---
 
@@ -56,21 +62,21 @@ Branch `001-ia-navigation` is already in progress. Design system doc exists per 
 
 - [ ] `lib/shopify/` GraphQL client with cost-throttle (≤1000 points/sec)
 - [ ] Query helpers: `products`, `productByHandle`, `collections` with cursor pagination
-- [ ] `scripts/sync-shopify.ts` — per-brand product pull → upsert into Meilisearch
+- [ ] `scripts/sync-shopify.ts` — per-brand product pull → upsert into Meilisearch *(file exists as TODO stub)*
 - [ ] Token loader from `SHOPIFY_STOREFRONT_TOKENS` env (never from brand JSON)
 - [ ] Failure recovery: retry, skip, log; show cached data with "last updated" timestamp
-- [ ] `Dockerfile.worker` for sync container
-- [ ] GitHub Actions cron job (daily 3 AM UTC) running sync
-- [ ] Admin trigger endpoint for manual refresh
+- [x] `Dockerfile.worker` for sync container
+- [x] GitHub Actions cron job (daily 3 AM UTC) running sync — `shopify-sync.yml` scheduled; pulls `ghcr.io/wellsourced-io/sync-worker:latest` and runs container (still a no-op until the script is implemented)
+- [ ] Admin trigger endpoint for manual refresh — `workflow_dispatch` enabled on the cron; in-app admin trigger TBD
 
 ---
 
 ## 4. Search Infrastructure (W2–W3 · DEV · P0)
 
-- [ ] Meilisearch indexes: `products` and `brands` with field configs
+- [ ] Meilisearch indexes: `products` and `brands` with field configs — Meilisearch v1.12 running via Docker Compose; indexes not yet created
 - [ ] `lib/search/` typed client wrapping Meilisearch SDK
-- [ ] `scripts/seed-brands.ts` — push brand JSON into `brands` index
-- [ ] `scripts/reindex-search.ts` — full rebuild
+- [ ] `scripts/seed-brands.ts` — push brand JSON into `brands` index *(file exists as TODO stub)*
+- [ ] `scripts/reindex-search.ts` — full rebuild *(file exists as TODO stub)*
 - [ ] Filterable / sortable attributes wired (category, price, ownership, certifications, country, trust tier)
 - [ ] Synonyms + typo tolerance tuned
 - [ ] Performance budget: keyword search < 500ms
@@ -176,7 +182,7 @@ PRD §3.8.
 
 PRD §3.9.
 
-- [ ] `/` landing — search bar front & center, sample results, convenience-first messaging layered with ethical framing
+- [x] `/` landing — search bar front & center, sample results, convenience-first messaging layered with ethical framing — homepage built with `SearchBar`, featured-brands grid, hero copy (commit `7dc3a9c`)
 - [ ] `/about` — mission, principles, how it works, contributors
 - [ ] `/manifesto` — philosophical foundation, commons model
 - [ ] `/contribute` — onboarding guide, link to GitHub, contribution etiquette
@@ -235,7 +241,7 @@ PRD §10.
 ## 17. Launch Prep (W7–W8 · MIXED · P0)
 
 - [ ] Expand brand catalog to 200+
-- [ ] Open-source the repo publicly (license, CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md)
+- [ ] Open-source the repo publicly (license, CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md) — `brand-data` already has `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `COI_POLICY.md`; `wellsourced` still missing all four
 - [ ] Production deploy: Vercel for app, Railway for Meilisearch, Supabase prod project
 - [ ] DNS: point `wellsourced.io` → Vercel; subdomains for Meilisearch
 - [ ] Backup strategy: Supabase daily snapshots, Meilisearch index dump

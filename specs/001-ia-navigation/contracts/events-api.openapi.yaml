@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: WellSourced Navigation Events API
+  version: 0.1.0
+  description: |
+    Internal endpoint for server-side navigation telemetry. Receives anonymous beacon
+    requests from the client and appends rows to `nav_events`. No third-party SDK.
+    No PII. No cookies set.
+
+    Used by the IA/Navigation feature (spec: 001-ia-navigation) to make
+    SC-001, SC-002, and SC-009 measurable.
+
+servers:
+  - url: /api
+    description: Same-origin (no CORS surface)
+
+paths:
+  /events:
+    post:
+      operationId: postNavEvent
+      summary: Append a single navigation event
+      description: |
+        Accepts a single event from the client beacon. The server derives the
+        `session_hash` from request metadata (FR-034), assigns the timestamp,
+        and inserts into `nav_events`. The endpoint is fire-and-forget — clients
+        do not parse the response body.
+
+        Per FR-036, this endpoint must not block navigation: any database
+        failure returns 204 with the error swallowed server-side.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NavEventInput"
+      responses:
+        "204":
+          description: |
+            Event accepted (or silently dropped due to backend failure — clients
+            cannot distinguish, and they MUST NOT retry on this status).
+        "400":
+          description: |
+            Malformed payload (missing required field, unknown event name, PII
+            detected in `meta`). The client should not retry; the event is
+            permanently rejected.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: |
+            Rate-limited. The client's session has exceeded the per-window
+            event budget (200 events / minute / session_hash). Beacons are
+            dropped silently; client MAY retry once after a backoff (FR-036).
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+              description: Seconds until next allowed event for this session.
+
+components:
+  schemas:
+    NavEventInput:
+      type: object
+      required:
+        - event_name
+        - path
+        - viewport_bucket
+        - referrer_category
+      additionalProperties: false
+      properties:
+        event_name:
+          type: string
+          enum:
+            - page_view
+            - search_submit
+            - filter_apply
+            - filter_remove
+            - nav_click
+            - drawer_open
+            - theme_change
+            - signin_initiated
+            - signin_completed
+            - buy_direct_clicked
+        path:
+          type: string
+          description: |
+            Pathname only (no query string). Must start with `/`. Must include
+            the locale prefix (e.g., `/en/search`). Max length 512.
+          pattern: "^/[a-z]{2}(-[A-Z]{2})?(/.*)?$"
+          maxLength: 512
+        viewport_bucket:
+          type: string
+          enum: [mobile, tablet, desktop]
+          description: |
+            Bucketed viewport width at event time. Computed client-side from
+            `window.innerWidth` (<768 mobile, <1024 tablet, else desktop).
+        referrer_category:
+          type: string
+          enum: [internal, external, search_engine, direct]
+          description: |
+            Bucketed referrer per FR-034. The full referrer URL is never
+            transmitted or stored.
+        locale:
+          type: string
+          pattern: "^[a-z]{2}(-[A-Z]{2})?$"
+          default: en
+          description: Locale segment extracted from the path.
+        meta:
+          type: object
+          additionalProperties:
+            oneOf:
+              - { type: string, maxLength: 64 }
+              - { type: number }
+              - { type: boolean }
+              - { type: "null" }
+          description: |
+            Event-specific sparse fields. PII is forbidden — the keys `query`,
+            `email`, `user_id`, `ip` are rejected at validation time AND by a
+            DB CHECK constraint. Examples:
+              - search_submit: { query_length: 12, has_filters: true }
+              - nav_click:     { section: "brands" }
+              - theme_change:  { from: "system", to: "dark" }
+              - filter_apply:  { filter_name: "ownership_type", filter_count: 3 }
+          example:
+            section: brands
+
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          description: Human-readable reason for the 400.
+          example: "PII detected in meta payload"
+
+  examples:
+    PageView:
+      value:
+        event_name: page_view
+        path: "/en/"
+        viewport_bucket: mobile
+        referrer_category: direct
+
+    SearchSubmit:
+      value:
+        event_name: search_submit
+        path: "/en/search"
+        viewport_bucket: desktop
+        referrer_category: internal
+        meta:
+          query_length: 28
+          has_filters: false
+
+    NavClick:
+      value:
+        event_name: nav_click
+        path: "/en/search"
+        viewport_bucket: desktop
+        referrer_category: internal
+        meta:
+          section: brands

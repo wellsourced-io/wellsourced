@@ -125,3 +125,9 @@ Runs daily via GitHub Actions cron (3 AM UTC) or manually:
 /brands                   → Browse all brands (directory)
 /admin                    → Contributor dashboard (auth required)
 ```
+
+## Active Technologies
+- TypeScript 5.x, strict mode (per Constitution §6) (001-ia-navigation)
+
+## Recent Changes
+- 001-ia-navigation: Added TypeScript 5.x, strict mode (per Constitution §6)

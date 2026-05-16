@@ -1,0 +1,65 @@
+import { NextResponse, type NextRequest } from "next/server";
+import { locales, defaultLocale, type Locale } from "@/lib/i18n/config";
+import { matchLocale } from "@/lib/i18n/matchLocale";
+
+/**
+ * Locale routing middleware per FR-029.
+ *
+ * Strategy (research.md R2):
+ *   - Paths bearing a known locale prefix pass through unchanged.
+ *   - Paths missing a locale prefix → 308 permanent redirect to the
+ *     best-match locale (currently always 'en' at MVP).
+ *   - Query string and hash are preserved.
+ *   - The matcher config below excludes /api/*, /_next/*, /design/*, and
+ *     static assets so they bypass middleware.
+ *
+ * Sets `x-pathname` header so Server Components can read the current path
+ * via `next/headers`.
+ */
+
+const PUBLIC_FILE = /\.(.*)$/;
+
+function hasLocalePrefix(pathname: string): boolean {
+  const [, first] = pathname.split("/");
+  return (locales as readonly string[]).includes(first ?? "");
+}
+
+function bestMatch(request: NextRequest): Locale {
+  return matchLocale(request.headers.get("accept-language"));
+}
+
+export function middleware(request: NextRequest) {
+  const { pathname, search, hash } = request.nextUrl;
+
+  // Pass-through: locale-prefixed paths are canonical.
+  if (hasLocalePrefix(pathname)) {
+    const res = NextResponse.next();
+    res.headers.set("x-pathname", pathname);
+    return res;
+  }
+
+  // Redirect un-prefixed paths to best-match locale.
+  const locale = bestMatch(request);
+  const target = pathname === "/" ? `/${locale}` : `/${locale}${pathname}`;
+  const url = request.nextUrl.clone();
+  url.pathname = target;
+  url.search = search;
+  url.hash = hash;
+  return NextResponse.redirect(url, 308);
+}
+
+/**
+ * Match every path EXCEPT:
+ *   - /api/*           (route handlers, including /api/events)
+ *   - /_next/*         (Next.js internals + static assets)
+ *   - /design/*        (self-contained design site per FR-016)
+ *   - paths with file extensions (e.g. /favicon.ico, /sitemap.xml, /robots.txt)
+ */
+export const config = {
+  matcher: [
+    "/((?!api|_next|design|.*\\..*).*)",
+  ],
+};
+
+// Re-export so consumers know which paths are handled (informational; not used by Next.js).
+export { PUBLIC_FILE };

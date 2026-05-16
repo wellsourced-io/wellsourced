@@ -5,6 +5,16 @@
 **Status**: Draft
 **Input**: User description: "looking at @docs/product/PRD.md @DESIGN.md @PRODUCT.md help me define an information architecture and navigation for wellsourced"
 
+## Clarifications
+
+### Session 2026-05-15
+
+- Q: Does the global header include a manual light/dark theme toggle, and where? → A: Standalone icon in the header right slot (visible, sits alongside search and account control).
+- Q: What is the accessibility conformance target for navigation surfaces? → A: WCAG 2.1 AA across all consumer routes.
+- Q: What is the localization scope for MVP? → A: i18n-ready route structure (`/[locale]/...`) from day one; content English-only at launch.
+- Q: How are user-behavior success criteria (SC-001, SC-002, SC-009) instrumented? → A: Server-side logging only — client emits anonymous beacons to an internal endpoint, no third-party analytics SDK.
+- Q: Is bookmark/save-for-later in scope for Priya's journey (US3)? → A: No — remove the "save her interest" phrase; bookmarking is out of scope.
+
 ## Context
 
 WellSourced is a search-first product discovery utility that connects three audiences with very different jobs:
@@ -56,7 +66,7 @@ Maya sees a brand name on a product card or in editorial copy. She wants to know
 
 ### User Story 3 - Priya browses by category and discovers brands she hasn't heard of (Priority: P2)
 
-Priya isn't looking for a specific product — she wants ideas. She lands on the homepage, sees a "Browse by category" affordance, picks "Home & kitchen," and gets a category landing page with featured brands and products. From there she can drill into a brand profile, save her interest, or jump back into search.
+Priya isn't looking for a specific product — she wants ideas. She lands on the homepage, sees a "Browse by category" affordance, picks "Home & kitchen," and gets a category landing page with featured brands and products. From there she can drill into a brand profile or jump back into search with the category preserved as a filter.
 
 **Why this priority**: Priya represents the "considers but doesn't act" segment (48% of the market per PRD §1.3) — the people the project must convert by removing friction, not by amplifying values. Without a browse-first entry, she has no on-ramp. The category surface is also the SEO and shareability layer.
 
@@ -135,7 +145,7 @@ A returning visitor refines a search down to "worker-owned brands in the US unde
 
 #### Global Route Map
 
-- **FR-001**: The system MUST expose the following consumer routes, each with a single canonical URL:
+- **FR-001**: The system MUST expose the following consumer routes, each with a single canonical URL. All paths in this list are written without the locale prefix for readability; the actual served path is `/[locale]/<route>` per FR-029. The MVP locale is `en`.
   - `/` — search-first homepage (James's primary entry)
   - `/search` — search results (with optional `?q=` and filter querystring)
   - `/brands` — full brand directory, browsable and filterable
@@ -162,7 +172,9 @@ A returning visitor refines a search down to "worker-owned brands in the US unde
 - **FR-004**: The system MUST render a global header on every consumer route. The header MUST contain, from left to right:
   - The WellSourced lockup (linking to `/`)
   - A primary navigation cluster of section links
-  - A right-aligned slot for the search affordance (on internal pages) and the account control
+  - A right-aligned slot containing, in order: the compact search affordance (on internal pages only — see FR-007), a theme toggle (see FR-004a), and the account control (see FR-020/FR-021)
+
+- **FR-004a**: The header MUST include a standalone theme toggle icon in the right slot on every consumer route, including the homepage. The toggle cycles between **system** (default — follows `prefers-color-scheme`), **light**, and **dark**. The selected preference MUST persist across sessions and, when set to light or dark, MUST set a `data-theme` attribute that overrides the system preference. The toggle MUST use a single-icon visual treatment (no labeled chip) to stay within the One Voice Rule budget and MUST NOT use the deep-teal accent — it is part of the chrome, not a primary action.
 
 - **FR-005**: The primary navigation cluster MUST contain exactly these top-level links: **Find** (`/search` or `/`), **Brands** (`/brands`), **Categories** (`/categories`), **About** (`/about`). It MUST NOT contain "Submit," "Contribute," "Donate," or "Design" — those live in the footer to avoid competing with consumer tasks.
 
@@ -174,7 +186,7 @@ A returning visitor refines a search down to "worker-owned brands in the US unde
 
 - **FR-009**: The header MUST remain visible (sticky to top) on `/search` and `/c/[slug]`, where ongoing refinement is the user's task. On editorial pages (`/about`, `/manifesto`, `/donate`) the header MAY scroll away with content.
 
-- **FR-010**: The header MUST collapse to a mobile pattern below the `md` breakpoint: lockup left, search-icon button center-right, account-icon button right, hamburger opens a full-screen drawer containing the primary nav and a "Search WellSourced" field.
+- **FR-010**: The header MUST collapse to a mobile pattern below the `md` breakpoint: lockup left, search-icon button center-right, account-icon button right, hamburger opens a full-screen drawer containing the primary nav, a "Search WellSourced" field, and the theme toggle (rendered as a labeled row at the bottom of the drawer rather than as an icon, since drawer rows have room for a label).
 
 #### Global Footer
 
@@ -227,6 +239,28 @@ A returning visitor refines a search down to "worker-owned brands in the US unde
 
 - **FR-027**: All interactive nav elements (links, buttons, chips, drawer toggles) MUST expose `:focus-visible` styles using the system's signature focus pattern (deep-teal border + 4px soft-teal halo per DESIGN.md §5 Inputs/SearchBar).
 
+- **FR-028**: All navigation surfaces (header, footer, drawer, sub-nav, breadcrumbs, account menu, theme toggle) MUST meet **WCAG 2.1 Level AA** conformance. This includes: minimum 4.5:1 contrast for body text and 3:1 for large text and non-text UI; visible focus indicators on all interactive elements; full keyboard operability with a logical tab order; correct landmark roles (`<header>`, `<nav>`, `<main>`, `<footer>`); accessible names on icon-only controls (theme toggle, search-icon, hamburger, account avatar) via `aria-label` or visible text; and respect for `prefers-reduced-motion` on drawer and dropdown transitions.
+
+#### Localization & Locale Routing
+
+- **FR-029**: Every consumer route MUST be served under a `/[locale]/...` path prefix. The MVP locale is `en`. Visits to a path without a locale prefix (e.g., `/brand/patagonia`) MUST resolve to the user's best-match locale via a 308 permanent redirect, preserving query string and hash. At MVP, the best match is always `en`.
+
+- **FR-030**: Every statically generated page (brand profile, brand products, single category, brands directory) MUST emit `<link rel="alternate" hreflang="<locale>">` tags for each available locale, plus an `<link rel="alternate" hreflang="x-default">` pointing to the `en` URL. At MVP only one alternate exists, but the markup MUST be present so adding a locale does not require an SEO-shape change.
+
+- **FR-031**: A locale switcher MUST be defined as a discoverable control in the global footer (within the "System" group or as its own row). At MVP, when only one locale exists, the switcher MUST render as a non-interactive label showing the current locale (e.g., "English (US)") rather than disappearing — this preserves the visual contract and signals that the project is multilingual-ready. Once a second locale ships, the same slot becomes an interactive selector with no other layout change.
+
+- **FR-032**: All locale-sensitive strings in the navigation chrome (primary nav labels, footer group titles, breadcrumb labels, account menu, theme toggle accessible name, drawer labels) MUST be sourced from a translation layer keyed by locale, not hard-coded as literals in the components. Adding a second locale MUST be a content change, not a code change.
+
+#### Navigation Instrumentation
+
+- **FR-033**: The system MUST instrument the following navigation events server-side via anonymous beacon requests sent from the client to an internal `/api/events` endpoint. No third-party analytics SDK is permitted, no client-side identifier (cookie, localStorage ID, fingerprint) is permitted, and no PII is captured. Required events: `page_view`, `search_submit` (with anonymized query length and presence-of-filters flags only), `filter_apply`, `filter_remove`, `nav_click` (with section label), `drawer_open`, `theme_change`, `signin_initiated`, `signin_completed`, `buy_direct_clicked`.
+
+- **FR-034**: Each event MUST capture: timestamp (server-assigned), event name, route pathname (without query string by default), referrer category (internal / external / search-engine / direct, not the full URL), viewport size bucket (mobile / tablet / desktop), and a session-scoped opaque ID rotated every 30 minutes (never persisted, derived from request metadata, used only to compute SC-001 / SC-002 / SC-009).
+
+- **FR-035**: The system MUST NOT render a cookie or consent banner for navigation chrome, because no cookies or persistent identifiers are set by the instrumentation layer. If a future feature introduces tracking that would require consent, that feature owns the banner — the IA chrome remains banner-free.
+
+- **FR-036**: The instrumentation endpoint MUST be resilient to client failure: a failed beacon MUST NOT block the navigation action, MUST NOT surface an error to the user, and MUST be retried at most once. Navigation MUST work identically with the instrumentation endpoint offline.
+
 ### Key Entities *(navigation entities, not data entities)*
 
 - **Page** — A canonical route in the system. Each page has: a URL pattern, a primary persona, a section assignment (Discover / Profile / Operator / Contribute / About / System), a render mode (static / SSR / authenticated), and a position in nav (primary header / footer-group / sub-nav / breadcrumb-only / unlinked).
@@ -241,9 +275,9 @@ A returning visitor refines a search down to "worker-owned brands in the US unde
 
 ### Measurable Outcomes
 
-- **SC-001**: A first-time visitor on `/` submits a search query within 15 seconds of page load in 80% of sessions (measures whether the search affordance reads as the primary action without explanation).
+- **SC-001**: A first-time visitor on `/` submits a search query within 15 seconds of page load in 80% of sessions, measured by querying server-side beacon logs for the time delta between `page_view` (route `/`) and the next `search_submit` from the same session-scoped opaque ID (per FR-033/FR-034).
 
-- **SC-002**: On `/search` and category pages, the rate of users who refine their query at least once exceeds 40% (measures whether the sticky compact search and filter chips are discoverable and usable in context).
+- **SC-002**: On `/search` and category pages, the rate of sessions that emit at least one `filter_apply` or follow-up `search_submit` exceeds 40%, measured from server-side beacon logs (measures whether the sticky compact search and filter chips are discoverable and usable in context).
 
 - **SC-003**: Every route in the system is reachable from the homepage in no more than two clicks, verified by a navigation-graph check at build time.
 
@@ -251,9 +285,9 @@ A returning visitor refines a search down to "worker-owned brands in the US unde
 
 - **SC-005**: A shared `/search?q=...&filter=...` URL, opened in a clean browser, restores the same query, the same active filter chips, and the same sort order with no visible difference from the originating session.
 
-- **SC-006**: Brand profile pages rank in search-engine results for "<brand name> ethical" or "<brand name> ownership" queries within 90 days of indexing (measures whether SSG and metadata are configured correctly).
+- **SC-006**: Brand profile pages rank in search-engine results for "<brand name> ethical" or "<brand name> ownership" queries within 90 days of indexing, and every brand and category page validates clean against Google's `hreflang` testing tool with at least one `hreflang` tag plus an `x-default` (measures whether SSG, metadata, and locale-ready routing are configured correctly).
 
-- **SC-007**: The mobile drawer opens within 200ms of tap and the primary nav is fully usable with keyboard or screen reader (verified by automated accessibility audit, no critical or serious violations).
+- **SC-007**: The mobile drawer opens within 200ms of tap and every navigation surface passes an automated WCAG 2.1 AA audit (axe-core or equivalent) with zero violations at Critical or Serious severity, and the primary nav is fully operable with keyboard and screen reader on the three latest versions of NVDA, VoiceOver, and JAWS.
 
 - **SC-008**: The global header renders in the first 1KB of HTML and is visible before any client-side hydration, so the navigation is usable for no-JS visitors and during slow loads.
 
